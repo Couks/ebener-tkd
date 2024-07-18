@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import Image from "next/image";
 import quemSomos from "@/assets/images/image8.jpeg";
 import { Button } from "@/components/ui/button";
