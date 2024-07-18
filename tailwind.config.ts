@@ -1,13 +1,13 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -23,13 +23,36 @@ const config = {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
+        bgImage: {
+          login: "url('../assets/images/image4.jpeg')",
+        },
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
+          100: "#ffedcc",
+          200: "#ffdb99",
+          300: "#ffc966",
+          400: "#ffb833",
+          500: "#fa8c05",
+          600: "#c76e04",
+          700: "#945103",
+          800: "#623502",
+          900: "#311a01",
+          950: "#190d00",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
+          100: "#d1dbe8",
+          200: "#a4b7d1",
+          300: "#7693ba",
+          400: "#496fa3",
+          500: "#1d4574",
+          600: "#18375d",
+          700: "#122946",
+          800: "#0d1b2e",
+          900: "#070e17",
+          950: "#03070b",
           foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
@@ -75,6 +98,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

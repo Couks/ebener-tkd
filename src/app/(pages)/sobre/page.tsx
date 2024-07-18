@@ -1,20 +1,53 @@
 import Image from "next/image";
-import logo from "@/assets/images/image8.jpeg";
+import quemSomos from "@/assets/images/image8.jpeg";
+import { Button } from "@/components/ui/button";
 
 export default function Sobre() {
   return (
-    <main className="h-auto">
-      <section className="flex items-center justify-center relative">
-        <Image src={logo} alt="" className="w-full h-30 bg-cover" />
-        <div className="container mx-auto px-8 absolute items-center justityfy-center flex flex-col text-center">
-          <h1 className="text-white font-bold text-4xl">Quem somos?</h1>
-          <span className="text-gray-200 font-bold text-xl">
-            Conheça a maior academia de Taekwondo da Ilha do Governador
-          </span>
+    <main className="w-full">
+      <section className="relative w-full h-96">
+        <Image
+          src={quemSomos}
+          alt="Quem Somos"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-center text-white text-center p-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-2">Quem somos?</h1>
+          <p className="text-xl md:text-2xl font-medium mb-4 ">
+            Conheça a maior academia de Taekwondo na Ilha do Governador
+          </p>
           <Button>Conheça a Ebener TKD</Button>
         </div>
       </section>
-      <div></div>
+      <section className="container mx-auto px-8 py-12 text-center space-y-6">
+        <h2 className="text-3xl md:text-4xl font-bold text-secondary-500">
+          Nossa História
+        </h2>
+        <p className="text-lg md:text-xl font-medium text-gray-700 leading-relaxed">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus
+          officiis earum voluptate excepturi vero reprehenderit saepe quos
+          voluptatem consequuntur quis dolorum debitis, quasi aperiam possimus,
+          dolores aliquid repudiandae maxime delectus.
+        </p>
+        <p className="text-lg md:text-xl font-medium text-gray-700 leading-relaxed">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus
+          officiis earum voluptate excepturi vero reprehenderit saepe quos
+          voluptatem consequuntur quis dolorum debitis, quasi aperiam possimus,
+          dolores aliquid repudiandae maxime delectus.
+        </p>
+        <p className="text-lg md:text-xl font-medium text-gray-700 leading-relaxed">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus
+          officiis earum voluptate excepturi vero reprehenderit saepe quos
+          voluptatem consequuntur quis dolorum debitis, quasi aperiam possimus,
+          dolores aliquid repudiandae maxime delectus.
+        </p>
+        <p className="text-lg md:text-xl font-medium text-gray-700 leading-relaxed">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus
+          officiis earum voluptate excepturi vero reprehenderit saepe quos
+          voluptatem consequuntur quis dolorum debitis, quasi aperiam possimus,
+          dolores aliquid repudiandae maxime delectus.
+        </p>
+      </section>
     </main>
   );
 }

@@ -2,7 +2,7 @@ export default function Login() {
   return (
     <div className="bg-white dark:bg-gray-800">
       <div className="flex justify-center h-screen">
-        <div className="hidden lg:block lg:w-2/3 from-orange-500 bg-gradient-to-r to-blue-950 ">
+        <div className="hidden lg:block lg:w-2/3 bg-bgImage-login">
           <div className="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
             <div>
               <h2 className="text-4xl font-bold text-white">Ebener TKD</h2>

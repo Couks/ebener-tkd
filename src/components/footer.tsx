@@ -3,10 +3,12 @@ import logo from "@/assets/favicon.png";
 
 export function Footer() {
   return (
-    <footer className="w-full bg-gray-800 text-white p-6">
+    <footer className="w-full bg-gray-800 text-white p-6 ">
       <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="flex items-center mb-4 md:mb-0">
-          <Image src={logo} alt="Ebener TKD Logo" width={40} height={40} />
+          <div className="flex-shrink-0 bg-white rounded-full p-0.5">
+            <Image src={logo} alt="Ebener TKD Logo" width={40} height={40} />
+          </div>
           <span className="ml-3 text-lg font-semibold">Ebener TKD</span>
         </div>
         <div className="flex space-x-4 mb-4 md:mb-0">
