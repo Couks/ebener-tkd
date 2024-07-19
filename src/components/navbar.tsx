@@ -43,13 +43,16 @@ export function NavBar() {
 
   return (
     <nav className="bg-transparent border-gray-200 w-full">
-      <Disclosure as="nav" className="bg-transparent py-1">
+      <Disclosure as="nav" className="bg-transparent py-2">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
-              <div className="flex-shrink-0 bg-primary-500 rounded-full p-0.5">
-                <Image alt="Your Company" src={logo} className="size-12" />
-              </div>
+              <a href="/">
+                <div className="flex-shrink-0 bg-primary-500 rounded-full p-0.5">
+                  <Image alt="Your Company" src={logo} className="size-12" />
+                </div>
+              </a>
+
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
                   {navigation.map((item) => (
@@ -85,7 +88,7 @@ export function NavBar() {
 
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <MenuButton className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <MenuButton className="relative flex max-w-xs items-center rounded-full bg-secondary-500 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-secondary-800">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
@@ -115,7 +118,7 @@ export function NavBar() {
             </div>
             <div className="-mr-2 flex md:hidden">
               {/* Mobile menu button */}
-              <DisclosureButton className="group relative inline-flex items-center justify-center  bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+              <DisclosureButton className="group relative inline-flex rounded-md items-center justify-center bg-secondary-500 p-2 text-gray-400 hover:bg-secondary-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-secondary-800">
                 <span className="absolute -inset-0.5" />
                 <span className="sr-only">Open main menu</span>
                 <Bars3Icon
@@ -131,7 +134,7 @@ export function NavBar() {
           </div>
         </div>
 
-        <DisclosurePanel className="md:hidden ">
+        <DisclosurePanel className="md:hidden">
           <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
             {navigation.map((item) => (
               <DisclosureButton
@@ -141,16 +144,16 @@ export function NavBar() {
                 aria-current={currentPath ? "page" : undefined}
                 className={classNames(
                   currentPath
-                    ? "bg-gray-900 text-white"
-                    : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                  "block  px-3 py-2 text-base font-bold"
+                    ? "bg-primary-500 text-white rounded-md"
+                    : "text-gray-300 hover:bg-primary-500 hover:text-white rounded-md",
+                  "block px-3 py-2 text-base font-bold"
                 )}
               >
                 {item.name}
               </DisclosureButton>
             ))}
           </div>
-          <div className="border-t border-gray-700 pb-3 pt-4">
+          <div className="border-t border-gray-700 pb-3 pt-4 hidden">
             <div className="flex items-center px-5">
               <div className="flex-shrink-0">
                 <Image
