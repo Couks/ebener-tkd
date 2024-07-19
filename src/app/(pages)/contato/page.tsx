@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 export default function Contato() {
   return (
     <main className="w-full">
-      <section className="relative w-full h-96 bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center text-white text-center p-4">
+      <section className="relative w-full md:h-96 bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center text-white text-center p-4">
         <div>
           <h1 className="text-4xl md:text-5xl font-bold mb-2">
             Entre em Contato

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 export default function Sobre() {
   return (
     <main className="w-full">
-      <section className="relative w-full h-96">
+      <section className="relative w-full md:h-96 ">
         <Image
           src={quemSomos}
           alt="Quem Somos"

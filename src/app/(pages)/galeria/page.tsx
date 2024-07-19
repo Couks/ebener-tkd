@@ -85,7 +85,7 @@ const images = [
 
 export default function Galeria() {
   return (
-    <div className="container mx-auto py-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div className="container  py-8 grid grid-cols-2 md:grid-cols-4 gap-4">
       {images.map((image, index) => (
         <div key={index} className="w-full min-h-64 relative">
           <Image

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 export default function Precos() {
   return (
     <main className="w-full">
-      <section className="relative w-full h-96 bg-gradient-to-r from-secondary-500 to-primary-500 flex items-center justify-center text-white text-center p-4">
+      <section className="relative w-full md:h-96 bg-gradient-to-r from-secondary-500 to-primary-500 flex items-center justify-center text-white text-center p-4">
         <div>
           <h1 className="text-4xl md:text-5xl font-bold mb-2">
             Planos e Preços

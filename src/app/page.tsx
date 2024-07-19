@@ -7,14 +7,14 @@ export default function Home() {
   return (
     <main className="w-full">
       {/* Seção de Introdução */}
-      <section className="relative w-full h-96 bg-gradient-to-r from-secondary-500 to-primary-500 flex items-center justify-center text-white text-center p-4">
+      <section className="relative w-full h-auto md:h-96 bg-gradient-to-r from-secondary-500 to-primary-500 flex items-center justify-center text-white text-center p-4">
         <div className="absolute inset-0 overflow-hidden">
           <Image
             src={quemSomos}
             alt="Academia"
             layout="fill"
             objectFit="cover"
-            className="object-cover opacity-50"
+            className="object-cover opacity-40"
           />
         </div>
         <div className="relative z-10">
@@ -105,7 +105,7 @@ export default function Home() {
       </section>
 
       {/* Seção de Chamada para Ação */}
-      <section className="bg-primary-600 text-white py-12 text-center">
+      <section className="bg-secondary-500 text-white py-12 text-center">
         <div className="container mx-auto px-8">
           <h2 className="text-3xl font-bold mb-4">
             Pronto para começar sua jornada no Taekwondo?
@@ -114,9 +114,7 @@ export default function Home() {
             Entre em contato conosco hoje e agende uma aula experimental
             gratuita!
           </p>
-          <Button className="bg-white text-primary-600 hover:bg-gray-100">
-            Agende sua Aula
-          </Button>
+          <Button>Agende sua Aula</Button>
         </div>
       </section>
     </main>

@@ -49,7 +49,7 @@ export function NavBar() {
             <div className="flex items-center">
               <a href="/">
                 <div className="flex-shrink-0 bg-primary-500 rounded-full p-0.5">
-                  <Image alt="Your Company" src={logo} className="size-12" />
+                  <Image alt="Your Company" src={logo} className="size-14" />
                 </div>
               </a>
 
@@ -65,8 +65,8 @@ export function NavBar() {
                       className={classNames(
                         currentPath === item.href
                           ? "text-primary-500 "
-                          : "text-gray-300 hover:text-primary-500 hover:underline-offset-0",
-                        " px-3 py-2 text-sm font-bold"
+                          : "text-gray-300 hover:text-primary-500 hover:underline",
+                        " px-3 py-2 text-sm md:text-lg font-bold"
                       )}
                     >
                       {item.name}
