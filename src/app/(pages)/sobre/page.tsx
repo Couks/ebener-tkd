@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button";
 export default function Sobre() {
   return (
     <main className="w-full">
-      <section className="relative w-full md:h-96 ">
+      <section className="relative w-full md:max-h-fit">
         <Image
           src={quemSomos}
           alt="Quem Somos"
-          className="w-full h-full object-cover"
+          className="w-full max-h-96 object-cover"
         />
         <div className="absolute inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-center text-white text-center p-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-2">Quem somos?</h1>
