@@ -51,8 +51,8 @@ export function NavBar() {
                 href={item.href}
                 className={classNames(
                   currentPath === item.href
-                    ? "text-primary-500 rounded"
-                    : "hover:text-primary-500 hover:underline",
+                    ? "bg-primary-500 rounded-md px-2 py-0.5"
+                    : "hover:text-primary-500 hover:underline text-primary-500",
                   "flex gap-2 px-2 text-sm md:text-lg font-semibold items-center text-white"
                 )}
               >
@@ -101,9 +101,9 @@ export function NavBar() {
                 currentPath === item.href
                   ? "bg-primary-500 text-white rounded"
                   : "text-gray-300 hover:bg-primary-500 hover:text-white rounded",
-                "flex items-center px-3 py-2 text-lg font-bold" // Aumentado para text-lg
+                "flex items-center px-3 py-2 text-lg font-bold"
               )}
-              onClick={() => setSidebarOpen(false)} // Fecha a sidebar ao clicar
+              onClick={() => setSidebarOpen(false)}
             >
               {item.icon} {/* Ícone adicionado */}
               <span className="ml-2">{item.name}</span>{" "}
