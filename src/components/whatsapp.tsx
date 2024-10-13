@@ -6,7 +6,7 @@ import Image from "next/image";
 const WhatsappButton: React.FC = () => {
   return (
     <a
-      href="https://wa.me/5521981654811" // Substitua pelo link correto para o WhatsApp
+      href="https://wa.me/5521981654811"
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-4 right-2 z-50 animate-bounce"

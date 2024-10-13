@@ -12,14 +12,14 @@ export default function IntroSection() {
       />
 
       {/* Esmaecimento com gradiente */}
-      <div className="absolute inset-0 bg-black/60"></div>
+      <div className="absolute inset-0 bg-black/70"></div>
 
       {/* Conteúdo de texto */}
       <div className="relative z-10 text-center p-4 md:p-8">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
           Ebener Taekwondo
         </h1>
-        <p className="text-xl md:text-2xl mb-6 text-gray-300">
+        <p className="text-xl md:text-3xl font-semibold mb-6 text-gray-300">
           Transforme sua vida com Taekwondo <br />
           na maior academia da Ilha do Governador
         </p>

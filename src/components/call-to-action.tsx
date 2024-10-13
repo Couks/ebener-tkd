@@ -10,7 +10,13 @@ export default function CallToActionSection() {
         <p className="text-lg mb-6">
           Entre em contato conosco hoje e agende uma aula experimental gratuita!
         </p>
-        <Button>Agende sua Aula</Button>
+
+        <a
+          href="https://api.whatsapp.com/send/?phone=5521981654811&text&type=phone_number&app_absent=0"
+          target="_blank"
+        >
+          <Button>Agende sua Aula</Button>
+        </a>
       </div>
     </section>
   );

@@ -34,7 +34,6 @@ export default function Galeria() {
               src={image.default}
               alt={`Image ${index + 1}`}
               className="w-full h-auto object-cover rounded-lg transition-transform duration-300 ease-in-out md:group-hover:scale-125"
-              layout="responsive"
             />
           </div>
         ))}

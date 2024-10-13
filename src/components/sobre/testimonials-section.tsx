@@ -42,8 +42,9 @@ export default function TestimonialsSection() {
                 </div>
               </div>
               <p className="text-lg font-medium">
-                A Ebener TKD mudou minha vida. A equipe é incrível e o
-                treinamento é de alta qualidade!
+                O taekwondo me ensinou resiliência, disciplina e foco, ajudando
+                a superar desafios. Conquistei títulos importantes, como o de
+                campeã brasileira e a liderança no ranking nacional.
               </p>
             </div>
           </SwiperSlide>
@@ -65,26 +66,6 @@ export default function TestimonialsSection() {
                 O Taewkondo foi uma grande mudança pra minha vida. Física e
                 mentalmente, tenho hoje um corpo mais saudável e encontrei um
                 espaço para desestressar e acalmar dos problemas do dia a dia.
-              </p>
-            </div>
-          </SwiperSlide>
-
-          {/* Depoimento 3 */}
-          <SwiperSlide>
-            <div className="w-full bg-gray-100 rounded-lg shadow-lg p-6 flex flex-col min-h-[300px]">
-              <div className="flex items-center mb-4">
-                <Avatar className="mr-4 size-20">
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>MS</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="font-bold text-xl">Mariana Santos</p>
-                  <span className="text-gray-600">Aluno</span>
-                </div>
-              </div>
-              <p className="text-lg font-medium">
-                Recomendo a Ebener TKD para qualquer pessoa que queira se
-                dedicar ao Taekwondo!
               </p>
             </div>
           </SwiperSlide>

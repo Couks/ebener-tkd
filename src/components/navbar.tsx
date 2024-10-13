@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import {
   DollarSign,
   Facebook,
+  Gem,
   HomeIcon,
   Images,
   Instagram,
@@ -18,11 +19,11 @@ import {
 } from "lucide-react";
 
 const navigation = [
-  { name: "Home", href: "/", icon: <HomeIcon size={24} /> },
-  { name: "Sobre", href: "/sobre", icon: <Users size={24} /> },
-  { name: "Galeria", href: "/galeria", icon: <Images size={24} /> },
-  { name: "Preços", href: "/precos", icon: <DollarSign size={24} /> },
-  { name: "Contato", href: "/contato", icon: <Phone size={24} /> },
+  { name: "Home", href: "/", icon: <HomeIcon size={18} /> },
+  { name: "Sobre", href: "/sobre", icon: <Users size={18} /> },
+  { name: "Galeria", href: "/galeria", icon: <Images size={18} /> },
+  { name: "Preços", href: "/precos", icon: <Gem size={18} /> },
+  { name: "Contato", href: "/contato", icon: <Phone size={18} /> },
 ];
 
 function classNames(...classes: string[]) {
@@ -34,11 +35,11 @@ export function NavBar() {
   const currentPath = usePathname();
 
   return (
-    <nav className="bg-transparent border-gray-200 w-full">
+    <nav className="bg-secondary-500 border-gray-300 w-full shadow-primary-500 shadow">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2">
         <div className="flex h-16 items-center justify-between">
           <a href="/" className="flex items-center">
-            <div className="flex-shrink-0 bg-primary-500 rounded-full p-0.5">
+            <div className="flex-shrink-0 bg-white rounded-full p-1">
               <Image alt="Logo" src={logo} className="size-14" />
             </div>
           </a>
@@ -50,9 +51,9 @@ export function NavBar() {
                 href={item.href}
                 className={classNames(
                   currentPath === item.href
-                    ? "text-white rounded-full bg-primary-500"
-                    : "hover:text-primary-500 hover:bg-secondary-500 rounded-full",
-                  "flex gap-2 px-3 py-1 text-sm md:text-lg font-bold items-center"
+                    ? "text-primary-500 rounded"
+                    : "hover:text-primary-500 hover:underline",
+                  "flex gap-2 px-2 text-sm md:text-lg font-semibold items-center text-white"
                 )}
               >
                 <i>{item.icon}</i>
@@ -64,7 +65,7 @@ export function NavBar() {
           <div className="flex md:hidden">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="relative inline-flex items-center justify-center bg-secondary-500 p-2 text-gray-400 hover:bg-secondary-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+              className="relative inline-flex items-center justify-center bg-secondary-600 p-2 text-gray-400 hover:bg-secondary-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white rounded-xl"
             >
               <span className="sr-only">Open menu</span>
               {sidebarOpen ? (
@@ -118,6 +119,7 @@ export function NavBar() {
               <a
                 href="https://www.instagram.com/ebenertkd/"
                 className="text-gray-300 hover:text-white"
+                target="_blank"
               >
                 <Instagram />
               </a>
