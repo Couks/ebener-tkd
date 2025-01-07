@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Chakra_Petch } from "next/font/google";
 import "./globals.css";
 import { NavBar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import WhatsappButton from "@/components/whatsapp";
 
-const inter = Inter({ subsets: ["latin"] });
+const chakraPetch = Chakra_Petch({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Ebener TKD",
@@ -19,14 +22,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={inter.className}>
-        <div className="flex flex-col justify-between h-max">
-          <NavBar />
+      <body className={chakraPetch.className}>
+        <div className="flex flex-col justify-between h-max bg-secondary-950">
           <main>
+            <NavBar />
             <WhatsappButton />
             {children}
+            <Footer />
           </main>
-          <Footer />
         </div>
       </body>
     </html>

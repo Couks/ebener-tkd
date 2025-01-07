@@ -10,7 +10,6 @@ export default function Precos() {
         title="Treinos de Taekwondo"
         subtitle="Aulas dinâmicas e focadas no seu desenvolvimento"
         backgroundImage={precosImage.src}
-        height="h-96"
       />
 
       <section className="container mx-auto px-8 py-12 text-center">

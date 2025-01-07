@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 
 import treinoPersonalizado from "@/assets/images/treino-personalizado.jpeg";
-import aulasEmGrupo from "@/assets/images/aulas-em-grupo.jpeg";
+import aulasEmGrupo from "@/assets/images/image4.jpeg";
 import eventos from "@/assets/images/eventos-e-competicoes.jpeg";
 
 export default function ServicesSection() {

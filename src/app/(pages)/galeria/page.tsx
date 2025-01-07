@@ -1,4 +1,6 @@
+import IntroSection from "@/components/sobre/intro-section";
 import Image from "next/image";
+import quemsSomos from "@/assets/images/20240728_121305.jpg";
 
 const importAll = (r: object) => (r as any).keys().map(r);
 const images = importAll(
@@ -17,17 +19,17 @@ export default function Galeria() {
   const shuffledImages = shuffleArray(images.slice());
 
   return (
-    <div className="container py-8">
+    <>
       {/* Título */}
-      <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold mb-2">Galeria de Imagens</h1>
-        <h2 className="text-lg text-gray-600">
-          Confira nossa coleção de imagens
-        </h2>
-      </div>
+      <IntroSection
+        title="Nossa Galeria de Treinos"
+        subtitle="Veja os momentos especiais dos nossos alunos em ação, desde iniciantes até faixas pretas, compartilhando a energia e dedicação ao Taekwondo"
+        backgroundImage={quemsSomos.src}
+        buttonText="Ver fotos"
+      />
 
       {/* Galeria */}
-      <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4">
+      <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 pt-12">
         {shuffledImages.map((image: any, index: number) => (
           <div key={index} className="mb-4 break-inside-avoid group">
             <Image
@@ -38,6 +40,6 @@ export default function Galeria() {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 }

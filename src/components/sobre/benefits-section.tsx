@@ -15,7 +15,7 @@ import {
 
 export default function BenefitsSection() {
   return (
-    <section className="bg-white py-12 text-right">
+    <section className="bg-transparent py-12 text-right">
       <div className="container mx-auto text-left">
         <h2 className="text-4xl font-bold text-secondary-500 mb-8">
           Benefícios do Taekwondo

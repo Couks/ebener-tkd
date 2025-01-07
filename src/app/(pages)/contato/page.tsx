@@ -9,51 +9,96 @@ export default function Contato() {
         title="Entre em contato"
         subtitle="Estamos aqui pra ajudar o seu treino"
         backgroundImage={contatoImage.src}
-        height="h-96"
+        buttonText="Entre em contato"
       />
 
-      <section className="container mx-auto px-8 py-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-secondary-500 mb-8 text-center">
+      <section className="container mx-auto px-4 md:px-8 py-16 ">
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
           Fale Conosco
         </h2>
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-8">
-          <div className="bg-white rounded-lg shadow-lg p-8 w-full lg:w-1/2 ">
+        <div className="flex flex-col lg:flex-row items-stretch justify-between gap-12 max-w-7xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-xl p-8 lg:p-10 w-full lg:w-1/2 transition-transform duration-300 hover:scale-[1.02]">
+            <div className="mb-8">
+              <h3 className="text-2xl font-bold text-secondary-500 mb-4">
+                Vamos começar sua jornada no Taekwondo?
+              </h3>
+              <p className="text-gray-600">
+                Preencha o formulário abaixo e nossa equipe entrará em contato
+                para tirar todas as suas dúvidas sobre aulas, horários e
+                valores. Estamos ansiosos para te ajudar a começar sua prática!
+              </p>
+            </div>
             <form className="flex flex-col gap-6">
-              <input
-                type="text"
-                placeholder="Digite seu nome"
-                className="w-full p-3 rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200"
-              />
-              <input
-                type="email"
-                placeholder="Digite seu email"
-                className="w-full p-3 rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200"
-              />
-              <textarea
-                placeholder="Digite sua mensagem"
-                className="w-full p-3 rounded-lg border border-gray-300 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 transition duration-200"
-                rows={3}
-              ></textarea>
+              <div className="space-y-4">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="nome" className="text-gray-700 font-medium">
+                    Nome
+                  </label>
+                  <input
+                    id="nome"
+                    type="text"
+                    placeholder="Ex: João Silva"
+                    className="w-full p-4 rounded-xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="email" className="text-gray-700 font-medium">
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="Ex: joao.silva@email.com"
+                    className="w-full p-4 rounded-xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label
+                    htmlFor="mensagem"
+                    className="text-gray-700 font-medium"
+                  >
+                    Mensagem
+                  </label>
+                  <textarea
+                    id="mensagem"
+                    placeholder="Ex: Olá! Gostaria de saber mais informações sobre as aulas de Taekwondo..."
+                    className="w-full p-4 rounded-xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
+                    rows={4}
+                  ></textarea>
+                </div>
+              </div>
+
               <Button
                 type="submit"
-                className="w-full bg-green-500 hover:bg-green-400 text-lg py-3"
+                className="w-full bg-primary-500 hover:bg-primary-600 text-black text-lg py-6 rounded-xl font-semibold transition-all duration-300 transform hover:-translate-y-1"
               >
-                Enviar
+                Enviar Mensagem
               </Button>
             </form>
           </div>
 
-          <div className="w-full lg:w-1/2 text-center lg:text-left">
-            <h3 className="text-2xl font-bold mb-4">Visite-nos</h3>
-            <p className="text-lg font-medium text-gray-700 mb-2">
-              Rua Abélia 197, Jardim Guanabara, Rio de Janeiro - RJ
-            </p>
-            <p className="text-lg font-medium text-gray-700 mb-4">
-              Telefone: (21) 98165-4811
-            </p>
+          <div className="w-full lg:w-1/2 space-y-8">
+            <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+              <h3 className="text-3xl font-bold mb-6 text-secondary-500">
+                Localização
+              </h3>
+              <p className="text-lg text-gray-700 mb-3 flex items-center">
+                <span className="font-medium">Endereço:</span>
+                <span className="ml-2">
+                  Rua Abélia 197, Jardim Guanabara, Rio de Janeiro - RJ
+                </span>
+              </p>
+              <p className="text-lg text-gray-700 mb-6 flex items-center">
+                <span className="font-medium">Telefone:</span>
+                <span className="ml-2">(21) 98165-4811</span>
+              </p>
+            </div>
+
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14711.315438834945!2d-43.1971213!3d-22.8088045!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x99790035acb387%3A0xf59879151c85617b!2sEbener%20TKD%20%7C%20Academia%20de%20Taekwondo!5e0!3m2!1spt-BR!2sbr!4v1721344609049!5m2!1spt-BR!2sbr"
-              className="w-full h-96 rounded-lg"
+              className="w-full h-[400px] rounded-2xl shadow-xl"
               loading="lazy"
             ></iframe>
           </div>
