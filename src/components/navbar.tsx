@@ -21,9 +21,9 @@ import {
 const navigation = [
   { name: "Home", href: "/", icon: <HomeIcon size={18} /> },
   { name: "Sobre", href: "/sobre", icon: <Users size={18} /> },
-  { name: "Galeria", href: "/galeria", icon: <Images size={18} /> },
   { name: "Preços", href: "/precos", icon: <Gem size={18} /> },
   { name: "Contato", href: "/contato", icon: <Phone size={18} /> },
+  { name: "Galeria", href: "/galeria", icon: <Images size={18} /> },
 ];
 
 function classNames(...classes: string[]) {

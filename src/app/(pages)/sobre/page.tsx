@@ -13,23 +13,16 @@ import { Button } from "@/components/ui/button";
 import "swiper/swiper-bundle.css";
 import TestimonialsSection from "@/components/sobre/testimonials-section";
 import { Autoplay } from "swiper/modules";
+import IntroSection from "@/components/sobre/intro-section";
+
 export default function Sobre() {
   return (
     <>
-      {/* Seção de introdução */}
-      <section className="relative w-full flex items-center justify-center text-white h-[30vh] md:h-[70vh] bg-black">
-        <Image
-          src={quemSomos}
-          alt="Quem Somos"
-          className="absolute inset-0 object-cover w-full h-full"
-        />
-        <div className="absolute inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-center text-white text-center p-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-2">Quem somos?</h1>
-          <p className="text-xl md:text-3xl mb-4 text-gray-100">
-            Conheça a maior academia de Taekwondo na Ilha do Governador
-          </p>
-        </div>
-      </section>
+      <IntroSection
+        title="Quem somos?"
+        subtitle="Conheça a maior academia de Taekwondo na Ilha do Governador"
+        backgroundImage={quemSomos.src}
+      />
 
       {/* Seção de História */}
       <section className="container mx-auto px-8 py-12 space-y-8">

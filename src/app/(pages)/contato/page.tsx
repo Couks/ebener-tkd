@@ -1,26 +1,16 @@
 import { Button } from "@/components/ui/button";
+import IntroSection from "@/components/sobre/intro-section";
+import contatoImage from "@/assets/images/20231207_200223.jpg";
 
 export default function Contato() {
   return (
     <>
-      <section
-        className="w-full md:h-96 flex items-center justify-center text-white text-center"
-        style={{
-          backgroundImage:
-            "url('https://www.olimpiadatododia.com.br/wp-content/uploads/2023/08/TdM_BRA_milena.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="bg-black bg-opacity-50 p-8 w-full h-full flex flex-col justify-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-2">
-            Entre em contato
-          </h1>
-          <p className="text-xl md:text-2xl font-medium mb-4">
-            Estamos aqui pra ajudar o seu treino
-          </p>
-        </div>
-      </section>
+      <IntroSection
+        title="Entre em contato"
+        subtitle="Estamos aqui pra ajudar o seu treino"
+        backgroundImage={contatoImage.src}
+        height="h-96"
+      />
 
       <section className="container mx-auto px-8 py-12">
         <h2 className="text-3xl md:text-4xl font-bold text-secondary-500 mb-8 text-center">

@@ -5,11 +5,16 @@ import BenefitsSection from "@/components/sobre/benefits-section";
 import IntroSection from "@/components/sobre/intro-section";
 import ServicesSection from "@/components/sobre/services-section";
 import TestimonialsSection from "@/components/sobre/testimonials-section";
+import quemSomos from "@/assets/images/image8.jpeg";
 
 export default function Home() {
   return (
     <>
-      <IntroSection />
+      <IntroSection
+        title="Ebener Taekwondo"
+        subtitle="Transforme sua vida com Taekwondo na maior academia da Ilha do Governador"
+        backgroundImage={quemSomos.src}
+      />
       <BenefitsSection />
       <ServicesSection />
       <TestimonialsSection />

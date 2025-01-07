@@ -22,7 +22,7 @@ export default function Galeria() {
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold mb-2">Galeria de Imagens</h1>
         <h2 className="text-lg text-gray-600">
-          Confira nossa coleção aleatória de belas imagens
+          Confira nossa coleção de imagens
         </h2>
       </div>
 

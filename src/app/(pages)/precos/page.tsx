@@ -1,30 +1,17 @@
 import { Button } from "@/components/ui/button";
-import { Clock } from "lucide-react"; // Importando o ícone de relógio
+import { Clock } from "lucide-react";
+import IntroSection from "@/components/sobre/intro-section";
+import precosImage from "@/assets/images/20240728_121305.jpg";
 
 export default function Precos() {
   return (
-    <main className="w-full">
-      <section
-        className="relative w-full md:h-96 bg-black flex items-center justify-center text-white text-center"
-        style={{
-          backgroundImage:
-            "url('http://rededoesporte.gov.br/pt-br/megaeventos/olimpiadas/modalidades/taekwondo.jpeg/image')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="bg-black bg-opacity-50 p-8 rounded">
-          <h1 className="text-4xl md:text-5xl font-bold mb-2">
-            Treinos de Taekwondo
-          </h1>
-          <p className="text-xl md:text-2xl font-medium mb-4">
-            Aulas dinâmicas e focadas no seu desenvolvimento
-          </p>
-          <Button className="bg-green-500 hover:bg-green-400 px-6 py-2">
-            Matricule-se Agora
-          </Button>
-        </div>
-      </section>
+    <>
+      <IntroSection
+        title="Treinos de Taekwondo"
+        subtitle="Aulas dinâmicas e focadas no seu desenvolvimento"
+        backgroundImage={precosImage.src}
+        height="h-96"
+      />
 
       <section className="container mx-auto px-8 py-12 text-center">
         <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md mx-auto">
@@ -55,6 +42,6 @@ export default function Precos() {
           </Button>
         </div>
       </section>
-    </main>
+    </>
   );
 }
