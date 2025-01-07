@@ -35,9 +35,9 @@ export default function IntroSection({
       </div>
 
       {/* Conteúdo principal */}
-      <div className="relative z-10 container mx-auto  max-w-7xl px-8 pt-32">
+      <div className="relative z-10 container mx-auto max-w-7xl px-8 pt-32">
         <div className="max-w-2xl">
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-tight">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             {title}
           </h1>
           <p className="text-lg md:text-3xl text-gray-200 mb-8 max-w-xl">

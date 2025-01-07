@@ -11,7 +11,7 @@ const WhatsappButton: React.FC = () => {
       rel="noopener noreferrer"
       className="fixed bottom-4 right-2 z-50 animate-bounce"
     >
-      <Image src={whatsapp} alt="WhatsApp" className="size-16 rounded-full" />
+      <Image src={whatsapp} alt="WhatsApp" className="size-12 rounded-full" />
     </a>
   );
 };
