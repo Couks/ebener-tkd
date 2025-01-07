@@ -35,7 +35,7 @@ export default function Sobre() {
               className="w-full h-auto object-cover rounded-2xl"
             />
           </div>
-          <div className="w-full md:w-1/2 text-lg md:text-xl font-medium text-gray-700 leading-relaxed">
+          <div className="w-full md:w-1/2 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
             <h2 className="text-3xl md:text-4xl font-bold text-secondary-500 mb-4 mt-4 md:mt-0">
               Quem somos?
             </h2>
@@ -63,7 +63,7 @@ export default function Sobre() {
               className="w-full h-auto object-cover aspect-video rounded-2xl"
             />
           </div>
-          <div className="w-full md:w-3/5 text-lg md:text-xl font-medium text-gray-700 leading-relaxed">
+          <div className="w-full md:w-3/5 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
             <h2 className="text-3xl md:text-4xl font-bold text-secondary-500 mb-4 mt-4 md:mt-0">
               Nossa História
             </h2>
@@ -90,7 +90,7 @@ export default function Sobre() {
               className="w-full h-auto object-cover aspect-video rounded-2xl"
             />
           </div>
-          <div className="w-full md:w-2/5 text-lg md:text-xl font-medium text-gray-700 leading-relaxed">
+          <div className="w-full md:w-2/5 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
             <h2 className="text-3xl md:text-4xl font-bold text-secondary-500 mb-4 mt-4 md:mt-0">
               Gestão de atletas
             </h2>
@@ -117,7 +117,7 @@ export default function Sobre() {
               className="w- h-auto object-cover aspect-video rounded-2xl"
             />
           </div>
-          <div className="w-full md:w-3/5 text-lg md:text-xl font-medium text-gray-700 leading-relaxed">
+          <div className="w-full md:w-3/5 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
             <h2 className="text-3xl md:text-4xl font-bold text-secondary-500 mb-4 mt-4 md:mt-0">
               Perseverança
             </h2>
@@ -135,7 +135,7 @@ export default function Sobre() {
         </div>
 
         {/* Texto final */}
-        <p className="text-lg md:text-2xl font-semibold text-gray-700 leading-relaxed text-center">
+        <p className="text-lg md:text-2xl font-semibold text-gray-200 leading-relaxed text-center">
           Hoje, a Ebener TKD é mais do que uma academia de alto rendimento.
           Aqui, convivem atletas em todos os níveis, desde iniciantes até
           profissionais, todos unidos por um ambiente que respeita as diferenças
@@ -144,12 +144,12 @@ export default function Sobre() {
       </section>
 
       {/* Seção Missão e Valores */}
-      <section className="bg-gray-100">
+      <section className="bg-secondary-800">
         <div className="container mx-auto px-8 py-12 text-center space-y-6">
           <h2 className="text-3xl md:text-4xl font-bold text-secondary-500">
             Missão e Valores
           </h2>
-          <p className="text-lg md:text-xl font-medium text-gray-700 leading-relaxed">
+          <p className="text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
             Nossa <b>missão</b> é formar atletas e indivíduos em todas as idades
             e níveis no taekwondo, transmitindo técnicas avançadas e valores
             essenciais, como respeito, disciplina e resiliência.

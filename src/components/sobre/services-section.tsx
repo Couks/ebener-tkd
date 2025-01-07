@@ -13,7 +13,7 @@ import eventos from "@/assets/images/eventos-e-competicoes.jpeg";
 
 export default function ServicesSection() {
   return (
-    <section className="bg-secondary-700 py-12 text-right">
+    <section className="bg-secondary-800 py-12 m-2 rounded-3xl text-right">
       <div className="container mx-auto px-8">
         <h2 className="text-4xl font-bold text-white mb-8">Nossos Treinos</h2>
         <Swiper

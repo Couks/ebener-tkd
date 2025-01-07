@@ -85,7 +85,7 @@ export function NavBar() {
               <XMarkIcon className="h-6 w-6" />
             </button>
           </div>
-          <div className="flex flex-col items-center gap-8 pt-16">
+          <div className="flex flex-col items-center gap-8 pt-72">
             {navigation.map((item) => (
               <a
                 key={item.name}
