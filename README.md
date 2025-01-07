@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ebener TKD - Site da Academia
 
-## Getting Started
+## 📝 Sobre o Projeto
 
-First, run the development server:
+Site institucional desenvolvido para a Ebener TKD, a maior academia de Taekwondo da Ilha do Governador (Rio de Janeiro). O projeto foi construído utilizando tecnologias modernas para oferecer uma experiência fluida e responsiva aos usuários.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Tecnologias Utilizadas
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Next.js 14** - Framework React com Server-Side Rendering
+- **TypeScript** - Superset JavaScript com tipagem estática
+- **Tailwind CSS** - Framework CSS utilitário
+- **Swiper** - Biblioteca para criação de carrosséis
+- **Radix UI** - Biblioteca de componentes acessíveis
+- **Lucide Icons** - Biblioteca de ícones
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📋 Funcionalidades
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Página Inicial** - Apresentação da academia com seções de benefícios e depoimentos
+- **Sobre** - História detalhada da academia e do mestre Ebener
+- **Galeria** - Exibição de fotos dos alunos e eventos
+- **Preços** - Informações sobre planos e horários
+- **Contato** - Formulário de contato e localização
+- **Botão WhatsApp** - Acesso rápido para comunicação
 
-## Learn More
+## 📱 Layout Responsivo
 
-To learn more about Next.js, take a look at the following resources:
+O site é totalmente responsivo, adaptando-se a diferentes tamanhos de tela:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Desktop (1024px+)
+- Tablet (768px - 1023px)
+- Mobile (até 767px)

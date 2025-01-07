@@ -31,7 +31,7 @@ export default function Precos() {
           <h3 className="text-2xl font-bold text-secondary-500 mb-4">
             Mensalidade
           </h3>
-          <p className="text-6xl font-bold text-gray-800 mb-2">R$120,00</p>
+          <p className="text-6xl font-bold text-gray-800 mb-2">R$130,00</p>
           <p className="text-lg font-medium text-gray-600 mb-4">
             8 aulas por mês
           </p>
