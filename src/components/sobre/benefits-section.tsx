@@ -12,19 +12,30 @@ import {
   Star,
   Sword,
 } from "lucide-react";
+import { motion } from "framer-motion"; // Importação do motion para aplicar efeitos de animação
 
 export default function BenefitsSection() {
   return (
     <section className="bg-transparent py-8">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold bg-clip-text text-primary-500">
+          <motion.h2 // Aplicação do efeito de animação ao título
+            className="text-4xl font-bold bg-clip-text text-primary-500"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9 }}
+          >
             Benefícios do Taekwondo
-          </h2>
-          <p className="mt-4 text-xl text-gray-400 max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p // Aplicação do efeito de animação ao parágrafo
+            className="mt-4 text-xl text-gray-400 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9 }}
+          >
             Descubra como o Taekwondo pode transformar sua vida física e
             mentalmente
-          </p>
+          </motion.p>
         </div>
 
         <Swiper
@@ -49,13 +60,23 @@ export default function BenefitsSection() {
                   <Brain className="text-primary-500 size-8" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-4 text-gray-800">
+                  <motion.h3 // Aplicação do efeito de animação ao título
+                    className="text-2xl font-bold mb-4 text-gray-800"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                  >
                     Mentalidade e Vida
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  </motion.h3>
+                  <motion.p // Aplicação do efeito de animação ao parágrafo
+                    className="text-gray-600 leading-relaxed"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                  >
                     Aprenda técnicas de mentalidade e motivação para alcançar
                     resultados em suas vidas.
-                  </p>
+                  </motion.p>
                 </div>
               </div>
             </div>
@@ -69,13 +90,23 @@ export default function BenefitsSection() {
                   <HeartPulse className="text-primary-500 size-8" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-4 text-gray-800">
+                  <motion.h3 // Aplicação do efeito de animação ao título
+                    className="text-2xl font-bold mb-4 text-gray-800"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                  >
                     Resistência
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  </motion.h3>
+                  <motion.p // Aplicação do efeito de animação ao parágrafo
+                    className="text-gray-600 leading-relaxed"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                  >
                     Aprenda técnicas de resistência e agilidade para fortalecer
                     seu corpo e permanecer em movimento.
-                  </p>
+                  </motion.p>
                 </div>
               </div>
             </div>
@@ -89,13 +120,23 @@ export default function BenefitsSection() {
                   <ShieldCheck className="text-primary-500 size-8" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-4 text-gray-800">
+                  <motion.h3 // Aplicação do efeito de animação ao título
+                    className="text-2xl font-bold mb-4 text-gray-800"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                  >
                     Autodefesa
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  </motion.h3>
+                  <motion.p // Aplicação do efeito de animação ao parágrafo
+                    className="text-gray-600 leading-relaxed"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                  >
                     O Taekwondo ensina técnicas eficazes de autodefesa,
                     proporcionando confiança.
-                  </p>
+                  </motion.p>
                 </div>
               </div>
             </div>
@@ -109,13 +150,23 @@ export default function BenefitsSection() {
                   <Dumbbell className="text-primary-500 size-8" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-4 text-gray-800">
+                  <motion.h3 // Aplicação do efeito de animação ao título
+                    className="text-2xl font-bold mb-4 text-gray-800"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                  >
                     Condicionamento Físico
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  </motion.h3>
+                  <motion.p // Aplicação do efeito de animação ao parágrafo
+                    className="text-gray-600 leading-relaxed"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                  >
                     Melhore sua saúde com treinos que fortalecem o corpo,
                     aumentam a flexibilidade e resistência.
-                  </p>
+                  </motion.p>
                 </div>
               </div>
             </div>
@@ -129,13 +180,23 @@ export default function BenefitsSection() {
                   <Smile className="text-primary-500 size-8" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-4 text-gray-800">
+                  <motion.h3 // Aplicação do efeito de animação ao título
+                    className="text-2xl font-bold mb-4 text-gray-800"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                  >
                     Confiança
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  </motion.h3>
+                  <motion.p // Aplicação do efeito de animação ao parágrafo
+                    className="text-gray-600 leading-relaxed"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                  >
                     Desenvolva uma confiança inabalável ao atingir metas
                     pessoais e superar desafios.
-                  </p>
+                  </motion.p>
                 </div>
               </div>
             </div>
@@ -149,13 +210,23 @@ export default function BenefitsSection() {
                   <Star className="text-primary-500 size-8" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-4 text-gray-800">
+                  <motion.h3 // Aplicação do efeito de animação ao título
+                    className="text-2xl font-bold mb-4 text-gray-800"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                  >
                     Autoestima
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  </motion.h3>
+                  <motion.p // Aplicação do efeito de animação ao parágrafo
+                    className="text-gray-600 leading-relaxed"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                  >
                     O Taekwondo aumenta a autoestima ao incentivar o respeito
                     próprio e a superação de limites.
-                  </p>
+                  </motion.p>
                 </div>
               </div>
             </div>
@@ -169,13 +240,23 @@ export default function BenefitsSection() {
                   <Brain className="text-primary-500 size-8" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-4 text-gray-800">
+                  <motion.h3 // Aplicação do efeito de animação ao título
+                    className="text-2xl font-bold mb-4 text-gray-800"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                  >
                     Crescimento Intelectual
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  </motion.h3>
+                  <motion.p // Aplicação do efeito de animação ao parágrafo
+                    className="text-gray-600 leading-relaxed"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                  >
                     Desenvolva a concentração, foco e disciplina mental que
-                    podem ser aplicados em todas as áreas da vida.
-                  </p>
+                    podem ser aplicadas em todas as áreas da vida.
+                  </motion.p>
                 </div>
               </div>
             </div>
@@ -189,13 +270,23 @@ export default function BenefitsSection() {
                   <Sword className="text-primary-500 size-8" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-4 text-gray-800">
+                  <motion.h3 // Aplicação do efeito de animação ao título
+                    className="text-2xl font-bold mb-4 text-gray-800"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                  >
                     Disciplina
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  </motion.h3>
+                  <motion.p // Aplicação do efeito de animação ao parágrafo
+                    className="text-gray-600 leading-relaxed"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.9 }}
+                  >
                     Desenvolva uma boa e eficaz disciplina para superar
                     desafios, essencial para o sucesso dentro e fora do tatame.
-                  </p>
+                  </motion.p>
                 </div>
               </div>
             </div>

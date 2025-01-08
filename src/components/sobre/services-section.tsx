@@ -6,6 +6,7 @@ import "swiper/css/autoplay";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import { motion } from "framer-motion"; // Importação do motion para aplicar efeitos de animação
 
 import treinoPersonalizado from "@/assets/images/treino-personalizado.jpeg";
 import aulasEmGrupo from "@/assets/images/image4.jpeg";
@@ -15,13 +16,23 @@ export default function ServicesSection() {
   return (
     <section className="mx-2 md:container md:mx-auto bg-secondary-800 py-12 px-4 m-2 rounded-3xl text-right">
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold bg-clip-text text-primary-500">
+        <motion.h2
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9 }}
+          className="text-4xl font-bold bg-clip-text text-primary-500"
+        >
           Nossos Serviços
-        </h2>
-        <p className="mt-4 text-xl text-gray-400 max-w-2xl mx-auto">
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9 }}
+          className="mt-4 text-xl text-gray-400 max-w-2xl mx-auto"
+        >
           Conheça os diferentes tipos de treinamento e atividades que oferecemos
           para sua evolução no Taekwondo
-        </p>
+        </motion.p>
       </div>
       <Swiper
         slidesPerView={1}
@@ -47,13 +58,23 @@ export default function ServicesSection() {
             />
             {/* Card de Informações */}
             <div className="absolute bottom-0 bg-gray-50 p-4 rounded-b-lg shadow-md">
-              <h3 className="text-2xl font-bold mb-2">
+              <motion.h3 // Aplicação do efeito de animação ao título
+                className="text-2xl font-bold mb-2"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.9 }}
+              >
                 Treinos Personalizados
-              </h3>
-              <p className="text-lg font-medium">
+              </motion.h3>
+              <motion.p // Aplicação do efeito de animação ao parágrafo
+                className="text-lg font-medium"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.9 }}
+              >
                 Treinos adaptados ao seu nível e objetivo, com acompanhamento
                 especializado.
-              </p>
+              </motion.p>
             </div>
           </div>
         </SwiperSlide>
@@ -70,11 +91,23 @@ export default function ServicesSection() {
             />
             {/* Card de Informações */}
             <div className="absolute bottom-0 bg-gray-50 p-4 rounded-b-lg shadow-md">
-              <h3 className="text-2xl font-bold mb-2">Aulas em Grupo</h3>
-              <p className="text-lg font-medium">
+              <motion.h3 // Aplicação do efeito de animação ao título
+                className="text-2xl font-bold mb-2"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.9 }}
+              >
+                Aulas em Grupo
+              </motion.h3>
+              <motion.p // Aplicação do efeito de animação ao parágrafo
+                className="text-lg font-medium"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.9 }}
+              >
                 Participe de aulas dinâmicas e motivadoras com nossos
                 instrutores qualificados.
-              </p>
+              </motion.p>
             </div>
           </div>
         </SwiperSlide>
@@ -91,11 +124,23 @@ export default function ServicesSection() {
             />
             {/* Card de Informações */}
             <div className="absolute bottom-0 bg-gray-50 p-4 rounded-b-lg shadow-md">
-              <h3 className="text-2xl font-bold mb-2">Eventos e Competições</h3>
-              <p className="text-lg font-medium">
+              <motion.h3 // Aplicação do efeito de animação ao título
+                className="text-2xl font-bold mb-2"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.9 }}
+              >
+                Eventos e Competições
+              </motion.h3>
+              <motion.p // Aplicação do efeito de animação ao parágrafo
+                className="text-lg font-medium"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.9 }}
+              >
                 Envolva-se em competições para aprimorar suas habilidades e
                 conhecer outros atletas.
-              </p>
+              </motion.p>
             </div>
           </div>
         </SwiperSlide>

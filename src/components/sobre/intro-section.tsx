@@ -65,23 +65,26 @@ export default function IntroSection({
         <div className="max-w-4xl">
           <motion.h1
             className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
           >
             {title}
           </motion.h1>
           <motion.p
             className="text-lg md:text-3xl text-gray-200 mb-8 max-w-xl"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 1 }}
           >
             {subtitle}
           </motion.p>
           <a href={buttonLink} rel="noopener noreferrer">
             <motion.button
               className="bg-primary-500 hover:bg-primary-600 rounded-full text-white font-bold px-6 py-6 flex items-center gap-2 group"
-              initial={{ opacity: 0, scale: 0.5 }}
+              initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 1.5 }}
             >
               {buttonText}
               <ArrowRight

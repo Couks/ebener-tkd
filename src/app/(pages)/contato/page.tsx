@@ -7,13 +7,17 @@ export default function Contato() {
   return (
     <>
       <IntroSection
-        title="Entre em contato"
-        subtitle="Estamos aqui pra ajudar o seu treino"
+        title="Entre em contato com a Academia de Taekwondo Ebener"
+        subtitle="Estamos aqui para ajudar o seu treino"
         backgroundImage={contatoImage.src}
         buttonText="Entre em contato"
+        buttonLink="#fale-conosco"
       />
 
-      <section className="container mx-auto px-4 md:px-8 py-16 ">
+      <section
+        id="fale-conosco"
+        className="container mx-auto px-4 md:px-8 py-16 "
+      >
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
           Fale Conosco
         </h2>
@@ -21,7 +25,7 @@ export default function Contato() {
           <div className="bg-white rounded-2xl shadow-xl p-8 lg:p-10 w-full lg:w-1/2 transition-transform duration-300 hover:scale-[1.02]">
             <div className="mb-8">
               <h3 className="text-2xl font-bold text-secondary-500 mb-4">
-                Vamos começar sua jornada no Taekwondo?
+                Comece sua jornada no Taekwondo conosco
               </h3>
               <p className="text-gray-600">
                 Preencha o formulário abaixo e nossa equipe entrará em contato
@@ -83,7 +87,7 @@ export default function Contato() {
           <div className="w-full lg:w-1/2 space-y-8">
             <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
               <h3 className="text-3xl font-bold mb-6 text-secondary-500">
-                Localização
+                Localização da Academia
               </h3>
               <div className="flex flex-col gap-4">
                 <div className="flex items-center">
