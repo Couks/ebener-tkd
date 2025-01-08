@@ -29,10 +29,14 @@ export default function Galeria() {
         subtitle="Veja os momentos especiais dos nossos alunos em ação, desde iniciantes até faixas pretas, compartilhando a energia e dedicação ao Taekwondo"
         backgroundImage={quemsSomos.src}
         buttonText="Ver fotos"
+        buttonLink="#images"
       />
 
       {/* Galeria */}
-      <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 pt-4 px-2">
+      <div
+        id="images"
+        className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 pt-4 px-2"
+      >
         {shuffledImages.map((image: any, index: number) => (
           <motion.div
             key={index}
