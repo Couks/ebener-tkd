@@ -1,11 +1,34 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import IntroSection from "@/components/sobre/intro-section";
 import contatoImage from "@/assets/images/20231207_200223.jpg";
 import { MapPin, Phone } from "lucide-react";
+import {
+  Toast,
+  ToastProvider,
+  ToastTitle,
+  ToastDescription,
+  ToastClose,
+} from "@/components/ui/toast";
+import { useState } from "react";
 
 export default function Contato() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isToastOpen, setIsToastOpen] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setIsToastOpen(true);
+    // Simulate form submission
+    setTimeout(() => {
+      setIsSubmitting(false);
+    }, 2000);
+  };
+
   return (
-    <>
+    <ToastProvider>
       <IntroSection
         title="Entre em contato com a Ebener TKD"
         subtitle="Estamos aqui para ajudar o seu treino"
@@ -33,7 +56,18 @@ export default function Contato() {
                 valores. Estamos ansiosos para te ajudar a começar sua prática!
               </p>
             </div>
-            <form className="flex flex-col gap-6">
+            <form
+              action="https://formsubmit.co/matheuscastroks@gmail.com"
+              method="POST"
+              className="flex flex-col gap-6"
+              onSubmit={handleSubmit}
+            >
+              <input
+                type="hidden"
+                name="_subject"
+                value="Novo Contato Ebener TKD"
+              />
+              <input type="hidden" name="_next" value="/obrigado" />
               <div className="space-y-4">
                 <div className="flex flex-col gap-2">
                   <label htmlFor="nome" className="text-gray-700 font-medium">
@@ -42,6 +76,7 @@ export default function Contato() {
                   <input
                     id="nome"
                     type="text"
+                    name="nome"
                     placeholder="Ex: João Silva"
                     className="w-full p-4 rounded-xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
                   />
@@ -54,6 +89,7 @@ export default function Contato() {
                   <input
                     id="email"
                     type="email"
+                    name="email"
                     placeholder="Ex: joao.silva@email.com"
                     className="w-full p-4 rounded-xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
                   />
@@ -68,6 +104,7 @@ export default function Contato() {
                   </label>
                   <textarea
                     id="mensagem"
+                    name="mensagem"
                     placeholder="Ex: Olá! Gostaria de saber mais informações sobre as aulas de Taekwondo..."
                     className="w-full p-4 rounded-xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
                     rows={4}
@@ -77,11 +114,23 @@ export default function Contato() {
 
               <Button
                 type="submit"
-                className="w-full bg-primary-500 hover:bg-primary-600 text-black text-lg py-6 rounded-xl font-semibold transition-all duration-300 transform hover:-translate-y-1"
+                className={`w-full bg-primary-500 hover:bg-primary-600 text-black text-lg py-6 rounded-xl font-semibold transition-all duration-300 transform hover:-translate-y-1 ${
+                  isSubmitting ? "loading" : ""
+                }`}
               >
-                Enviar Mensagem
+                {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
               </Button>
             </form>
+            {isToastOpen && (
+              <Toast variant="default">
+                <ToastTitle>Mensagem enviada com sucesso!</ToastTitle>
+                <ToastDescription>
+                  A sua mensagem foi enviada com sucesso. Nossa equipe entrará
+                  em contato em breve.
+                </ToastDescription>
+                <ToastClose />
+              </Toast>
+            )}
           </div>
 
           <div className="w-full lg:w-1/2 space-y-8">
@@ -113,7 +162,7 @@ export default function Contato() {
             </div>
 
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14711.315438834945!2d-43.1971213!3d-22.8088045!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x99790035acb387%3A0xf59879151c85617b!2sEbener%20TKD%20%7C%20Academia%20de%20Taekwondo!5e0!3m2!1spt-BR!2sbr!4v1721344609049!5m2!1spt-BR!2sbr"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14711.315438834945!2d-43.1971213!3d-22.8088045!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x99790035acb387:0xf59879151c85617b!2sEbener%20TKD%20%7C%20Academia%20de%20Taekwondo!5e0!3m2!1spt-BR!2sbr!4v1721344609049!5m2!1spt-BR!2sbr"
               className="w-full h-[400px] rounded-2xl shadow-xl"
               loading="lazy"
             ></iframe>
@@ -130,6 +179,6 @@ export default function Contato() {
           </div>
         </div>
       </section>
-    </>
+    </ToastProvider>
   );
 }

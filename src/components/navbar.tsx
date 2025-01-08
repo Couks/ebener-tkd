@@ -7,6 +7,7 @@ import { Menu } from "lucide-react";
 
 import logo from "@/assets/favicon.png";
 import { motion, useAnimation } from "framer-motion";
+import { Button } from "./ui/button";
 
 const navigation = [
   { name: "Sobre", href: "/sobre" },
@@ -85,14 +86,15 @@ export function NavBar() {
           </div>
 
           {/* Menu Button - Mobile */}
-          <button
+          <Button
             className="md:hidden text-white bg-transparent p-2"
             onClick={() => setSidebarOpen(!sidebarOpen)}
           >
             <span className="text-sm font-medium">
               <Menu />
+              <span className="hidden">Menu</span>
             </span>
-          </button>
+          </Button>
         </div>
       </div>
 

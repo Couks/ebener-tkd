@@ -52,7 +52,9 @@ export default function IntroSection({
             className="object-cover w-full h-full brightness-50 rounded-b-3xl"
             width={1920}
             height={1080}
-            priority
+            loading="lazy"
+            layout="responsive"
+            sizes="(max-width: 768px) 100vw, 1920px"
           />
         </div>
       </div>
