@@ -4,6 +4,7 @@ import "./globals.css";
 import { NavBar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import WhatsappButton from "@/components/whatsapp";
+import { Analytics } from "@vercel/analytics/next";
 
 const chakraPetch = Chakra_Petch({
   subsets: ["latin"],
@@ -48,6 +49,7 @@ export default function RootLayout({
             <NavBar />
             <WhatsappButton />
             {children}
+            <Analytics />
             <Footer />
           </main>
         </div>
