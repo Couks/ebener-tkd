@@ -6,7 +6,6 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Menu } from "lucide-react";
 
 import logo from "@/assets/favicon.png";
-import { usePathname } from "next/navigation";
 import { motion, useAnimation } from "framer-motion";
 
 const navigation = [
@@ -23,8 +22,6 @@ function classNames(...classes: string[]) {
 export function NavBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
-  const currentPath = usePathname();
-  console.log(currentPath);
   const controls = useAnimation();
 
   useEffect(() => {

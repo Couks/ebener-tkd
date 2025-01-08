@@ -1,18 +1,31 @@
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 export default function CallToActionSection() {
   return (
     <section className="mx-2 md:container md:mx-auto bg-gradient-to-br from-secondary-800 to-secondary-900 text-white py-16 rounded-3xl mb-8">
       <div className="px-4">
         <div className="space-y-8">
-          <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-primary-600 animate-in">
+          <motion.h2
+            className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-primary-600"
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             Pronto para começar sua jornada no Taekwondo?
-          </h2>
+          </motion.h2>
 
-          <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
+          <motion.p
+            className="text-xl md:text-2xl text-gray-300 leading-relaxed"
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
             Entre em contato conosco hoje e agende uma aula experimental
             gratuita!
-          </p>
+          </motion.p>
 
           <div className="pt-4">
             <a

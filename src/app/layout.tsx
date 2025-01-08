@@ -13,6 +13,20 @@ const chakraPetch = Chakra_Petch({
 export const metadata: Metadata = {
   title: "Ebener TKD",
   description: "Academia de TaeKwonDo na Ilha do Governador",
+  openGraph: {
+    type: "website",
+    url: "https://ebener-tkd.com.br",
+    title: "Ebener TKD",
+    description: "Academia de TaeKwonDo na Ilha do Governador",
+    images: [
+      {
+        url: "https://ebener-tkd.com.br/logo.png",
+        width: 800,
+        height: 600,
+        alt: "Logo da Ebener TKD",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -22,8 +36,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="t0CgPYcarDBQ5d6Gs52Bl36WmRq3QdmyFC9D"
+        />
+      </head>
       <body className={chakraPetch.className}>
-        <div className="flex flex-col justify-between h-max bg-secondary-900">
+        <div className="flex flex-col justify-between h-max bg-secondary-950">
           <main>
             <NavBar />
             <WhatsappButton />

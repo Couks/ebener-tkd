@@ -15,7 +15,7 @@ export default function TestimonialsSection() {
     <section className="m-2 rounded-3xl py-16">
       <div className="container mx-auto px-8">
         <div className="text-center mb-16">
-          <motion.h2 // Aplicação do efeito de animação ao título
+          <motion.h2
             className="text-4xl md:text-5xl font-bold text-primary-500"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -23,7 +23,7 @@ export default function TestimonialsSection() {
           >
             O que dizem nossos alunos
           </motion.h2>
-          <motion.p // Aplicação do efeito de animação ao parágrafo
+          <motion.p
             className="text-gray-200 text-lg mt-4"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
