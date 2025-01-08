@@ -172,7 +172,7 @@ export default function Contato() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button className="w-full bg-primary-500 hover:bg-primary-600 text-white text-lg py-6 rounded-xl font-semibold transition-all duration-300 transform hover:-translate-y-1 mt-4">
+              <Button className="w-full bg-primary-500 hover:bg-primary-600 text-black text-lg py-6 rounded-xl font-semibold transition-all duration-300 transform hover:-translate-y-1 mt-4">
                 Ir para a Academia
               </Button>
             </a>

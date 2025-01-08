@@ -82,7 +82,7 @@ export default function IntroSection({
           </motion.p>
           <a href={buttonLink} rel="noopener noreferrer">
             <motion.button
-              className="bg-primary-500 hover:bg-primary-600 rounded-full text-white font-bold px-6 py-6 flex items-center gap-2 group"
+              className="bg-primary-500 hover:bg-primary-600 rounded-full text-black text-xl font-bold px-6 py-6 flex items-center gap-2 group"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 1 }}
