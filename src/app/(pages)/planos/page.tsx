@@ -3,11 +3,11 @@ import { Clock } from "lucide-react";
 import IntroSection from "@/components/sobre/intro-section";
 import precosImage from "@/assets/images/20240728_121305.jpg";
 
-export default function Precos() {
+export default function Planos() {
   return (
     <>
       <IntroSection
-        title="Planos e Preços de Treinos de Taekwondo"
+        title="Planos e Preços"
         subtitle="Descubra as opções de aulas e preços para se inscrever nos treinos de Taekwondo mais completos e dinâmicos"
         backgroundImage={precosImage.src}
         buttonText="Ver Planos"

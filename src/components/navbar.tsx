@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { Menu } from "lucide-react";
+
 import logo from "@/assets/favicon.png";
 import { usePathname } from "next/navigation";
 import { motion, useAnimation } from "framer-motion";
@@ -49,7 +51,7 @@ export function NavBar() {
       initial={{ opacity: 1, y: 0 }} // Removido o fade out
       animate={controls}
       transition={{ duration: 0.5 }}
-      className={`fixed w-full z-50 transition-all duration-300 ${
+      className={`fixed w-full z-40 transition-all duration-300 ${
         hasScrolled ? "bg-black/50 backdrop-blur-md" : "bg-transparent"
       }`}
     >
@@ -67,7 +69,7 @@ export function NavBar() {
               />
               <span
                 className={`text-white font-bold text-${
-                  hasScrolled ? "xl" : "4xl"
+                  hasScrolled ? "xl" : "2xl md:4xl"
                 } transition-all duration-200`}
               >
                 Ebener TKD
@@ -96,7 +98,9 @@ export function NavBar() {
             className="md:hidden text-white bg-transparent p-2"
             onClick={() => setSidebarOpen(!sidebarOpen)}
           >
-            <span className="text-sm font-medium">MENU</span>
+            <span className="text-sm font-medium">
+              <Menu />
+            </span>
           </button>
         </div>
       </div>
@@ -112,7 +116,7 @@ export function NavBar() {
               <XMarkIcon className="h-6 w-6" />
             </button>
           </div>
-          <div className="flex flex-col items-center gap-8 pt-72">
+          <div className="flex flex-col items-center gap-8 justify-center h-full">
             {navigation.map((item) => (
               <a
                 key={item.name}

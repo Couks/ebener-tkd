@@ -7,7 +7,7 @@ export default function Contato() {
   return (
     <>
       <IntroSection
-        title="Entre em contato com a Academia de Taekwondo Ebener"
+        title="Entre em contato com a Ebener TKD"
         subtitle="Estamos aqui para ajudar o seu treino"
         backgroundImage={contatoImage.src}
         buttonText="Entre em contato"
@@ -85,22 +85,29 @@ export default function Contato() {
           </div>
 
           <div className="w-full lg:w-1/2 space-y-8">
-            <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
+            <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 hover:shadow-2xl transition-shadow duration-300">
               <h3 className="text-3xl font-bold mb-6 text-secondary-500">
                 Localização da Academia
               </h3>
               <div className="flex flex-col gap-4">
-                <div className="flex items-center">
+                <div className="flex items-center hover:bg-gray-100 p-4 rounded-lg transition-all duration-300">
                   <MapPin className="mr-2" />
                   <span className="font-medium">Endereço:</span>
                   <span className="ml-2">
                     Rua Abélia 197, Jardim Guanabara, Rio de Janeiro - RJ
                   </span>
                 </div>
-                <div className="flex items-center">
+                <div className="flex items-center hover:bg-gray-100 p-4 rounded-lg transition-all duration-300">
                   <Phone className="mr-2" />
                   <span className="font-medium">Telefone:</span>
-                  <span className="ml-2">(21) 98165-4811</span>
+                  <a
+                    href="https://wa.me/5521981654811"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ml-2"
+                  >
+                    (21) 98165-4811
+                  </a>
                 </div>
               </div>
             </div>
@@ -110,6 +117,16 @@ export default function Contato() {
               className="w-full h-[400px] rounded-2xl shadow-xl"
               loading="lazy"
             ></iframe>
+
+            <a
+              href="https://www.google.com/maps/dir//Ebener+TKD+%7C+Academia+de+Taekwondo+-+R.+Ab%C3%A9lia,+197+-+Jardim+Guanabara,+Rio+de+Janeiro+-+RJ,+21940-010,+Brasil/@-22.8088045,-43.1996962,17z/data=!4m9!4m8!1m0!1m5!1m1!1s0x99790035acb387:0xf59879151c85617b!2m2!1d-43.1971305!2d-22.8088116!3e0?entry=ttu&g_ep=EgoyMDI1MDEwMi4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button className="w-full bg-primary-500 hover:bg-primary-600 text-white text-lg py-6 rounded-xl font-semibold transition-all duration-300 transform hover:-translate-y-1 mt-4">
+                Ir para a Academia
+              </Button>
+            </a>
           </div>
         </div>
       </section>

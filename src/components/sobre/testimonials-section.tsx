@@ -53,7 +53,7 @@ export default function TestimonialsSection() {
               <motion.div
                 animate={{ scale: 0.5 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1 }}
+                transition={{ duration: 0.9 }}
                 className="flex items-center mb-6"
               >
                 <Avatar className="mr-4 size-24 ring-4 ring-primary-500 ring-offset-4 ring-offset-secondary-800">
@@ -91,7 +91,7 @@ export default function TestimonialsSection() {
               <motion.div
                 animate={{ scale: 0.5 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 2 }}
+                transition={{ duration: 0.9 }}
                 className="flex items-center mb-6"
               >
                 <Avatar className="mr-4 size-24 ring-4 ring-primary-500 ring-offset-4 ring-offset-secondary-800">
@@ -129,7 +129,7 @@ export default function TestimonialsSection() {
               <motion.div
                 animate={{ scale: 0.5 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 3 }}
+                transition={{ duration: 0.9 }}
                 className="flex items-center mb-6"
               >
                 <Avatar className="mr-4 size-24 ring-4 ring-primary-500 ring-offset-4 ring-offset-secondary-800">

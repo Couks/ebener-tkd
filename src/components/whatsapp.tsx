@@ -3,18 +3,24 @@
 import React, { useState } from "react";
 import whatsapp from "@/assets/whatsapp.png";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const WhatsappButton: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="fixed bottom-6 right-12 z-50">
+    <motion.div
+      className="fixed bottom-12 right-12 z-30"
+      initial={{ scale: 0, x: 100 }}
+      animate={{ scale: 1, x: 0 }}
+      transition={{ duration: 1 }}
+    >
       <div
         className={`absolute -inset-2 bg-green-500 rounded-full opacity-25 ${
           isHovered ? "animate-ping" : ""
         }`}
       />
-      <a
+      <motion.a
         href="https://wa.me/5521981654811"
         target="_blank"
         rel="noopener noreferrer"
@@ -34,8 +40,8 @@ const WhatsappButton: React.FC = () => {
             priority
           />
         </div>
-      </a>
-    </div>
+      </motion.a>
+    </motion.div>
   );
 };
 
