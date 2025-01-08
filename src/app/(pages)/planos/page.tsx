@@ -41,7 +41,7 @@ export default function Planos() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold text-md mt-auto">
+              <Button className="w-full bg-primary-500 hover:bg-primary-600 text-black font-bold text-md mt-auto transform hover:scale-105 transition-all duration-300">
                 Agende uma Aula
               </Button>
             </a>
@@ -69,7 +69,7 @@ export default function Planos() {
               rel="noopener noreferrer"
               className="mt-auto"
             >
-              <Button className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold text-md">
+              <Button className="w-full bg-primary-500 hover:bg-primary-600 text-black font-bold text-md transform hover:scale-105 transition-all duration-300">
                 Saiba Mais
               </Button>
             </a>
@@ -97,7 +97,7 @@ export default function Planos() {
               rel="noopener noreferrer"
               className="mt-auto"
             >
-              <Button className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold text-md">
+              <Button className="w-full bg-primary-500 hover:bg-primary-600 text-black font-bold text-md transform hover:scale-105 transition-all duration-300">
                 Entre em Contato
               </Button>
             </a>
@@ -123,7 +123,7 @@ export default function Planos() {
               rel="noopener noreferrer"
               className="mt-auto"
             >
-              <Button className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold text-md">
+              <Button className="w-full bg-primary-500 hover:bg-primary-600 text-black font-bold text-md transform hover:scale-105 transition-all duration-300">
                 Entre em Contato
               </Button>
             </a>
