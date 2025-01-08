@@ -57,7 +57,7 @@ export default function TestimonialsSection() {
                 className="flex items-center mb-6"
               >
                 <Avatar className="mr-4 size-24 ring-4 ring-primary-500 ring-offset-4 ring-offset-secondary-800">
-                  <AvatarImage src={duda.src} />
+                  <AvatarImage src={duda.src} alt="Aluna Duda Souza" />
                   <AvatarFallback>AS</AvatarFallback>
                 </Avatar>
                 <div>
@@ -95,7 +95,7 @@ export default function TestimonialsSection() {
                 className="flex items-center mb-6"
               >
                 <Avatar className="mr-4 size-24 ring-4 ring-primary-500 ring-offset-4 ring-offset-secondary-800">
-                  <AvatarImage src={chaves.src} />
+                  <AvatarImage src={chaves.src} alt="Aluno Matheus Chaves" />
                   <AvatarFallback>CO</AvatarFallback>
                 </Avatar>
                 <div>
@@ -133,7 +133,7 @@ export default function TestimonialsSection() {
                 className="flex items-center mb-6"
               >
                 <Avatar className="mr-4 size-24 ring-4 ring-primary-500 ring-offset-4 ring-offset-secondary-800">
-                  <AvatarImage src={yas.src} />
+                  <AvatarImage src={yas.src} alt="Aluna Yasmin Tonelli" />
                   <AvatarFallback>CO</AvatarFallback>
                 </Avatar>
                 <div>

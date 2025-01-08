@@ -33,7 +33,7 @@ export default function CallToActionSection() {
               target="_blank"
               className="inline-block transform hover:scale-105 transition-transform duration-200"
             >
-              <Button className="bg-primary-500 hover:bg-primary-600 text-white font-bold text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-primary-500/50">
+              <Button className="bg-primary-500 hover:bg-primary-600 text-black font-bold text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-primary-500/50">
                 Agende sua Aula Grátis
               </Button>
             </a>
