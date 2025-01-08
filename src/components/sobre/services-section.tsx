@@ -13,9 +13,17 @@ import eventos from "@/assets/images/eventos-e-competicoes.jpeg";
 
 export default function ServicesSection() {
   return (
-    <section className="bg-secondary-800 py-12 m-2 rounded-3xl text-right">
-      <div className="container mx-auto px-8">
-        <h2 className="text-4xl font-bold text-white mb-8">Nossos Treinos</h2>
+    <section className="container mx-auto bg-secondary-800 py-12 m-2 rounded-3xl text-right">
+      <div className=" px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold bg-clip-text text-primary-500">
+            Nossos Serviços
+          </h2>
+          <p className="mt-4 text-xl text-gray-400 max-w-2xl mx-auto">
+            Conheça os diferentes tipos de treinamento e atividades que
+            oferecemos para sua evolução no Taekwondo
+          </p>
+        </div>
         <Swiper
           slidesPerView={1}
           spaceBetween={30}

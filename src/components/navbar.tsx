@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "@/assets/favicon.png";
 import { usePathname } from "next/navigation";
+import { motion, useAnimation } from "framer-motion";
 
 const navigation = [
   { name: "Sobre", href: "/sobre" },
-  { name: "Preços", href: "/precos" },
+  { name: "Planos", href: "/planos" },
   { name: "Contato", href: "/contato" },
   { name: "Fotos", href: "/galeria" },
 ];
@@ -22,18 +23,32 @@ export function NavBar() {
   const [hasScrolled, setHasScrolled] = useState(false);
   const currentPath = usePathname();
   console.log(currentPath);
+  const controls = useAnimation();
 
+  // useEffect para lidar com o scroll da página
   useEffect(() => {
     const handleScroll = () => {
+      // Verifica se a página foi scrollada e atualiza o estado hasScrolled
       setHasScrolled(window.scrollY > 0);
     };
 
+    // Adiciona um listener ao evento de scroll da janela
     window.addEventListener("scroll", handleScroll);
+    // Retorna uma função para remover o listener quando o componente for desmontado
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // useEffect para animar a barra de navegação com base no estado hasScrolled
+  useEffect(() => {
+    // Inicia a animação com base no estado hasScrolled
+    controls.start({ opacity: hasScrolled ? 1 : 0, y: hasScrolled ? 0 : -50 });
+  }, [hasScrolled]);
+
   return (
-    <nav
+    <motion.nav
+      initial={{ opacity: 1, y: 0 }}
+      animate={controls}
+      transition={{ duration: 0.5 }}
       className={`fixed w-full z-50 transition-all duration-300 ${
         hasScrolled ? "bg-black/50 backdrop-blur-md" : "bg-transparent"
       }`}
@@ -43,8 +58,20 @@ export function NavBar() {
           {/* Logo */}
           <a href="/" className="flex items-center">
             <div className="flex items-center gap-2">
-              <Image alt="Logo" src={logo} className="h-8 w-auto" />
-              <span className="text-white font-bold text-xl">Ebener TKD</span>
+              <Image
+                alt="Logo"
+                src={logo}
+                className={`size-${
+                  hasScrolled ? "8" : "24"
+                } transition-all duration-300`}
+              />
+              <span
+                className={`text-white font-bold text-${
+                  hasScrolled ? "xl" : "2xl"
+                } transition-all duration-200`}
+              >
+                Ebener TKD
+              </span>
             </div>
           </a>
 
@@ -55,8 +82,8 @@ export function NavBar() {
                 key={item.name}
                 href={item.href}
                 className={classNames(
-                  "text-white hover:text-orange-500 transition-colors",
-                  "text-md font-medium"
+                  "text-white hover:text-primary-500 transition-colors",
+                  "text-md font-medium "
                 )}
               >
                 {item.name}
@@ -99,6 +126,6 @@ export function NavBar() {
           </div>
         </div>
       )}
-    </nav>
+    </motion.nav>
   );
 }

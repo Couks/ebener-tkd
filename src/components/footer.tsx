@@ -1,6 +1,3 @@
-import Image from "next/image";
-import logo from "@/assets/favicon.png";
-
 export function Footer() {
   return (
     <footer className="flex flex-col items-center justify-between w-full bg-secondary-900 text-white px-6 py-4 ">

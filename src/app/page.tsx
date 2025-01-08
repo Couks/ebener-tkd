@@ -11,10 +11,11 @@ export default function Home() {
   return (
     <>
       <IntroSection
-        title="Ebener TaeKwonDo"
-        subtitle="Transforme sua vida com Taekwondo na maior academia da Ilha do Governador"
+        title="Academia de Taekwondo na Ilha do Governador"
+        subtitle="A maior e mais tradicional academia de artes marciais da região. Metodologia exclusiva e professores certificados."
         backgroundImage={quemSomos.src}
-        buttonText="Saiba mais"
+        buttonText="Agende uma Aula Grátis"
+        buttonLink="/planos"
       />
       <BenefitsSection />
       <ServicesSection />

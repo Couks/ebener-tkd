@@ -8,7 +8,6 @@ import historia1 from "@/assets/images/aulas-em-grupo.jpeg"; // Imagem da histó
 import historia2 from "@/assets/images/WhatsApp Image 2024-07-25 at 09.11.49.jpeg"; // Imagem adicional da história
 import historia3 from "@/assets/images/WhatsApp Image 2024-07-24 at 12.19.27 (1).jpeg"; // Imagem da história
 import historia4 from "@/assets/images/image15.jpeg"; // Imagem adicional da história
-import { Button } from "@/components/ui/button";
 
 import "swiper/swiper-bundle.css";
 import TestimonialsSection from "@/components/sobre/testimonials-section";
@@ -19,13 +18,15 @@ export default function Sobre() {
   return (
     <>
       <IntroSection
-        title="Quem somos?"
-        subtitle="Conheça a maior academia de Taekwondo na Ilha do Governador"
+        title="Conheça a maior academia de Taekwondo na Ilha do Governador"
+        subtitle="Aqui, convivem atletas em todos os níveis, desde iniciantes até profissionais, todos unidos por um ambiente que respeita as diferenças e promove a superação pessoal."
         backgroundImage={quemSomos.src}
+        buttonText="Descubra Mais"
+        buttonLink="#historia"
       />
 
       {/* Seção de História */}
-      <section className="container mx-auto px-8 py-12 space-y-8">
+      <section id="historia" className="container mx-auto px-8 py-12 space-y-8">
         {/* Imagem à esquerda, texto à direita */}
         <div className="flex flex-col md:flex-row items-center md:space-x-8 mb-8">
           <div className="w-full md:w-3/5">
@@ -36,7 +37,7 @@ export default function Sobre() {
             />
           </div>
           <div className="w-full md:w-1/2 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
-            <h2 className="text-3xl md:text-4xl font-bold text-secondary-500 mb-4 mt-4 md:mt-0">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-500 mb-4 mt-4 md:mt-0">
               Quem somos?
             </h2>
             <p>
@@ -64,7 +65,7 @@ export default function Sobre() {
             />
           </div>
           <div className="w-full md:w-3/5 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
-            <h2 className="text-3xl md:text-4xl font-bold text-secondary-500 mb-4 mt-4 md:mt-0">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-500 mb-4 mt-4 md:mt-0">
               Nossa História
             </h2>
             <p className="mb-4">
@@ -91,7 +92,7 @@ export default function Sobre() {
             />
           </div>
           <div className="w-full md:w-2/5 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
-            <h2 className="text-3xl md:text-4xl font-bold text-secondary-500 mb-4 mt-4 md:mt-0">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-500 mb-4 mt-4 md:mt-0">
               Gestão de atletas
             </h2>
             <p>
@@ -118,7 +119,7 @@ export default function Sobre() {
             />
           </div>
           <div className="w-full md:w-3/5 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
-            <h2 className="text-3xl md:text-4xl font-bold text-secondary-500 mb-4 mt-4 md:mt-0">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-500 mb-4 mt-4 md:mt-0">
               Perseverança
             </h2>
             <p className="mb-4">
@@ -144,22 +145,25 @@ export default function Sobre() {
       </section>
 
       {/* Seção Missão e Valores */}
-      <section className="bg-secondary-800">
-        <div className="container mx-auto px-8 py-12 text-center space-y-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-secondary-500">
-            Missão e Valores
-          </h2>
-          <p className="text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
-            Nossa <b>missão</b> é formar atletas e indivíduos em todas as idades
-            e níveis no taekwondo, transmitindo técnicas avançadas e valores
-            essenciais, como respeito, disciplina e resiliência.
-          </p>
+      <section className="container mx-auto bg-secondary-800 m-2 rounded-3xl">
+        <div className="px-8 py-16 text-center space-y-12">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary-500 mb-6">
+              Missão e Valores
+            </h2>
+            <p className="text-lg md:text-2xl font-medium text-gray-200 leading-relaxed">
+              Nossa <span className="text-primary-500 font-bold">missão</span> é
+              formar atletas e indivíduos em todas as idades e níveis no
+              taekwondo, transmitindo técnicas avançadas e valores essenciais,
+              como respeito, disciplina e resiliência.
+            </p>
+          </div>
 
           <Swiper
             slidesPerView={1}
-            spaceBetween={30}
+            spaceBetween={40}
             loop
-            autoplay={{ delay: 1500 }}
+            autoplay={{ delay: 2500, disableOnInteraction: false }}
             effect="coverflow"
             modules={[Autoplay]}
             breakpoints={{
@@ -167,14 +171,15 @@ export default function Sobre() {
               768: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
             }}
+            className="py-8"
           >
             {/* Card Respeito às Diferenças */}
             <SwiperSlide>
-              <div className="w-full bg-secondary-500 text-white rounded-lg shadow-lg p-6 flex flex-col min-h-[150px] border border-gray-200">
-                <h3 className="text-2xl font-bold mb-4">
+              <div className="w-full bg-secondary-500/30 backdrop-blur-sm text-white rounded-2xl shadow-xl p-8 flex flex-col min-h-[200px] border border-primary-500/20 hover:border-primary-500 transition-all duration-300">
+                <h3 className="text-2xl md:text-3xl font-bold mb-6 text-primary-500">
                   Respeito às Diferenças
                 </h3>
-                <p className="text-lg font-medium">
+                <p className="text-lg md:text-xl font-medium">
                   Alunos de todos os níveis e capacidades são bem-vindos.
                 </p>
               </div>
@@ -182,20 +187,24 @@ export default function Sobre() {
 
             {/* Card Dedicação */}
             <SwiperSlide>
-              <div className="w-full bg-secondary-500 text-white rounded-lg shadow-lg p-6 flex flex-col min-h-[150px] border border-gray-200">
-                <h3 className="text-2xl font-bold mb-4">Dedicação</h3>
-                <p className="text-lg font-medium">
-                  Buscamos a superação pessoal.
+              <div className="w-full bg-secondary-500/30 backdrop-blur-sm text-white rounded-2xl shadow-xl p-8 flex flex-col min-h-[200px] border border-primary-500/20 hover:border-primary-500 transition-all duration-300">
+                <h3 className="text-2xl md:text-3xl font-bold mb-6 text-primary-500">
+                  Dedicação
+                </h3>
+                <p className="text-lg md:text-xl font-medium">
+                  Buscamos a excelência através da superação pessoal diária.
                 </p>
               </div>
             </SwiperSlide>
 
             {/* Card Formação Integral */}
             <SwiperSlide>
-              <div className="w-full bg-secondary-500 text-white rounded-lg shadow-lg p-6 flex flex-col min-h-[150px] border border-gray-200">
-                <h3 className="text-2xl font-bold mb-4">Formação Integral</h3>
-                <p className="text-lg font-medium">
-                  Desenvolvemos atletas e indivíduos resilientes.
+              <div className="w-full bg-secondary-500/30 backdrop-blur-sm text-white rounded-2xl shadow-xl p-8 flex flex-col min-h-[200px] border border-primary-500/20 hover:border-primary-500 transition-all duration-300">
+                <h3 className="text-2xl md:text-3xl font-bold mb-6 text-primary-500">
+                  Formação Integral
+                </h3>
+                <p className="text-lg md:text-xl font-medium">
+                  Desenvolvemos atletas e indivíduos resilientes para a vida.
                 </p>
               </div>
             </SwiperSlide>
