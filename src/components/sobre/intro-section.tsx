@@ -53,7 +53,6 @@ export default function IntroSection({
             width={1920}
             height={1080}
             loading="lazy"
-            layout="responsive"
             sizes="(max-width: 768px) 100vw, 1920px"
           />
         </div>
