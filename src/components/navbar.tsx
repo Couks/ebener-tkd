@@ -27,28 +27,22 @@ export function NavBar() {
   console.log(currentPath);
   const controls = useAnimation();
 
-  // useEffect para lidar com o scroll da página
   useEffect(() => {
     const handleScroll = () => {
-      // Verifica se a página foi scrollada e atualiza o estado hasScrolled
-      // Aumenta o tempo que a navbar fica disponível antes do hasscroll ativar
-      setHasScrolled(window.scrollY > 0); // Reduzido de 100 para 0
+      setHasScrolled(window.scrollY > 0);
     };
-    // Adiciona um listener ao evento de scroll da janela
+
     window.addEventListener("scroll", handleScroll);
-    // Retorna uma função para remover o listener quando o componente for desmontado
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // useEffect para animar a barra de navegação com base no estado hasScrolled
   useEffect(() => {
-    // Inicia a animação com base no estado hasScrolled
-    controls.start({ opacity: 1, y: hasScrolled ? 0 : 0 }); // Removido o fade out
+    controls.start({ opacity: 1, y: hasScrolled ? 0 : 0 });
   }, [hasScrolled]);
 
   return (
     <motion.nav
-      initial={{ opacity: 1, y: 0 }} // Removido o fade out
+      initial={{ opacity: 1, y: 0 }}
       animate={controls}
       transition={{ duration: 0.5 }}
       className={`fixed w-full z-40 transition-all duration-300 ${
@@ -107,7 +101,7 @@ export function NavBar() {
 
       {/* Mobile Menu */}
       {sidebarOpen && (
-        <div className="fixed inset-0 bg-black z-50">
+        <div className="inset-0 fixed h-screen bg-black z-50">
           <div className="flex justify-end p-4">
             <button
               onClick={() => setSidebarOpen(false)}

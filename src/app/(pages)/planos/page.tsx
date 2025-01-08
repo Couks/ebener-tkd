@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Clock } from "lucide-react";
 import IntroSection from "@/components/sobre/intro-section";
-import precosImage from "@/assets/images/20240728_121305.jpg";
+import precosImage from "@/assets/alunos/taekwondo.jpg";
 
 export default function Planos() {
   return (
