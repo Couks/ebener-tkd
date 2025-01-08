@@ -89,6 +89,7 @@ export function NavBar() {
           <Button
             className="md:hidden text-white bg-transparent p-2"
             onClick={() => setSidebarOpen(!sidebarOpen)}
+            aria-label="Abrir menu"
           >
             <span className="text-sm font-medium">
               <Menu />
@@ -105,6 +106,7 @@ export function NavBar() {
             <button
               onClick={() => setSidebarOpen(false)}
               className="text-white"
+              aria-label="Fechar menu"
             >
               <XMarkIcon className="h-6 w-6" />
             </button>
