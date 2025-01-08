@@ -32,7 +32,7 @@ export default function Galeria() {
       />
 
       {/* Galeria */}
-      <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 pt-12 px-8">
+      <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 pt-4 px-2">
         {shuffledImages.map((image: any, index: number) => (
           <motion.div
             key={index}
@@ -40,6 +40,7 @@ export default function Galeria() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
+            layoutId={`modal-${index}`}
           >
             <Image
               src={image.default}

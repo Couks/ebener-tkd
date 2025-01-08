@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 
 export default function CallToActionSection() {
   return (
-    <section className="container mx-auto bg-gradient-to-br from-secondary-800 to-secondary-900 text-white py-16 my-2 rounded-3xl mb-8">
-      <div className="container mx-auto px-8 ">
+    <section className="mx-2 md:container md:mx-auto bg-gradient-to-br from-secondary-800 to-secondary-900 text-white py-16 rounded-3xl mb-8">
+      <div className="px-4">
         <div className="space-y-8">
           <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-primary-600 animate-in">
             Pronto para começar sua jornada no Taekwondo?

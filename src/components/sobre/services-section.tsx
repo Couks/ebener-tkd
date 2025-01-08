@@ -13,7 +13,7 @@ import eventos from "@/assets/images/eventos-e-competicoes.jpeg";
 
 export default function ServicesSection() {
   return (
-    <section className="container mx-auto bg-secondary-800 py-12 m-2 rounded-3xl text-right">
+    <section className="mx-2 md:container md:mx-auto bg-secondary-800 py-12 px-4 m-2 rounded-3xl text-right">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold bg-clip-text text-primary-500">
           Nossos Serviços

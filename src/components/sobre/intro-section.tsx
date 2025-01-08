@@ -1,6 +1,9 @@
+"use client";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 interface IntroSectionProps {
   title: string;
@@ -19,12 +22,29 @@ export default function IntroSection({
   buttonText = "Explore more",
   buttonLink = "",
 }: IntroSectionProps) {
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <section
-      className={`relative flex items-start justify-start text-white ${height}  overflow-hidden`}
+      className={`relative flex items-start justify-start text-white ${height} overflow-hidden`}
     >
       {/* Imagem de fundo com overlay escuro */}
-      <div className="absolute inset-0 overflow-hidden pb-2 px-2">
+      <div
+        className="absolute inset-0 overflow-hidden pb-2 px-2"
+        style={{ transform: `translateY(${scrollPosition * 0.5}px)` }}
+      >
         <div className="w-full h-full">
           <Image
             src={backgroundImage}
@@ -38,22 +58,37 @@ export default function IntroSection({
       </div>
 
       {/* Conteúdo principal */}
-      <div className="relative z-10 container mx-auto max-w-7xl px-8 pt-36">
+      <div
+        className="relative z-10 container mx-auto max-w-7xl px-8 pt-36"
+        style={{ transform: `translateY(${scrollPosition * 0.8}px)` }}
+      >
         <div className="max-w-4xl">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+          <motion.h1
+            className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+          >
             {title}
-          </h1>
-          <p className="text-lg md:text-3xl text-gray-200 mb-8 max-w-xl">
+          </motion.h1>
+          <motion.p
+            className="text-lg md:text-3xl text-gray-200 mb-8 max-w-xl"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+          >
             {subtitle}
-          </p>
+          </motion.p>
           <a href={buttonLink} rel="noopener noreferrer">
-            <Button className="bg-primary-500 hover:bg-primary-600 text-white font-bold px-6 py-6 flex items-center gap-2 group">
+            <motion.button
+              className="bg-primary-500 hover:bg-primary-600 rounded-full text-white font-bold px-6 py-6 flex items-center gap-2 group"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+            >
               {buttonText}
               <ArrowRight
                 className="group-hover:translate-x-1 transition-transform"
                 size={20}
               />
-            </Button>
+            </motion.button>
           </a>
         </div>
       </div>

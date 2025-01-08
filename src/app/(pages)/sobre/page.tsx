@@ -1,6 +1,8 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import { motion, scroll } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 import Image from "next/image";
 import quemSomos from "@/assets/images/WhatsApp Image 2024-07-24 at 12.19.37 (2).jpeg"; // Exemplo de imagem
@@ -15,8 +17,28 @@ import { Autoplay } from "swiper/modules";
 import IntroSection from "@/components/sobre/intro-section";
 
 export default function Sobre() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const progress =
+          sectionRef.current.getBoundingClientRect().top / window.innerHeight;
+        const opacity = Math.max(0, Math.min(1, 1 - progress));
+        const translateY = Math.max(-100, Math.min(0, -progress * 100));
+
+        // Aplica as animações de acordo com o progresso do scroll
+        sectionRef.current.style.opacity = `${opacity}`;
+        sectionRef.current.style.transform = `translateY(${translateY}px)`;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <>
+    <div ref={sectionRef}>
       <IntroSection
         title="Conheça a maior academia de Taekwondo na Ilha do Governador"
         subtitle="Aqui, convivem atletas em todos os níveis, desde iniciantes até profissionais, todos unidos por um ambiente que respeita as diferenças e promove a superação pessoal."
@@ -37,10 +59,19 @@ export default function Sobre() {
             />
           </div>
           <div className="w-full md:w-1/2 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary-500 mb-4 mt-4 md:mt-0">
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-primary-500 mb-4 mt-4 md:mt-0"
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, ease: [0.17, 0.55, 0.55, 1] }}
+            >
               Quem somos?
-            </h2>
-            <p>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, ease: [0.17, 0.55, 0.55, 1] }}
+            >
               A Ebener TKD é a maior academia de Taekwondo na Ilha do
               Governador, liderada pelo mestre <b>Ebener dos Santos Pinto</b>,
               profissional de educação física com quase 25 anos de experiência
@@ -51,7 +82,7 @@ export default function Sobre() {
               preta 3° Dan, Ebener se destaca por sua trajetória no taekwondo,
               desde a preparação física até a gestão de atletas de alto
               rendimento.
-            </p>
+            </motion.p>
           </div>
         </div>
 
@@ -65,10 +96,19 @@ export default function Sobre() {
             />
           </div>
           <div className="w-full md:w-3/5 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary-500 mb-4 mt-4 md:mt-0">
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-primary-500 mb-4 mt-4 md:mt-0"
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, ease: [0.17, 0.55, 0.55, 1] }}
+            >
               Nossa História
-            </h2>
-            <p className="mb-4">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, ease: [0.17, 0.55, 0.55, 1] }}
+            >
               A história da Ebener TKD é marcada por uma longa jornada de
               dedicação ao esporte. Ebener começou sua prática em 1993,
               treinando com o professor Fernando no{" "}
@@ -78,7 +118,7 @@ export default function Sobre() {
               Desde então, o taekwondo tornou-se parte integrante de sua vida,
               abrindo portas para diversas experiências, tanto no Brasil quanto
               no exterior.
-            </p>
+            </motion.p>
           </div>
         </div>
 
@@ -92,10 +132,19 @@ export default function Sobre() {
             />
           </div>
           <div className="w-full md:w-2/5 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary-500 mb-4 mt-4 md:mt-0">
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-primary-500 mb-4 mt-4 md:mt-0"
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, ease: [0.17, 0.55, 0.55, 1] }}
+            >
               Gestão de atletas
-            </h2>
-            <p>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, ease: [0.17, 0.55, 0.55, 1] }}
+            >
               Como gestor e preparador físico, Ebener trabalhou com atletas de
               renome internacional, tendo sido técnico da{" "}
               <b>Seleção Brasileira Militar de Taekwond</b>o e participado de
@@ -105,7 +154,7 @@ export default function Sobre() {
               Além disso, ele teve a oportunidade de conviver e aprender com
               técnicos e atletas olímpicos, o que moldou sua abordagem no ensino
               do taekwondo.
-            </p>
+            </motion.p>
           </div>
         </div>
 
@@ -119,10 +168,19 @@ export default function Sobre() {
             />
           </div>
           <div className="w-full md:w-3/5 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary-500 mb-4 mt-4 md:mt-0">
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-primary-500 mb-4 mt-4 md:mt-0"
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, ease: [0.17, 0.55, 0.55, 1] }}
+            >
               Perseverança
-            </h2>
-            <p className="mb-4">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, ease: [0.17, 0.55, 0.55, 1] }}
+            >
               Um momento de grande superação pessoal foi quando sua filha
               enfrentou meses de internação. O Taekwondo foi sua âncora
               emocional e psicológica, permitindo que ele mantivesse o
@@ -131,21 +189,26 @@ export default function Sobre() {
               <br />A experiência o fez compreender ainda mais a importância da
               arte marcial, tanto para a formação técnica quanto para o
               crescimento pessoal.
-            </p>
+            </motion.p>
           </div>
         </div>
 
         {/* Texto final */}
-        <p className="text-lg md:text-2xl font-semibold text-gray-200 leading-relaxed text-center">
+        <motion.p
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.9, ease: [0.17, 0.55, 0.55, 1] }}
+          className="text-lg md:text-2xl font-semibold text-gray-200 leading-relaxed text-center"
+        >
           Hoje, a Ebener TKD é mais do que uma academia de alto rendimento.
           Aqui, convivem atletas em todos os níveis, desde iniciantes até
           profissionais, todos unidos por um ambiente que respeita as diferenças
           e promove a superação pessoal.
-        </p>
+        </motion.p>
       </section>
 
       {/* Seção Missão e Valores */}
-      <section className="container mx-auto bg-secondary-800 m-2 rounded-3xl">
+      <section className="mx-2 md:container md:mx-auto bg-secondary-800 m-2 rounded-3xl">
         <div className="px-8 py-16 text-center space-y-12">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-primary-500 mb-6">
@@ -214,6 +277,6 @@ export default function Sobre() {
 
       {/* Seção de depoimentos */}
       <TestimonialsSection />
-    </>
+    </div>
   );
 }
