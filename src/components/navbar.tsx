@@ -29,9 +29,9 @@ export function NavBar() {
   useEffect(() => {
     const handleScroll = () => {
       // Verifica se a página foi scrollada e atualiza o estado hasScrolled
-      setHasScrolled(window.scrollY > 0);
+      // Aumenta o tempo que a navbar fica disponível antes do hasscroll ativar
+      setHasScrolled(window.scrollY > 0); // Reduzido de 100 para 0
     };
-
     // Adiciona um listener ao evento de scroll da janela
     window.addEventListener("scroll", handleScroll);
     // Retorna uma função para remover o listener quando o componente for desmontado
@@ -41,12 +41,12 @@ export function NavBar() {
   // useEffect para animar a barra de navegação com base no estado hasScrolled
   useEffect(() => {
     // Inicia a animação com base no estado hasScrolled
-    controls.start({ opacity: hasScrolled ? 1 : 0, y: hasScrolled ? 0 : -50 });
+    controls.start({ opacity: 1, y: hasScrolled ? 0 : 0 }); // Removido o fade out
   }, [hasScrolled]);
 
   return (
     <motion.nav
-      initial={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 1, y: 0 }} // Removido o fade out
       animate={controls}
       transition={{ duration: 0.5 }}
       className={`fixed w-full z-50 transition-all duration-300 ${
@@ -67,7 +67,7 @@ export function NavBar() {
               />
               <span
                 className={`text-white font-bold text-${
-                  hasScrolled ? "xl" : "2xl"
+                  hasScrolled ? "xl" : "4xl"
                 } transition-all duration-200`}
               >
                 Ebener TKD

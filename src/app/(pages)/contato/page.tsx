@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import IntroSection from "@/components/sobre/intro-section";
 import contatoImage from "@/assets/images/20231207_200223.jpg";
+import { MapPin, Phone } from "lucide-react";
 
 export default function Contato() {
   return (
@@ -84,16 +85,20 @@ export default function Contato() {
               <h3 className="text-3xl font-bold mb-6 text-secondary-500">
                 Localização
               </h3>
-              <p className="text-lg text-gray-700 mb-3 flex items-center">
-                <span className="font-medium">Endereço:</span>
-                <span className="ml-2">
-                  Rua Abélia 197, Jardim Guanabara, Rio de Janeiro - RJ
-                </span>
-              </p>
-              <p className="text-lg text-gray-700 mb-6 flex items-center">
-                <span className="font-medium">Telefone:</span>
-                <span className="ml-2">(21) 98165-4811</span>
-              </p>
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center">
+                  <MapPin className="mr-2" />
+                  <span className="font-medium">Endereço:</span>
+                  <span className="ml-2">
+                    Rua Abélia 197, Jardim Guanabara, Rio de Janeiro - RJ
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <Phone className="mr-2" />
+                  <span className="font-medium">Telefone:</span>
+                  <span className="ml-2">(21) 98165-4811</span>
+                </div>
+              </div>
             </div>
 
             <iframe
