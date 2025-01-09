@@ -54,7 +54,10 @@ export default function Sobre() {
             <Image
               src={historia1}
               alt="Imagem da história de Ebener"
-              className="w-full h-auto object-cover rounded-2xl"
+              loading="lazy"
+              width={800}
+              height={500}
+              className=" object-cover rounded-2xl"
             />
           </div>
           <div className="w-full md:w-1/2 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
@@ -71,15 +74,24 @@ export default function Sobre() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9 }}
             >
-              A Ebener TKD é a maior academia de Taekwondo na Ilha do
-              Governador, liderada pelo mestre <b>Ebener dos Santos Pinto</b>,
-              profissional de educação física com quase 25 anos de experiência
-              no esporte.
+              A <b className="text-primary-500">Ebener TKD</b> é a maior
+              academia de <b className="text-primary-500">Taekwondo</b> na Ilha
+              do Governador, liderada pelo mestre{" "}
+              <b className="text-primary-500">Ebener dos Santos Pinto</b>,
+              profissional de{" "}
+              <b className="text-primary-500">educação física</b> com quase 25
+              anos de experiência no esporte.
               <br />
               <br />
-              Formado na Universidade Federal do Rio de Janeiro (UFRJ) e faixa
-              preta 3° Dan, Ebener se destaca por sua trajetória no taekwondo,
-              desde a preparação física até a gestão de atletas de alto
+              Formado na{" "}
+              <b className="text-primary-500">
+                Universidade Federal do Rio de Janeiro (UFRJ)
+              </b>{" "}
+              e faixa preta <b className="text-primary-500">3° Dan</b>, Ebener
+              se destaca por sua trajetória no{" "}
+              <b className="text-primary-500">taekwondo</b>, desde a{" "}
+              <b className="text-primary-500">preparação física</b> até a{" "}
+              <b className="text-primary-500">gestão de atletas</b> de alto
               rendimento.
             </motion.p>
           </div>
@@ -91,7 +103,10 @@ export default function Sobre() {
             <Image
               src={historia2}
               alt="Imagem da carreira de Ebener"
-              className="w-full h-auto object-cover aspect-video rounded-2xl"
+              loading="lazy"
+              width={800}
+              height={500}
+              className="object-cover aspect-video rounded-2xl"
             />
           </div>
           <div className="w-full md:w-3/5 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
@@ -108,15 +123,20 @@ export default function Sobre() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9 }}
             >
-              A história da Ebener TKD é marcada por uma longa jornada de
-              dedicação ao esporte. Ebener começou sua prática em 1993,
+              A <b className="text-primary-500">história</b> da Ebener TKD é
+              marcada por uma longa <b className="text-primary-500">jornada</b>{" "}
+              de
+              <b className="text-primary-500">dedicação</b> ao esporte. Ebener
+              começou sua <b className="text-primary-500">prática</b> em 1993,
               treinando com o professor Fernando no{" "}
-              <b>Cassino dos Oficiais do Galeão</b>.
+              <b className="text-primary-500">Cassino dos Oficiais do Galeão</b>
+              .
               <br />
               <br />
-              Desde então, o taekwondo tornou-se parte integrante de sua vida,
-              abrindo portas para diversas experiências, tanto no Brasil quanto
-              no exterior.
+              Desde então, o <b className="text-primary-500">taekwondo</b>{" "}
+              tornou-se parte integrante de sua vida, abrindo portas para
+              diversas <b className="text-primary-500">experiências</b>, tanto
+              no Brasil quanto no exterior.
             </motion.p>
           </div>
         </div>
@@ -127,7 +147,9 @@ export default function Sobre() {
             <Image
               src={historia3}
               alt="Imagem da história de Ebener"
-              className="w-full h-auto object-cover aspect-video rounded-2xl"
+              loading="lazy"
+              width={800}
+              className="object-cover aspect-video rounded-2xl"
             />
           </div>
           <div className="w-full md:w-2/5 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
@@ -146,9 +168,13 @@ export default function Sobre() {
             >
               Como gestor e preparador físico, Ebener trabalhou com atletas de
               renome internacional, tendo sido técnico da{" "}
-              <b>Seleção Brasileira Militar de Taekwond</b>o e participado de
-              três campeonatos mundiais: no <b>Rio de Janeiro</b>, no <b>Irã</b>{" "}
-              e na <b>China</b>. <br />
+              <b className="text-primary-500">
+                Seleção Brasileira Militar de Taekwondo
+              </b>{" "}
+              e participado de três campeonatos mundiais: no{" "}
+              <b className="text-primary-500">Rio de Janeiro</b>, no{" "}
+              <b className="text-primary-500">Irã</b> e na{" "}
+              <b className="text-primary-500">China</b>. <br />
               <br />
               Além disso, ele teve a oportunidade de conviver e aprender com
               técnicos e atletas olímpicos, o que moldou sua abordagem no ensino
@@ -163,7 +189,10 @@ export default function Sobre() {
             <Image
               src={historia4}
               alt="Imagem da carreira de Ebener"
-              className="w- h-auto object-cover aspect-video rounded-2xl"
+              loading="lazy"
+              width={800}
+              height={500}
+              className="object-cover aspect-video rounded-2xl"
             />
           </div>
           <div className="w-full md:w-3/5 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
@@ -180,22 +209,26 @@ export default function Sobre() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9 }}
             >
-              Um momento de grande superação pessoal foi quando sua filha
-              enfrentou meses de internação. O Taekwondo foi sua âncora
+              Um momento de{" "}
+              <b className="text-primary-500">grande superação pessoal</b> foi
+              quando sua filha enfrentou meses de internação. O{" "}
+              <b className="text-primary-500">Taekwondo</b> foi sua âncora
               emocional e psicológica, permitindo que ele mantivesse o
               equilíbrio durante essa fase difícil.
               <br />
-              <br />A experiência o fez compreender ainda mais a importância da
-              arte marcial, tanto para a formação técnica quanto para o
-              crescimento pessoal.
+              <br />A experiência o fez compreender ainda mais a{" "}
+              <b className="text-primary-500">importância</b> da arte marcial,
+              tanto para a <b className="text-primary-500">formação técnica</b>{" "}
+              quanto para o
+              <b className="text-primary-500">crescimento pessoal</b>.
             </motion.p>
           </div>
         </div>
 
         {/* Texto final */}
         <motion.p
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: -100 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9 }}
           className="text-lg md:text-2xl font-semibold text-gray-200 leading-relaxed text-center"
         >

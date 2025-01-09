@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { X } from "lucide-react";
 import { Menu } from "lucide-react";
+import { Instagram } from "lucide-react";
+import { TbBrandWhatsapp } from "react-icons/tb";
 
 import logo from "@/assets/favicon.png";
 import { motion, useAnimation } from "framer-motion";
@@ -43,11 +45,11 @@ export function NavBar() {
       initial={{ opacity: 1, y: 0 }}
       animate={controls}
       transition={{ duration: 0.5 }}
-      className={`fixed w-full z-40 transition-all duration-300 ${
+      className={`fixed w-screen z-40 transition-all duration-300 ${
         hasScrolled ? "bg-black/50 backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 py-4">
+      <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-around">
           {/* Logo */}
           <a href="/" className="flex items-center">
@@ -55,12 +57,13 @@ export function NavBar() {
               <Image
                 alt="Logo"
                 src={logo}
+                loading="lazy"
                 className={`size-${
                   hasScrolled ? "8" : "24"
                 } transition-all duration-300`}
               />
               <span
-                className={`text-white font-bold text-${
+                className={`text-white hover:text-primary-500 transition-colors font-bold text-${
                   hasScrolled ? "xl" : "2xl md:4xl"
                 } transition-all duration-200`}
               >
@@ -83,6 +86,25 @@ export function NavBar() {
                 {item.name}
               </a>
             ))}
+            {/* Instagram Link */}
+            <div className="flex items-center gap-4 ml-12">
+              <a
+                href="https://www.instagram.com/ebenertkd/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-primary-500 transition-colors text-md font-medium"
+              >
+                <Instagram />
+              </a>
+              <a
+                href="https://api.whatsapp.com/send/?phone=5521981654811&text&type=phone_number&app_absent=0"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-primary-500 transition-colors text-md font-medium"
+              >
+                <TbBrandWhatsapp className="size-7 text-white hover:text-primary-500 transition-colors text-md font-medium" />
+              </a>
+            </div>
           </div>
 
           {/* Menu Button - Mobile */}
@@ -108,7 +130,7 @@ export function NavBar() {
               className="text-white"
               aria-label="Fechar menu"
             >
-              <XMarkIcon className="h-6 w-6" />
+              <X className="h-6 w-6" />
             </button>
           </div>
           <div className="flex flex-col items-center gap-8 justify-center h-full">
@@ -122,6 +144,25 @@ export function NavBar() {
                 {item.name}
               </a>
             ))}
+            {/* Social Links */}
+            <div className="flex gap-3 items-center mt-24">
+              <a
+                href="https://www.instagram.com/ebenertkd/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-primary-500 transition-colors text-md font-medium"
+              >
+                <Instagram />
+              </a>
+              <a
+                href="https://api.whatsapp.com/send/?phone=5521981654811&text&type=phone_number&app_absent=0"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-primary-500 transition-colors text-md font-medium"
+              >
+                <TbBrandWhatsapp className="size-7 text-white hover:text-primary-500 transition-colors text-md font-medium" />
+              </a>
+            </div>
           </div>
         </div>
       )}

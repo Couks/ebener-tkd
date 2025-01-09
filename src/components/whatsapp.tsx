@@ -1,18 +1,26 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import whatsapp from "@/assets/whatsapp.png";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 const WhatsappButton: React.FC = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isButtonVisible, setIsButtonVisible] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsButtonVisible(true);
+    }, 5000);
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <motion.div
       className="fixed bottom-12 right-12 z-30"
       initial={{ scale: 0, x: 100 }}
-      animate={{ scale: 1, x: 0 }}
+      animate={isButtonVisible ? { scale: 1, x: 0 } : { scale: 0, x: 100 }}
       transition={{ duration: 1 }}
     >
       <div
@@ -37,7 +45,7 @@ const WhatsappButton: React.FC = () => {
             src={whatsapp}
             alt="WhatsApp"
             className="size-14 rounded-full"
-            priority
+            loading="lazy"
           />
         </div>
       </motion.a>

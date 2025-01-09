@@ -16,12 +16,40 @@ import { useState } from "react";
 export default function Contato() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isToastOpen, setIsToastOpen] = useState(false);
+  const [nome, setNome] = useState("");
+  const [telefone, setTelefone] = useState("");
+  const [mensagem, setMensagem] = useState("");
+
+  const formatPhoneNumber = (input: HTMLInputElement) => {
+    let phoneNumber = input.value.replace(/\D/g, "");
+
+    if (phoneNumber.length > 10) {
+      phoneNumber = phoneNumber.replace(
+        /^(\d{2})(\d{5})(\d{4})$/,
+        "($1) $2-$3"
+      );
+    } else if (phoneNumber.length > 6) {
+      phoneNumber = phoneNumber.replace(
+        /^(\d{2})(\d{4})(\d{0,4})$/,
+        "($1) $2-$3"
+      );
+    } else if (phoneNumber.length > 2) {
+      phoneNumber = phoneNumber.replace(/^(\d{2})(\d{0,4})$/, "($1) $2");
+    } else {
+      phoneNumber = phoneNumber.replace(/^(\d{0,2})$/, "($1");
+    }
+
+    input.value = phoneNumber;
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setIsToastOpen(true);
-    // Simulate form submission
+    const textoConcatenado = `Olá, meu nome é ${nome}!\nEsse é meu telefone ${telefone}\n${mensagem}`;
+    window.location.href = `https://api.whatsapp.com/send?phone=5521981654811&text=${encodeURIComponent(
+      textoConcatenado
+    )}`;
     setTimeout(() => {
       setIsSubmitting(false);
     }, 2000);
@@ -56,18 +84,7 @@ export default function Contato() {
                 valores. Estamos ansiosos para te ajudar a começar sua prática!
               </p>
             </div>
-            <form
-              action="https://formsubmit.co/matheuscastroks@gmail.com"
-              method="POST"
-              className="flex flex-col gap-6"
-              onSubmit={handleSubmit}
-            >
-              <input
-                type="hidden"
-                name="_subject"
-                value="Novo Contato Ebener TKD"
-              />
-              <input type="hidden" name="_next" value="/obrigado" />
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
               <div className="space-y-4">
                 <div className="flex flex-col gap-2">
                   <label htmlFor="nome" className="text-gray-700 font-medium">
@@ -79,19 +96,29 @@ export default function Contato() {
                     name="nome"
                     placeholder="Ex: João Silva"
                     className="w-full p-4 rounded-xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
+                    onChange={(e) => setNome(e.target.value)}
                   />
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="email" className="text-gray-700 font-medium">
-                    Email
+                  <label
+                    htmlFor="telefone"
+                    className="text-gray-700 font-medium"
+                  >
+                    Telefone (WhatsApp)
                   </label>
                   <input
-                    id="email"
-                    type="email"
-                    name="email"
-                    placeholder="Ex: joao.silva@email.com"
+                    id="telefone"
+                    type="tel"
+                    name="telefone"
+                    placeholder="Ex: (21) 98165-4811"
+                    pattern="\(\d{2}\)\s\d{4,5}-\d{4}"
+                    title="Digite o telefone no formato (XX) XXXXX-XXXX ou (XX) XXXX-XXXX."
                     className="w-full p-4 rounded-xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
+                    onChange={(e) => {
+                      setTelefone(e.target.value);
+                      formatPhoneNumber(e.target);
+                    }}
                   />
                 </div>
 
@@ -108,6 +135,7 @@ export default function Contato() {
                     placeholder="Ex: Olá! Gostaria de saber mais informações sobre as aulas de Taekwondo..."
                     className="w-full p-4 rounded-xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
                     rows={4}
+                    onChange={(e) => setMensagem(e.target.value)}
                   ></textarea>
                 </div>
               </div>

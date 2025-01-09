@@ -49,7 +49,10 @@ export default function Galeria() {
             <Image
               src={image.default}
               alt={`Image ${index + 1}`}
-              className="w-full h-auto object-cover rounded-lg transition-transform duration-100 ease-in-out md:group-hover:scale-125"
+              loading="lazy"
+              className="object-cover rounded-lg transition-transform duration-100 ease-in-out md:group-hover:scale-105"
+              width={500}
+              height={500}
             />
           </motion.div>
         ))}

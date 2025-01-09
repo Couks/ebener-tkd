@@ -44,7 +44,7 @@ export default function RootLayout({
         />
       </head>
       <body className={chakraPetch.className}>
-        <div className="flex flex-col justify-between h-max bg-secondary-950">
+        <div className="justify-between h-max bg-secondary-900">
           <main>
             <NavBar />
             <WhatsappButton />

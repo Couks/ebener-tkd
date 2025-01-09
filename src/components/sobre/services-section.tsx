@@ -37,7 +37,6 @@ export default function ServicesSection() {
       <Swiper
         slidesPerView={1}
         spaceBetween={30}
-        loop
         autoplay={{ delay: 5000 }}
         modules={[Autoplay]}
         breakpoints={{
@@ -54,6 +53,7 @@ export default function ServicesSection() {
               alt="Treino Personalizado"
               width={500}
               height={500}
+              loading="lazy"
               className="w-[500px] h-[500px] object-cover rounded-lg shadow-lg"
             />
             {/* Card de Informações */}
@@ -87,6 +87,7 @@ export default function ServicesSection() {
               alt="Aulas em Grupo"
               width={500}
               height={500}
+              loading="lazy"
               className="w-[500px] h-[500px] object-cover rounded-lg shadow-lg"
             />
             {/* Card de Informações */}
@@ -120,6 +121,7 @@ export default function ServicesSection() {
               alt="Eventos e Competições"
               width={500}
               height={500}
+              loading="lazy"
               className="w-[500px] h-[500px] object-cover rounded-lg shadow-lg"
             />
             {/* Card de Informações */}
