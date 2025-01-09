@@ -38,7 +38,7 @@ export function NavBar() {
 
   useEffect(() => {
     controls.start({ opacity: 1, y: hasScrolled ? 0 : 0 });
-  }, [hasScrolled]);
+  }, [hasScrolled, controls]);
 
   return (
     <motion.nav

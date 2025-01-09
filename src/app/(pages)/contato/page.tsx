@@ -141,8 +141,6 @@ export default function Contato() {
                 {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
               </Button>
             </form>
-           
-            )}
           </div>
 
           <div className="w-full lg:w-1/2 space-y-8">
