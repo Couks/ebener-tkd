@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "Academia de TaeKwonDo na Ilha do Governador",
     images: [
       {
-        url: "https://ebener-tkd.com.br/logo.png",
+        url: "https://ebenertkd.vercel.app/favicon.ico",
         width: 800,
         height: 600,
         alt: "Logo da Ebener TKD",
