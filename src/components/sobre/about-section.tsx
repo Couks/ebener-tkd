@@ -3,6 +3,7 @@ import historia1 from "@/assets/images/image9.jpeg";
 import historia2 from "@/assets/images/image8.jpeg";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function AboutSection() {
   return (
@@ -58,21 +59,20 @@ export default function AboutSection() {
             Ebener desenvolveu uma abordagem única de ensino, focada em
             habilidades físicas e mentais.
           </motion.p>
-          <div>
+          <Link href="/sobre">
             <motion.button
               className="bg-primary-500 hover:bg-primary-600 rounded-full text-black text-lg font-bold px-8 py-3 flex items-center gap-2 group"
               initial={{ opacity: 0, scale: 1.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 1 }}
             >
-              <a href="/sobre">Saiba Mais</a>
-
+              Saiba Mais
               <ArrowRight
                 className="group-hover:translate-x-1 transition-transform"
                 size={24}
               />
             </motion.button>
-          </div>
+          </Link>
         </div>
       </div>
     </section>
