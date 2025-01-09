@@ -26,14 +26,13 @@ export default function Planos() {
 
             <div className="space-y-4 mb-8">
               <p className="text-lg font-bold text-white">Horários</p>
-              <ul className="space-y-2 text-gray-300">
-                <li className="flex items-center">
-                  <Clock className="mr-2" /> Segundas e Quartas: 19:00 - 20:30
-                </li>
-                <li className="flex items-center">
-                  <Clock className="mr-2" /> Segundas e Quartas: 20:30 - 22:00
-                </li>
-              </ul>
+              <div className="flex items-center text-gray-300">
+                <Clock className="size-12 mr-2 text-gray-300" />
+                <div className="flex flex-col items-center">
+                  <span>Segundas e Quartas</span>
+                  <span className="font-bold text-xl">19:00 - 20:30</span>
+                </div>
+              </div>
             </div>
 
             <a
