@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://ebenertkd.vercel.app/favicon.ico",
-        width: 800,
-        height: 600,
+        width: 500,
+        height: 500,
         alt: "Logo da Ebener TKD",
       },
     ],
