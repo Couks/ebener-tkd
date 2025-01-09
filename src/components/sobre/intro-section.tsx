@@ -49,9 +49,10 @@ export default function IntroSection({
           <Image
             src={backgroundImage}
             alt={title}
-            className="object-cover h-full brightness-50 rounded-b-3xl"
+            className="object-cover brightness-50 rounded-b-3xl"
             width={1920}
             height={1080}
+            layout="responsive"
             loading="lazy"
             sizes="(max-width: 768px) 100vw, 1920px"
           />

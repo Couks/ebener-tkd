@@ -12,10 +12,14 @@ import { motion, useAnimation } from "framer-motion";
 import { Button } from "./ui/button";
 
 const navigation = [
-  { name: "Sobre", href: "/sobre" },
-  { name: "Planos", href: "/planos" },
-  { name: "Contato", href: "/contato" },
-  { name: "Fotos", href: "/galeria" },
+  { name: "Sobre", href: "/sobre", ariaLabel: "Ir para a página sobre" },
+  { name: "Planos", href: "/planos", ariaLabel: "Ir para a página de planos" },
+  {
+    name: "Contato",
+    href: "/contato",
+    ariaLabel: "Ir para a página de contato",
+  },
+  { name: "Fotos", href: "/galeria", ariaLabel: "Ir para a galeria de fotos" },
 ];
 
 function classNames(...classes: string[]) {
@@ -78,6 +82,7 @@ export function NavBar() {
               <a
                 key={item.name}
                 href={item.href}
+                aria-label={item.ariaLabel}
                 className={classNames(
                   "text-white hover:text-primary-500 transition-colors",
                   "text-md font-medium "
@@ -92,6 +97,7 @@ export function NavBar() {
                 href="https://www.instagram.com/ebenertkd/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Ir para o Instagram"
                 className="text-white hover:text-primary-500 transition-colors text-md font-medium"
               >
                 <Instagram />
@@ -100,6 +106,7 @@ export function NavBar() {
                 href="https://api.whatsapp.com/send/?phone=5521981654811&text&type=phone_number&app_absent=0"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Enviar mensagem pelo WhatsApp"
                 className="text-white hover:text-primary-500 transition-colors text-md font-medium"
               >
                 <TbBrandWhatsapp className="size-7 text-white hover:text-primary-500 transition-colors text-md font-medium" />
@@ -138,6 +145,7 @@ export function NavBar() {
               <a
                 key={item.name}
                 href={item.href}
+                aria-label={item.ariaLabel}
                 className="text-white text-2xl font-medium"
                 onClick={() => setSidebarOpen(false)}
               >
@@ -150,6 +158,7 @@ export function NavBar() {
                 href="https://www.instagram.com/ebenertkd/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Ir para o Instagram"
                 className="text-white hover:text-primary-500 transition-colors text-md font-medium"
               >
                 <Instagram />
@@ -158,6 +167,7 @@ export function NavBar() {
                 href="https://api.whatsapp.com/send/?phone=5521981654811&text&type=phone_number&app_absent=0"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Enviar mensagem pelo WhatsApp"
                 className="text-white hover:text-primary-500 transition-colors text-md font-medium"
               >
                 <TbBrandWhatsapp className="size-7 text-white hover:text-primary-500 transition-colors text-md font-medium" />

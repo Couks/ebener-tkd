@@ -10,6 +10,7 @@ export function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           className="text-white hover:text-primary-500 transition-colors text-md font-medium"
+          aria-label="Instagram"
         >
           <Instagram />
         </a>
@@ -18,6 +19,7 @@ export function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           className="text-white hover:text-primary-500 transition-colors text-md font-medium"
+          aria-label="WhatsApp"
         >
           <TbBrandWhatsapp className="size-7 text-white hover:text-primary-500 transition-colors text-md font-medium" />
         </a>

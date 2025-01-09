@@ -26,16 +26,15 @@ export default function CallToActionSection() {
             Entre em contato conosco hoje e agende uma aula experimental
             gratuita!
           </motion.p>
-
-          <Button className="bg-primary-500 hover:bg-primary-600 text-black font-bold md:text-lg px-8 py-6 rounded-3xl shadow-lg hover:shadow-primary-500/50">
-            <a
-              href="https://api.whatsapp.com/send/?phone=5521981654811&text&type=phone_number&app_absent=0"
-              target="_blank"
-              className="inline-block transform hover:scale-105 transition-transform duration-200"
-            >
+          <a
+            href="https://api.whatsapp.com/send/?phone=5521981654811&text&type=phone_number&app_absent=0"
+            target="_blank"
+            className="inline-block transform hover:scale-105 transition-transform duration-200"
+          >
+            <Button className="bg-primary-500 hover:bg-primary-600 text-black font-bold md:text-lg px-8 py-6 rounded-3xl shadow-lg hover:shadow-primary-500/50">
               Agende sua Aula Grátis{" "}
-            </a>
-          </Button>
+            </Button>
+          </a>
         </div>
       </div>
     </section>
