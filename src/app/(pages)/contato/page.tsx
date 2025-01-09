@@ -4,18 +4,11 @@ import { Button } from "@/components/ui/button";
 import IntroSection from "@/components/sobre/intro-section";
 import contatoImage from "@/assets/images/20231207_200223.jpg";
 import { MapPin, Phone } from "lucide-react";
-import {
-  Toast,
-  ToastProvider,
-  ToastTitle,
-  ToastDescription,
-  ToastClose,
-} from "@/components/ui/toast";
+
 import { useState } from "react";
 
 export default function Contato() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isToastOpen, setIsToastOpen] = useState(false);
   const [nome, setNome] = useState("");
   const [telefone, setTelefone] = useState("");
   const [mensagem, setMensagem] = useState("");
@@ -45,7 +38,6 @@ export default function Contato() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setIsToastOpen(true);
     const textoConcatenado = `Olá, meu nome é ${nome}!\nEsse é meu telefone ${telefone}\n${mensagem}`;
     window.location.href = `https://api.whatsapp.com/send?phone=5521981654811&text=${encodeURIComponent(
       textoConcatenado
@@ -56,7 +48,7 @@ export default function Contato() {
   };
 
   return (
-    <ToastProvider>
+    <>
       <IntroSection
         title="Entre em contato com a Ebener TKD"
         subtitle="Estamos aqui para ajudar o seu treino"
@@ -149,15 +141,7 @@ export default function Contato() {
                 {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
               </Button>
             </form>
-            {isToastOpen && (
-              <Toast variant="default">
-                <ToastTitle>Mensagem enviada com sucesso!</ToastTitle>
-                <ToastDescription>
-                  A sua mensagem foi enviada com sucesso. Nossa equipe entrará
-                  em contato em breve.
-                </ToastDescription>
-                <ToastClose />
-              </Toast>
+           
             )}
           </div>
 
@@ -207,6 +191,6 @@ export default function Contato() {
           </div>
         </div>
       </section>
-    </ToastProvider>
+    </>
   );
 }
