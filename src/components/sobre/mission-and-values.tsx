@@ -44,14 +44,14 @@ export default function MissionAndValues() {
         >
           {/* Card Respeito às Diferenças */}
           <SwiperSlide>
-            <div className="w-full bg-secondary-500/30 backdrop-blur-sm text-white rounded-2xl shadow-xl p-8 flex flex-col min-h-[200px] border border-primary-500/20 hover:border-primary-500 transition-all duration-300">
+            <div className="w-full bg-secondary-500/30 backdrop-blur-sm text-white rounded-3xl shadow-xl p-8 flex flex-col min-h-[200px] border-4 border-primary-500/20 hover:border-primary-500 transition-all duration-300">
               <motion.h3 // Aplicação do efeito de animação ao título do card
                 className="text-2xl md:text-3xl font-bold mb-6 text-primary-500"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9 }}
               >
-                Respeito às Diferenças
+                Diversidade e Inclusão
               </motion.h3>
               <motion.p // Aplicação do efeito de animação ao parágrafo do card
                 className="text-lg md:text-xl font-medium"
@@ -66,7 +66,7 @@ export default function MissionAndValues() {
 
           {/* Card Dedicação */}
           <SwiperSlide>
-            <div className="w-full bg-secondary-500/30 backdrop-blur-sm text-white rounded-2xl shadow-xl p-8 flex flex-col min-h-[200px] border border-primary-500/20 hover:border-primary-500 transition-all duration-300">
+            <div className="w-full bg-secondary-500/30 backdrop-blur-sm text-white rounded-3xl shadow-xl p-8 flex flex-col min-h-[200px] border-4 border-primary-500/20 hover:border-primary-500 transition-all duration-300">
               <motion.h3 // Aplicação do efeito de animação ao título do card
                 className="text-2xl md:text-3xl font-bold mb-6 text-primary-500"
                 initial={{ opacity: 0, y: 50 }}
@@ -88,7 +88,7 @@ export default function MissionAndValues() {
 
           {/* Card Formação Integral */}
           <SwiperSlide>
-            <div className="w-full bg-secondary-500/30 backdrop-blur-sm text-white rounded-2xl shadow-xl p-8 flex flex-col min-h-[200px] border border-primary-500/20 hover:border-primary-500 transition-all duration-300">
+            <div className="w-full bg-secondary-500/30 backdrop-blur-sm text-white rounded-3xl shadow-xl p-8 flex flex-col min-h-[200px] border-4 border-primary-500/20 hover:border-primary-500 transition-all duration-300">
               <motion.h3 // Aplicação do efeito de animação ao título do card
                 className="text-2xl md:text-3xl font-bold mb-6 text-primary-500"
                 initial={{ opacity: 0, y: 50 }}

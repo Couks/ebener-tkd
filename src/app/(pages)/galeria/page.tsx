@@ -35,12 +35,12 @@ export default function Galeria() {
       {/* Galeria */}
       <div
         id="images"
-        className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4 pt-4 px-2"
+        className="container mx-auto columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-8 pt-12 px-2"
       >
         {shuffledImages.map((image: any, index: number) => (
           <motion.div
             key={index}
-            className="mb-4 break-inside-avoid group"
+            className="mb-4 md:mb-8 break-inside-avoid group"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}

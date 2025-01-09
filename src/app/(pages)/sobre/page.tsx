@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 import Image from "next/image";
-import quemSomos from "@/assets/images/WhatsApp Image 2024-07-24 at 12.19.37 (2).jpeg"; // Exemplo de imagem
+import quemSomos from "@/assets/images/image5.jpeg"; // Exemplo de imagem
 import historia1 from "@/assets/images/aulas-em-grupo.jpeg"; // Imagem da história
 import historia2 from "@/assets/images/WhatsApp Image 2024-07-25 at 09.11.49.jpeg"; // Imagem adicional da história
 import historia3 from "@/assets/images/WhatsApp Image 2024-07-24 at 12.19.27 (1).jpeg"; // Imagem da história
@@ -57,7 +57,7 @@ export default function Sobre() {
               loading="lazy"
               width={800}
               height={500}
-              className=" object-cover rounded-2xl"
+              className=" object-cover rounded-3xl"
             />
           </div>
           <div className="w-full md:w-1/2 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
@@ -106,7 +106,7 @@ export default function Sobre() {
               loading="lazy"
               width={800}
               height={500}
-              className="object-cover aspect-video rounded-2xl"
+              className="object-cover aspect-video rounded-3xl"
             />
           </div>
           <div className="w-full md:w-3/5 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
@@ -149,7 +149,7 @@ export default function Sobre() {
               alt="Imagem da história de Ebener"
               loading="lazy"
               width={800}
-              className="object-cover aspect-video rounded-2xl"
+              className="object-cover aspect-video rounded-3xl"
             />
           </div>
           <div className="w-full md:w-2/5 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
@@ -192,7 +192,7 @@ export default function Sobre() {
               loading="lazy"
               width={800}
               height={500}
-              className="object-cover aspect-video rounded-2xl"
+              className="object-cover aspect-video rounded-3xl"
             />
           </div>
           <div className="w-full md:w-3/5 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">

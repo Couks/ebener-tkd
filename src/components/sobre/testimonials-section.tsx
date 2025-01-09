@@ -8,7 +8,7 @@ import yas from "@/assets/alunos/yas-tonelli.jpg";
 
 import { Pagination, Autoplay } from "swiper/modules";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { motion } from "framer-motion"; // Importação do motion para aplicar efeitos de animação
+import { motion } from "framer-motion";
 
 export default function TestimonialsSection() {
   return (
@@ -49,7 +49,7 @@ export default function TestimonialsSection() {
         >
           {/* Depoimento 2 */}
           <SwiperSlide>
-            <div className="w-full bg-secondary-500/30 backdrop-blur-sm text-white rounded-2xl shadow-xl p-8 flex flex-col min-h-[350px] border border-primary-500/20 hover:border-primary-500 transition-all duration-300">
+            <div className="w-full bg-secondary-500/30 backdrop-blur-sm text-white rounded-3xl shadow-xl p-8 flex flex-col min-h-[400px] border-4 border-primary-500/20 hover:border-primary-500 transition-all duration-300">
               <motion.div
                 animate={{ scale: 0.5 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -87,7 +87,7 @@ export default function TestimonialsSection() {
 
           {/* Depoimento 2 */}
           <SwiperSlide>
-            <div className="w-full bg-secondary-500/30 backdrop-blur-sm text-white rounded-2xl shadow-xl p-8 flex flex-col min-h-[350px] border border-primary-500/20 hover:border-primary-500 transition-all duration-300">
+            <div className="w-full bg-secondary-500/30 backdrop-blur-sm text-white rounded-3xl shadow-xl p-8 flex flex-col min-h-[400px] border-4 border-primary-500/20 hover:border-primary-500 transition-all duration-300">
               <motion.div
                 animate={{ scale: 0.5 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -125,7 +125,7 @@ export default function TestimonialsSection() {
 
           {/*Depoimento 3*/}
           <SwiperSlide>
-            <div className="w-full bg-secondary-500/30 backdrop-blur-sm text-white rounded-2xl shadow-xl p-8 flex flex-col min-h-[350px] border border-primary-500/20 hover:border-primary-500 transition-all duration-300">
+            <div className="w-full bg-secondary-500/30 backdrop-blur-sm text-white rounded-3xl shadow-xl p-8 flex flex-col min-h-[400px] border-4 border-primary-500/20 hover:border-primary-500 transition-all duration-300">
               <motion.div
                 animate={{ scale: 0.5 }}
                 whileInView={{ opacity: 1, scale: 1 }}

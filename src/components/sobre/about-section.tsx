@@ -7,8 +7,8 @@ import Link from "next/link";
 
 export default function AboutSection() {
   return (
-    <section className="mx-2 md:mx-auto px-4 md:px-8 py-16 bg-secondary-800 rounded-3xl mt-8">
-      <div className="flex flex-col md:flex-row items-center md:space-x-8 mb-8 gap-8">
+    <section className="mx-2 md:container md:mx-auto bg-secondary-800 py-12 px-4 mt-8 m-2 rounded-3xl text-right flex flex-col md:flex-row items-center justify-center gap-8">
+      <div className="flex flex-col md:flex-row items-center gap-8">
         <div className="w-full md:w-1/3 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
           <h2 className="text-3xl md:text-6xl font-bold text-primary-500 mb-4">
             Nossa História
@@ -38,7 +38,7 @@ export default function AboutSection() {
             src={historia1}
             alt="Imagem da carreira de Ebener"
             loading="lazy"
-            className="h-full object-cover aspect-auto rounded-2xl"
+            className="h-auto object-cover rounded-3xl"
           />
         </div>
         <div className="flex flex-col w-full items-start gap-8 md:w-1/3 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
@@ -48,7 +48,7 @@ export default function AboutSection() {
             loading="lazy"
             width={800}
             height={500}
-            className="object-cover aspect-video rounded-2xl"
+            className="object-cover aspect-video rounded-3xl"
           />
 
           <motion.p

@@ -28,6 +28,7 @@ export const metadata: Metadata = {
       },
     ],
   },
+  keywords: ["Taekwondo", "Academia", "Ilha do Governador"],
 };
 
 export default function RootLayout({
@@ -40,11 +41,12 @@ export default function RootLayout({
       <head>
         <meta
           name="google-site-verification"
-          content="t0CgPYcarDBQ5d6Gs52Bl36WmRq3QdmyFC9D"
+          content="w2-CizVqPMDEzsXVpuDM0f7CJ8zMnEG5sFi5MjvOrEk"
         />
+        <meta name="robots" content="index, nofollow" />
       </head>
       <body className={chakraPetch.className}>
-        <div className="justify-between h-max bg-secondary-900">
+        <div className="justify-between h-max bg-secondary-950">
           <main>
             <NavBar />
             <WhatsappButton />

@@ -17,7 +17,7 @@ export default function Planos() {
       <section id="planos" className="container mx-auto px-8 py-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Plano Regular */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-primary-500/20 hover:border-primary-500 transition-all duration-300 flex flex-col">
+          <div className="bg-white/10 backdrop-blur-sm rounded-3xl shadow-xl p-8 border-4 border-primary-500/20 hover:border-primary-500 transition-all duration-300 flex flex-col">
             <h3 className="text-2xl font-bold text-primary-500 mb-4">
               Aulas Regulares
             </h3>
@@ -48,7 +48,7 @@ export default function Planos() {
           </div>
 
           {/* Grupos Especiais */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-primary-500/20 hover:border-primary-500 transition-all duration-300 flex flex-col">
+          <div className="bg-white/10 backdrop-blur-sm rounded-3xl shadow-xl p-8 border-4 border-primary-500/20 hover:border-primary-500 transition-all duration-300 flex flex-col">
             <h3 className="text-2xl font-bold text-primary-500 mb-4">
               Grupos Especiais
             </h3>
@@ -76,7 +76,7 @@ export default function Planos() {
           </div>
 
           {/* Aula Particular */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-primary-500/20 hover:border-primary-500 transition-all duration-300 flex flex-col">
+          <div className="bg-white/10 backdrop-blur-sm rounded-3xl shadow-xl p-8 border-4 border-primary-500/20 hover:border-primary-500 transition-all duration-300 flex flex-col">
             <h3 className="text-2xl font-bold text-primary-500 mb-4">
               Aula Particular
             </h3>
@@ -104,7 +104,7 @@ export default function Planos() {
           </div>
 
           {/* Preparação Física */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-primary-500/20 hover:border-primary-500 transition-all duration-300 flex flex-col">
+          <div className="bg-white/10 backdrop-blur-sm rounded-3xl shadow-xl p-8 border-4 border-primary-500/20 hover:border-primary-500 transition-all duration-300 flex flex-col">
             <h3 className="text-2xl font-bold text-primary-500 mb-4">
               Preparação Física
             </h3>

@@ -4,7 +4,6 @@ import "swiper/css/bundle";
 import { Pagination, Autoplay, EffectCoverflow } from "swiper/modules";
 import {
   Brain,
-  Shield,
   HeartPulse,
   Dumbbell,
   Smile,
@@ -54,7 +53,7 @@ export default function BenefitsSection() {
         >
           {/* Mentalidade e Vida */}
           <SwiperSlide>
-            <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-primary-500">
+            <div className="bg-white rounded-3xl shadow-xl p-8 border-t-4 border-primary-500">
               <div className="flex gap-4">
                 <div className="bg-primary-500/10 rounded-full w-16 h-16 flex items-center justify-center shrink-0">
                   <Brain className="text-primary-500 size-8" />
@@ -84,7 +83,7 @@ export default function BenefitsSection() {
 
           {/* Resistência */}
           <SwiperSlide>
-            <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-primary-500">
+            <div className="bg-white rounded-3xl shadow-xl p-8 border-t-4 border-primary-500">
               <div className="flex gap-4">
                 <div className="bg-primary-500/10 rounded-full w-16 h-16 flex items-center justify-center shrink-0">
                   <HeartPulse className="text-primary-500 size-8" />
@@ -114,7 +113,7 @@ export default function BenefitsSection() {
 
           {/* Autodefesa */}
           <SwiperSlide>
-            <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-primary-500">
+            <div className="bg-white rounded-3xl shadow-xl p-8 border-t-4 border-primary-500">
               <div className="flex gap-4">
                 <div className="bg-primary-500/10 rounded-full w-16 h-16 flex items-center justify-center shrink-0">
                   <ShieldCheck className="text-primary-500 size-8" />
@@ -144,7 +143,7 @@ export default function BenefitsSection() {
 
           {/* Condicionamento Físico */}
           <SwiperSlide>
-            <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-primary-500">
+            <div className="bg-white rounded-3xl shadow-xl p-8 border-t-4 border-primary-500">
               <div className="flex gap-4">
                 <div className="bg-primary-500/10 rounded-full w-16 h-16 flex items-center justify-center shrink-0">
                   <Dumbbell className="text-primary-500 size-8" />
@@ -174,7 +173,7 @@ export default function BenefitsSection() {
 
           {/* Confiança */}
           <SwiperSlide>
-            <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-primary-500">
+            <div className="bg-white rounded-3xl shadow-xl p-8 border-t-4 border-primary-500">
               <div className="flex gap-4">
                 <div className="bg-primary-500/10 rounded-full w-16 h-16 flex items-center justify-center shrink-0">
                   <Smile className="text-primary-500 size-8" />
@@ -204,7 +203,7 @@ export default function BenefitsSection() {
 
           {/* Autoestima */}
           <SwiperSlide>
-            <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-primary-500">
+            <div className="bg-white rounded-3xl shadow-xl p-8 border-t-4 border-primary-500">
               <div className="flex gap-4">
                 <div className="bg-primary-500/10 rounded-full w-16 h-16 flex items-center justify-center shrink-0">
                   <Star className="text-primary-500 size-8" />
@@ -234,7 +233,7 @@ export default function BenefitsSection() {
 
           {/* Crescimento Intelectual */}
           <SwiperSlide>
-            <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-primary-500">
+            <div className="bg-white rounded-3xl shadow-xl p-8 border-t-4 border-primary-500">
               <div className="flex gap-4">
                 <div className="bg-primary-500/10 rounded-full w-16 h-16 flex items-center justify-center shrink-0">
                   <Brain className="text-primary-500 size-8" />
@@ -264,7 +263,7 @@ export default function BenefitsSection() {
 
           {/* Disciplina */}
           <SwiperSlide>
-            <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-primary-500">
+            <div className="bg-white rounded-3xl shadow-xl p-8 border-t-4 border-primary-500">
               <div className="flex gap-4">
                 <div className="bg-primary-500/10 rounded-full w-16 h-16 flex items-center justify-center shrink-0">
                   <Sword className="text-primary-500 size-8" />

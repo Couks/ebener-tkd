@@ -27,7 +27,7 @@ export default function CallToActionSection() {
             gratuita!
           </motion.p>
 
-          <Button className="bg-primary-500 hover:bg-primary-600 text-black font-bold md:text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-primary-500/50">
+          <Button className="bg-primary-500 hover:bg-primary-600 text-black font-bold md:text-lg px-8 py-6 rounded-3xl shadow-lg hover:shadow-primary-500/50">
             <a
               href="https://api.whatsapp.com/send/?phone=5521981654811&text&type=phone_number&app_absent=0"
               target="_blank"

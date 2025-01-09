@@ -73,7 +73,7 @@ export default function Contato() {
           Fale Conosco
         </h2>
         <div className="flex flex-col lg:flex-row items-stretch justify-between gap-12 max-w-7xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-xl p-8 lg:p-10 w-full lg:w-1/2 transition-transform duration-300 hover:scale-[1.02]">
+          <div className="bg-white rounded-3xl shadow-xl p-8 lg:p-10 w-full lg:w-1/2 transition-transform duration-300 hover:scale-[1.02]">
             <div className="mb-8">
               <h3 className="text-2xl font-bold text-secondary-500 mb-4">
                 Comece sua jornada no Taekwondo conosco
@@ -95,7 +95,7 @@ export default function Contato() {
                     type="text"
                     name="nome"
                     placeholder="Ex: João Silva"
-                    className="w-full p-4 rounded-xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
+                    className="w-full p-4 rounded-3xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
                     onChange={(e) => setNome(e.target.value)}
                   />
                 </div>
@@ -114,7 +114,7 @@ export default function Contato() {
                     placeholder="Ex: (21) 98165-4811"
                     pattern="\(\d{2}\)\s\d{4,5}-\d{4}"
                     title="Digite o telefone no formato (XX) XXXXX-XXXX ou (XX) XXXX-XXXX."
-                    className="w-full p-4 rounded-xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
+                    className="w-full p-4 rounded-3xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
                     onChange={(e) => {
                       setTelefone(e.target.value);
                       formatPhoneNumber(e.target);
@@ -133,7 +133,7 @@ export default function Contato() {
                     id="mensagem"
                     name="mensagem"
                     placeholder="Ex: Olá! Gostaria de saber mais informações sobre as aulas de Taekwondo..."
-                    className="w-full p-4 rounded-xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
+                    className="w-full p-4 rounded-3xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
                     rows={4}
                     onChange={(e) => setMensagem(e.target.value)}
                   ></textarea>
@@ -142,7 +142,7 @@ export default function Contato() {
 
               <Button
                 type="submit"
-                className={`w-full bg-primary-500 hover:bg-primary-600 text-black text-lg py-6 rounded-xl font-semibold transition-all duration-300 transform hover:-translate-y-1 ${
+                className={`w-full bg-primary-500 hover:bg-primary-600 text-black text-lg py-6 rounded-3xl font-semibold transition-all duration-300 transform hover:-translate-y-1 ${
                   isSubmitting ? "loading" : ""
                 }`}
               >
@@ -162,7 +162,7 @@ export default function Contato() {
           </div>
 
           <div className="w-full lg:w-1/2 space-y-8">
-            <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 hover:shadow-2xl transition-shadow duration-300">
+            <div className="bg-white rounded-3xl shadow-xl p-8 mb-8 hover:shadow-2xl transition-shadow duration-300">
               <h3 className="text-3xl font-bold mb-6 text-secondary-500">
                 Localização da Academia
               </h3>
@@ -191,7 +191,7 @@ export default function Contato() {
 
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14711.315438834945!2d-43.1971213!3d-22.8088045!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x99790035acb387:0xf59879151c85617b!2sEbener%20TKD%20%7C%20Academia%20de%20Taekwondo!5e0!3m2!1spt-BR!2sbr!4v1721344609049!5m2!1spt-BR!2sbr"
-              className="w-full h-[400px] rounded-2xl shadow-xl"
+              className="w-full h-[400px] rounded-3xl shadow-xl"
               loading="lazy"
             ></iframe>
 
@@ -200,7 +200,7 @@ export default function Contato() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button className="w-full bg-primary-500 hover:bg-primary-600 text-black text-lg py-6 rounded-xl font-semibold transition-all duration-300 transform hover:-translate-y-1 mt-4">
+              <Button className="w-full bg-primary-500 hover:bg-primary-600 text-black text-lg py-6 rounded-3xl font-semibold transition-all duration-300 transform hover:-translate-y-1 mt-4">
                 Ir para a Academia
               </Button>
             </a>
