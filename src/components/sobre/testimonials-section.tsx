@@ -35,7 +35,7 @@ export default function TestimonialsSection() {
       <Swiper
         slidesPerView={1}
         spaceBetween={40}
-        autoplay={{ delay: 4000, disableOnInteraction: false }}
+        autoplay={{ delay: 6000, disableOnInteraction: false }}
         loop
         pagination={{ clickable: true }}
         modules={[Pagination, Autoplay]}
@@ -116,7 +116,7 @@ export default function TestimonialsSection() {
               transition={{ duration: 0.9 }}
               className="text-lg font-medium leading-relaxed"
             >
-              Com o taekwondo, aprendi a ter resiliência, disciplina e foco,
+              Com o Taekwondo, aprendi a ter resiliência, disciplina e foco,
               ajudando a superar desafios. Isso me permitiu alcançar títulos
               importantes, como o de campeã brasileira e a liderança no ranking
               nacional.
@@ -155,7 +155,7 @@ export default function TestimonialsSection() {
               transition={{ duration: 0.9 }}
               className="text-lg font-medium leading-relaxed"
             >
-              O taekwondo me ensinou que posso me superar e trouxe outros
+              O Taekwondo me ensinou que posso me superar e trouxe outros
               estímulos para a minha prática física. Sinto que é uma atividade
               muito completa!
             </motion.p>

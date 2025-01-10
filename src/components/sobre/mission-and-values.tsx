@@ -23,7 +23,7 @@ export default function MissionAndValues() {
           >
             Nossa <span className="text-primary-500 font-bold">missão</span> é
             formar atletas e indivíduos em todas as idades e níveis no
-            taekwondo, transmitindo técnicas avançadas e valores essenciais,
+            Taekwondo, transmitindo técnicas avançadas e valores essenciais,
             como respeito, disciplina e resiliência.
           </motion.p>
         </div>

@@ -41,7 +41,7 @@ export default function BenefitsSection() {
           slidesPerView={1}
           spaceBetween={30}
           loop
-          autoplay={{ delay: 2500 }}
+          autoplay={{ delay: 6000 }}
           effect="coverflow"
           modules={[Pagination, Autoplay, EffectCoverflow]}
           breakpoints={{

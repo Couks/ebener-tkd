@@ -4,8 +4,21 @@ import historia2 from "@/assets/images/image8.jpeg";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function AboutSection() {
+  const [anoAtual, setAnoAtual] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const currentDate = new Date();
+      if (currentDate.getMonth() === 0 && currentDate.getDate() === 1) {
+        setAnoAtual(currentDate.getFullYear());
+      }
+    }, 86400000); // 86400000 é o número de milissegundos em um dia
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="mx-2 md:container md:mx-auto bg-secondary-800 py-12 px-4 mt-8 m-2 rounded-3xl text-right flex flex-col md:flex-row items-center justify-center gap-8">
       <div className="flex flex-col md:flex-row items-center gap-8">
@@ -21,7 +34,7 @@ export default function AboutSection() {
             Somos a maior e mais <b className="text-primary-500">tradicional</b>{" "}
             academia de <b className="text-primary-500">Taekwondo</b> na Ilha do
             Governador, liderada pelo mestre Ebener dos Santos Pinto, faixa
-            preta 3º Dan e profissional com quase 25 anos de{" "}
+            preta 3º Dan e profissional com quase {anoAtual - 1993} anos de{" "}
             <b className="text-primary-500">experiência</b> no esporte.
             <br />
             <br />
@@ -30,8 +43,8 @@ export default function AboutSection() {
             disciplina e <b className="text-primary-500">excelência</b> na
             formação de atletas. Com uma trajetória marcada por{" "}
             <b className="text-primary-500">conquistas</b> no Brasil e no
-            exterior, ele trouxe para a Ebener TKD uma metodologia única, que
-            combina alto rendimento com valores de{" "}
+            exterior, trouxe para a academia uma metodologia única, que combina
+            alto rendimento com valores de{" "}
             <b className="text-primary-500">superação pessoal</b>.
           </motion.p>
         </div>
@@ -59,7 +72,7 @@ export default function AboutSection() {
             transition={{ duration: 0.9 }}
             className="text-left"
           >
-            Aqui, acolhemos alunos de todos os níveis, promovendo um ambiente de
+            Aqui acolhemos alunos de todos os níveis, promovendo um ambiente de
             respeito, aprendizado e{" "}
             <b className="text-primary-500">crescimento</b> para todos. Venha
             fazer parte dessa <b className="text-primary-500">história</b>!

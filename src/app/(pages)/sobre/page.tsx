@@ -100,7 +100,7 @@ export default function Sobre() {
               </b>{" "}
               e faixa preta <b className="text-primary-500">3° Dan</b>, Ebener
               se destaca por sua trajetória no{" "}
-              <b className="text-primary-500">taekwondo</b>, desde a{" "}
+              <b className="text-primary-500">Taekwondo</b>, desde a{" "}
               <b className="text-primary-500">preparação física</b> até a{" "}
               <b className="text-primary-500">gestão de atletas</b> de alto
               rendimento.
@@ -136,15 +136,14 @@ export default function Sobre() {
             >
               A <b className="text-primary-500">história</b> da Ebener TKD é
               marcada por uma longa <b className="text-primary-500">jornada</b>{" "}
-              de
-              <b className="text-primary-500">dedicação</b> ao esporte. Ebener
-              começou sua <b className="text-primary-500">prática</b> em 1993,
-              treinando com o professor Fernando no{" "}
+              de <b className="text-primary-500">dedicação</b> ao esporte.
+              Ebener começou sua <b className="text-primary-500">prática</b> em
+              1993, treinando com o professor Fernando no{" "}
               <b className="text-primary-500">Cassino dos Oficiais do Galeão</b>
               .
               <br />
               <br />
-              Desde então, o <b className="text-primary-500">taekwondo</b>{" "}
+              Desde então, o <b className="text-primary-500">Taekwondo</b>{" "}
               tornou-se parte integrante de sua vida, abrindo portas para
               diversas <b className="text-primary-500">experiências</b>, tanto
               no Brasil quanto no exterior.
@@ -187,9 +186,9 @@ export default function Sobre() {
               <b className="text-primary-500">Irã</b> e na{" "}
               <b className="text-primary-500">China</b>. <br />
               <br />
-              Além disso, ele teve a oportunidade de conviver e aprender com
+              Além disso, teve a oportunidade de conviver e aprender com
               técnicos e atletas olímpicos, o que moldou sua abordagem no ensino
-              do taekwondo.
+              do Taekwondo.
             </motion.p>
           </div>
         </div>
@@ -224,13 +223,13 @@ export default function Sobre() {
               <b className="text-primary-500">grande superação pessoal</b> foi
               quando sua filha enfrentou meses de internação. O{" "}
               <b className="text-primary-500">Taekwondo</b> foi sua âncora
-              emocional e psicológica, permitindo que ele mantivesse o
-              equilíbrio durante essa fase difícil.
+              emocional e psicológica, permitindo que mantivesse o equilíbrio
+              durante essa fase difícil.
               <br />
               <br />A experiência o fez compreender ainda mais a{" "}
               <b className="text-primary-500">importância</b> da arte marcial,
               tanto para a <b className="text-primary-500">formação técnica</b>{" "}
-              quanto para o
+              quanto para o{" "}
               <b className="text-primary-500">crescimento pessoal</b>.
             </motion.p>
           </div>
