@@ -78,7 +78,7 @@ export default function Contato() {
           >
             <div className="mb-8">
               <h3 className="text-2xl font-bold text-secondary-500 mb-4">
-                Comece sua jornada no Taekwondo conosco
+                Comece sua jornada no Taekwondo
               </h3>
               <p className="text-gray-600">
                 Preencha o formulário abaixo e nossa equipe entrará em contato
