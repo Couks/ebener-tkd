@@ -24,7 +24,7 @@ export default function Planos() {
             <p className="text-5xl font-bold text-white mb-2 whitespace-nowrap">
               R$ 150,00
             </p>
-            <p className="text-lg text-gray-300 mb-6">Pagos mensalmente</p>
+            <p className="text-lg text-gray-300 mb-6">Plano mensal</p>
 
             <div className="space-y-4 mb-8">
               <p className="text-lg font-bold text-white">Horários</p>
@@ -57,7 +57,7 @@ export default function Planos() {
               R$ 200,00
             </p>
             <p className="text-lg text-gray-300 mb-6">
-              Por treino (até 4 pessoas)
+              Aula avulsa (até 4 pessoas)
             </p>
 
             <div className="space-y-4 mb-8">
@@ -83,14 +83,16 @@ export default function Planos() {
             <h3 className="text-2xl font-bold text-primary-500 mb-4">
               Aula Particular
             </h3>
-            <p className="text-3xl font-bold text-white mb-2">Sob Consulta</p>
+            <p className="text-3xl font-bold text-white mb-2">
+              Consultar valores
+            </p>
             <p className="text-lg text-gray-300 mb-6">
               Treinamento individualizado
             </p>
 
             <div className="space-y-4 mb-8">
               <p className="text-lg text-gray-300">
-                Aulas personalizadas de acordo com seus objetivos e necessidades
+                Aulas planejadas de acordo com seus objetivos e necessidades
               </p>
             </div>
 
@@ -111,7 +113,9 @@ export default function Planos() {
             <h3 className="text-2xl font-bold text-primary-500 mb-4">
               Preparação Física
             </h3>
-            <p className="text-3xl font-bold text-white mb-2">Sob Consulta</p>
+            <p className="text-3xl font-bold text-white mb-2">
+              Consultar valores
+            </p>
             <p className="text-lg text-gray-300 mb-6">Treino individual</p>
 
             <div className="space-y-4 mb-8">

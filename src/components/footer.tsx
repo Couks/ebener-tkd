@@ -1,6 +1,6 @@
 "use client";
 import { Instagram } from "lucide-react";
-import { TbBrandWhatsapp } from "react-icons/tb";
+import { TbBrandTiktok, TbBrandWhatsapp } from "react-icons/tb";
 import { useEffect, useState } from "react";
 
 export function Footer() {
@@ -29,13 +29,13 @@ export function Footer() {
           <Instagram />
         </a>
         <a
-          href="https://api.whatsapp.com/send/?phone=5521981654811&text&type=phone_number&app_absent=0"
+          href="https://www.tiktok.com/@ebener.tkd"
           target="_blank"
           rel="noopener noreferrer"
           className="text-white hover:text-primary-500 transition-colors text-md font-medium"
-          aria-label="WhatsApp"
+          aria-label="Tiktok"
         >
-          <TbBrandWhatsapp className="size-7 text-white hover:text-primary-500 transition-colors text-md font-medium" />
+          <TbBrandTiktok className="size-7 text-white hover:text-primary-500 transition-colors text-md font-medium" />
         </a>
       </div>
       <div className="text-center text-gray-400 mt-4">

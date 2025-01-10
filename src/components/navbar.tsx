@@ -5,7 +5,7 @@ import Image from "next/image";
 import { X } from "lucide-react";
 import { Menu } from "lucide-react";
 import { Instagram } from "lucide-react";
-import { TbBrandWhatsapp } from "react-icons/tb";
+import { TbBrandTiktok } from "react-icons/tb";
 
 import logo from "@/assets/favicon.png";
 import { motion, useAnimation } from "framer-motion";
@@ -103,13 +103,13 @@ export function NavBar() {
                 <Instagram />
               </a>
               <a
-                href="https://api.whatsapp.com/send/?phone=5521981654811&text&type=phone_number&app_absent=0"
+                href="https://www.tiktok.com/@ebener.tkd"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Enviar mensagem pelo WhatsApp"
+                aria-label="Abrir Tiktok"
                 className="text-white hover:text-primary-500 transition-colors text-md font-medium"
               >
-                <TbBrandWhatsapp className="size-7 text-white hover:text-primary-500 transition-colors text-md font-medium" />
+                <TbBrandTiktok className="size-7 text-white hover:text-primary-500 transition-colors text-md font-medium" />
               </a>
             </div>
           </div>
@@ -164,13 +164,13 @@ export function NavBar() {
                 <Instagram />
               </a>
               <a
-                href="https://api.whatsapp.com/send/?phone=5521981654811&text&type=phone_number&app_absent=0"
+                href="https://www.tiktok.com/@ebener.tkd"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Enviar mensagem pelo WhatsApp"
+                aria-label="Abrir Tiktok"
                 className="text-white hover:text-primary-500 transition-colors text-md font-medium"
               >
-                <TbBrandWhatsapp className="size-7 text-white hover:text-primary-500 transition-colors text-md font-medium" />
+                <TbBrandTiktok className="size-7 text-white hover:text-primary-500 transition-colors text-md font-medium" />
               </a>
             </div>
           </div>
