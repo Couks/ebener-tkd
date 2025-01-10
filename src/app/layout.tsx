@@ -12,13 +12,15 @@ const chakraPetch = Chakra_Petch({
 });
 
 export const metadata: Metadata = {
-  title: "Ebener TKD",
-  description: "Academia de TaeKwonDo na Ilha do Governador",
+  title: "Ebener TKD - Academia de Taekwondo na Ilha do Governador",
+  description:
+    "A Ebener TKD é uma academia de Taekwondo localizada na Ilha do Governador, Rio de Janeiro. Oferecemos aulas para todas as idades e níveis.",
   openGraph: {
     type: "website",
-    url: "https://ebener-tkd.com.br",
-    title: "Ebener TKD",
-    description: "Academia de TaeKwonDo na Ilha do Governador",
+    url: "https://ebenertkd.vercel.app/",
+    title: "Ebener TKD - Academia de Taekwondo na Ilha do Governador",
+    description:
+      "A Ebener TKD é uma academia de Taekwondo localizada na Ilha do Governador, Rio de Janeiro. Oferecemos aulas para todas as idades e níveis.",
     images: [
       {
         url: "https://ebenertkd.vercel.app/favicon.ico",
@@ -28,7 +30,13 @@ export const metadata: Metadata = {
       },
     ],
   },
-  keywords: ["Taekwondo", "Academia", "Ilha do Governador"],
+  keywords: [
+    "Taekwondo",
+    "Academia",
+    "Ilha do Governador",
+    "Aulas de Taekwondo",
+    "Treinamento de Taekwondo",
+  ],
 };
 
 export default function RootLayout({
@@ -39,11 +47,20 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <head>
+        <title>Ebener TKD - Academia de Taekwondo na Ilha do Governador</title>
         <meta
           name="google-site-verification"
           content="w2-CizVqPMDEzsXVpuDM0f7CJ8zMnEG5sFi5MjvOrEk"
         />
-        <meta name="robots" content="index, nofollow" />
+        <meta name="robots" content="index, follow" />
+        <meta
+          name="description"
+          content="A Ebener TKD é uma academia de Taekwondo localizada na Ilha do Governador, Rio de Janeiro. Oferecemos aulas para todas as idades e níveis."
+        />
+        <meta
+          name="keywords"
+          content="Taekwondo, Academia, Ilha do Governador, Aulas de Taekwondo, Treinamento de Taekwondo"
+        />
       </head>
       <body className={chakraPetch.className}>
         <div className="justify-between h-max bg-secondary-950">

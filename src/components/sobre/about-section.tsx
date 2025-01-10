@@ -11,26 +11,28 @@ export default function AboutSection() {
       <div className="flex flex-col md:flex-row items-center gap-8">
         <div className="w-full md:w-1/3 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
           <h2 className="text-3xl md:text-6xl font-bold text-primary-500 mb-4">
-            Nossa História
+            Bem-vindo à Ebener TKD!
           </h2>
           <motion.p
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9 }}
           >
-            A Ebener TKD é uma academia de{" "}
-            <b className="text-primary-500">taekwondo</b> fundada em 1993.
-            Começou treinando com o professor Fernando no{" "}
-            <b className="text-primary-500">Cassino dos Oficiais do Galeão</b>.
-            Ebener trabalhou como <b className="text-primary-500">gestor</b>,{" "}
-            <b className="text-primary-500">preparador físico</b>, técnico da{" "}
-            <b className="text-primary-500">
-              Seleção Brasileira Militar de Taekwondo
-            </b>{" "}
-            e participou de três{" "}
-            <b className="text-primary-500">campeonatos mundiais</b>. Ebener
-            desenvolveu uma abordagem única de ensino, focada em habilidades
-            físicas e mentais.
+            Somos a maior e mais <b className="text-primary-500">tradicional</b>{" "}
+            academia de <b className="text-primary-500">Taekwondo</b> na Ilha do
+            Governador, liderada pelo mestre Ebener dos Santos Pinto, faixa
+            preta 3º Dan e profissional com quase 25 anos de{" "}
+            <b className="text-primary-500">experiência</b> no esporte.
+            <br />
+            <br />
+            Desde 1993, o mestre Ebener dedica sua vida ao{" "}
+            <b className="text-primary-500">Taekwondo</b>, unindo paixão,
+            disciplina e <b className="text-primary-500">excelência</b> na
+            formação de atletas. Com uma trajetória marcada por{" "}
+            <b className="text-primary-500">conquistas</b> no Brasil e no
+            exterior, ele trouxe para a Ebener TKD uma metodologia única, que
+            combina alto rendimento com valores de{" "}
+            <b className="text-primary-500">superação pessoal</b>.
           </motion.p>
         </div>
         <div className="flex justify-center w-full md:w-1/3">
@@ -55,9 +57,12 @@ export default function AboutSection() {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9 }}
+            className="text-left"
           >
-            Ebener desenvolveu uma abordagem única de ensino, focada em
-            habilidades físicas e mentais.
+            Aqui, acolhemos alunos de todos os níveis, promovendo um ambiente de
+            respeito, aprendizado e{" "}
+            <b className="text-primary-500">crescimento</b> para todos. Venha
+            fazer parte dessa <b className="text-primary-500">história</b>!
           </motion.p>
           <Link href="/sobre">
             <motion.button
@@ -66,7 +71,7 @@ export default function AboutSection() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 1 }}
             >
-              Saiba Mais
+              Saiba Mais sobre a Ebener TKD
               <ArrowRight
                 className="group-hover:translate-x-1 transition-transform"
                 size={24}
