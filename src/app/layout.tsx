@@ -12,15 +12,15 @@ const chakraPetch = Chakra_Petch({
 });
 
 export const metadata: Metadata = {
-  title: "Ebener TKD - Academia de Taekwondo na Ilha do Governador",
+  title: "Taekwondo na Ilha do Governador - Ebener TKD",
   description:
-    "A Ebener TKD é uma academia de Taekwondo localizada na Ilha do Governador, Rio de Janeiro. Oferecemos aulas para todas as idades e níveis.",
+    "Treine Taekwondo na maior academia da Ilha do Governador. Aulas para todas as idades, com metodologia exclusiva e professores certificados!",
   openGraph: {
     type: "website",
     url: "https://ebenertkd.vercel.app/",
-    title: "Ebener TKD - Academia de Taekwondo na Ilha do Governador",
+    title: "Taekwondo na Ilha do Governador - Ebener TKD",
     description:
-      "A Ebener TKD é uma academia de Taekwondo localizada na Ilha do Governador, Rio de Janeiro. Oferecemos aulas para todas as idades e níveis.",
+      "Treine Taekwondo na maior academia da Ilha do Governador. Aulas para todas as idades, com metodologia exclusiva e professores certificados!",
     images: [
       {
         url: "https://ebenertkd.vercel.app/favicon.ico",
@@ -36,6 +36,11 @@ export const metadata: Metadata = {
     "Ilha do Governador",
     "Aulas de Taekwondo",
     "Treinamento de Taekwondo",
+    "Taekwondo na Ilha do Governador",
+    "Aulas de artes marciais RJ",
+    "Treinamento de Taekwondo para iniciantes",
+    "Academia de artes marciais no Rio de Janeiro",
+    "Taekwondo para crianças e adultos",
   ],
 };
 
@@ -47,7 +52,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <head>
-        <title>Ebener TKD - Academia de Taekwondo na Ilha do Governador</title>
+        <title>Taekwondo na Ilha do Governador - Ebener TKD</title>
         <meta
           name="google-site-verification"
           content="w2-CizVqPMDEzsXVpuDM0f7CJ8zMnEG5sFi5MjvOrEk"
@@ -55,11 +60,7 @@ export default function RootLayout({
         <meta name="robots" content="index, follow" />
         <meta
           name="description"
-          content="A Ebener TKD é uma academia de Taekwondo localizada na Ilha do Governador, Rio de Janeiro. Oferecemos aulas para todas as idades e níveis."
-        />
-        <meta
-          name="keywords"
-          content="Taekwondo, Academia, Ilha do Governador, Aulas de Taekwondo, Treinamento de Taekwondo"
+          content="Treine Taekwondo na maior academia da Ilha do Governador. Aulas para todas as idades, com metodologia exclusiva e professores certificados!"
         />
       </head>
       <body className={chakraPetch.className}>
