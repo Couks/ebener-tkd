@@ -13,13 +13,13 @@ const chakraPetch = Chakra_Petch({
 });
 
 export const metadata: Metadata = {
-  title: "Taekwondo na Ilha do Governador - Ebener TKD",
+  title: "Taekwondo na Ilha do Governador | Ebener TKD",
   description:
     "Treine Taekwondo na maior academia da Ilha do Governador. Aulas para todas as idades, com metodologia exclusiva e professores certificados!",
   openGraph: {
     type: "website",
     url: "https://ebenertkd.vercel.app/",
-    title: "Taekwondo na Ilha do Governador - Ebener TKD",
+    title: "Taekwondo na Ilha do Governador | Ebener TKD",
     description:
       "Treine Taekwondo na maior academia da Ilha do Governador. Aulas para todas as idades, com metodologia exclusiva e professores certificados!",
     images: [
