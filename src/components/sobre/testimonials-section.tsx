@@ -12,8 +12,8 @@ import { motion } from "framer-motion";
 
 export default function TestimonialsSection() {
   return (
-    <section className="container mx-auto m-2 rounded-3xl py-16">
-      <div className="text-center mb-16">
+    <section className="container mx-auto rounded-3xl py-16 overflow-hidden">
+      <div className="text-center mb-12">
         <motion.h2
           className="text-4xl md:text-5xl font-bold text-primary-500"
           initial={{ opacity: 0, x: 50 }}
@@ -37,7 +37,7 @@ export default function TestimonialsSection() {
         spaceBetween={40}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
         loop
-        pagination={{ clickable: true, type: "progressbar" }}
+        pagination={{ clickable: true }}
         modules={[Pagination, Autoplay]}
         breakpoints={{
           640: { slidesPerView: 1 },

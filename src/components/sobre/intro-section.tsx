@@ -49,11 +49,12 @@ export default function IntroSection({
           <Image
             src={backgroundImage}
             alt={title}
-            className="object-cover h-full brightness-50 rounded-b-3xl"
-            width={1920}
-            height={1080}
+            className="object-cover brightness-50 rounded-b-3xl"
             loading="lazy"
-            sizes="(max-width: 768px) 100vw, 1920px"
+            sizes="100vw"
+            style={{ width: "100%", height: "100%" }}
+            width={500}
+            height={300}
           />
         </div>
       </div>
