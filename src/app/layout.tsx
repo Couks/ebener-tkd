@@ -5,6 +5,7 @@ import { NavBar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import WhatsappButton from "@/components/whatsapp";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const chakraPetch = Chakra_Petch({
   subsets: ["latin"],
@@ -74,6 +75,7 @@ export default function RootLayout({
           </main>
         </div>
       </body>
+      <GoogleAnalytics gaId="G-L15P6FXYCS" />
     </html>
   );
 }
