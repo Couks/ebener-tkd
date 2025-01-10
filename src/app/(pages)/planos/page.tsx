@@ -21,8 +21,8 @@ export default function Planos() {
             <h3 className="text-2xl font-bold text-primary-500 mb-4">
               Aulas Regulares
             </h3>
-            <p className="text-5xl font-bold text-white mb-2">R$ 130,00</p>
-            <p className="text-lg text-gray-300 mb-6">8 aulas por mês</p>
+            <p className="text-5xl font-bold text-white mb-2">R$ 150,00</p>
+            <p className="text-lg text-gray-300 mb-6">Pagos mensalmente</p>
 
             <div className="space-y-4 mb-8">
               <p className="text-lg font-bold text-white">Horários</p>
@@ -51,7 +51,7 @@ export default function Planos() {
             <h3 className="text-2xl font-bold text-primary-500 mb-4">
               Grupos Especiais
             </h3>
-            <p className="text-5xl font-bold text-white mb-2">R$ 150,00</p>
+            <p className="text-5xl font-bold text-white mb-2">R$ 200,00</p>
             <p className="text-lg text-gray-300 mb-6">
               Por treino (até 4 pessoas)
             </p>

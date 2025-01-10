@@ -3,8 +3,8 @@
 import { Button } from "@/components/ui/button";
 import IntroSection from "@/components/sobre/intro-section";
 import contatoImage from "@/assets/images/20231207_200223.jpg";
-import { MapPin, Phone } from "lucide-react";
-
+import { ArrowRight, MapPin, Phone } from "lucide-react";
+import { motion } from "framer-motion";
 import { useState } from "react";
 
 export default function Contato() {
@@ -59,13 +59,23 @@ export default function Contato() {
 
       <section
         id="fale-conosco"
-        className="container mx-auto px-4 md:px-8 py-16 "
+        className="container mx-auto px-4 md:px-8 py-16"
       >
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
+        <motion.h2
+          className="text-4xl md:text-5xl font-bold text-white mb-12 text-center"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           Fale Conosco
-        </h2>
+        </motion.h2>
         <div className="flex flex-col lg:flex-row items-stretch justify-between gap-12 max-w-7xl mx-auto">
-          <div className="bg-white rounded-3xl shadow-xl p-8 lg:p-10 w-full lg:w-1/2 transition-transform duration-300 hover:scale-[1.02]">
+          <motion.div
+            className="bg-white rounded-3xl shadow-xl p-8 lg:p-10 w-full lg:w-1/2 transition-transform duration-300 hover:scale-[1.02]"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          >
             <div className="mb-8">
               <h3 className="text-2xl font-bold text-secondary-500 mb-4">
                 Comece sua jornada no Taekwondo conosco
@@ -82,13 +92,16 @@ export default function Contato() {
                   <label htmlFor="nome" className="text-gray-700 font-medium">
                     Nome
                   </label>
-                  <input
+                  <motion.input
                     id="nome"
                     type="text"
                     name="nome"
                     placeholder="Ex: João Silva"
                     className="w-full p-4 rounded-3xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
                     onChange={(e) => setNome(e.target.value)}
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5 }}
                   />
                 </div>
 
@@ -99,7 +112,7 @@ export default function Contato() {
                   >
                     Telefone (WhatsApp)
                   </label>
-                  <input
+                  <motion.input
                     id="telefone"
                     type="tel"
                     name="telefone"
@@ -111,6 +124,9 @@ export default function Contato() {
                       setTelefone(e.target.value);
                       formatPhoneNumber(e.target);
                     }}
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5 }}
                   />
                 </div>
 
@@ -121,29 +137,45 @@ export default function Contato() {
                   >
                     Mensagem
                   </label>
-                  <textarea
+                  <motion.textarea
                     id="mensagem"
                     name="mensagem"
                     placeholder="Ex: Olá! Gostaria de saber mais informações sobre as aulas de Taekwondo..."
                     className="w-full p-4 rounded-3xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
                     rows={4}
                     onChange={(e) => setMensagem(e.target.value)}
-                  ></textarea>
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5 }}
+                  ></motion.textarea>
                 </div>
               </div>
 
-              <Button
+              <motion.button
                 type="submit"
-                className={`w-full bg-primary-500 hover:bg-primary-600 text-black text-lg py-6 rounded-3xl font-semibold transition-all duration-300 transform hover:-translate-y-1 ${
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 1 }}
+                className={`mt-6 w-full text-center bg-green-500 hover:bg-green-600 rounded-full text-black text-lg font-bold px-6 py-6 flex items-center justify-center gap-2 group ${
                   isSubmitting ? "loading" : ""
                 }`}
               >
                 {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
-              </Button>
-            </form>
-          </div>
 
-          <div className="w-full lg:w-1/2 space-y-8">
+                <ArrowRight
+                  className="group-hover:translate-x-1 transition-transform"
+                  size={24}
+                />
+              </motion.button>
+            </form>
+          </motion.div>
+
+          <motion.div
+            className="w-full lg:w-1/2 space-y-8"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             <div className="bg-white rounded-3xl shadow-xl p-8 mb-8 hover:shadow-2xl transition-shadow duration-300">
               <h3 className="text-3xl font-bold mb-6 text-secondary-500">
                 Localização da Academia
@@ -182,11 +214,20 @@ export default function Contato() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button className="w-full bg-primary-500 hover:bg-primary-600 text-black text-lg py-6 rounded-3xl font-semibold transition-all duration-300 transform hover:-translate-y-1 mt-4">
-                Ir para a Academia
-              </Button>
+              <motion.button
+                className="mt-6 w-full text-center bg-primary-500 hover:bg-primary-600 rounded-full text-black text-lg font-bold px-6 py-6 flex items-center justify-center gap-2 group"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 1 }}
+              >
+                Ir para a academia
+                <ArrowRight
+                  className="group-hover:translate-x-1 transition-transform"
+                  size={24}
+                />
+              </motion.button>
             </a>
-          </div>
+          </motion.div>
         </div>
       </section>
     </>

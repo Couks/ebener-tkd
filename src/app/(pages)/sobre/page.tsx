@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Image from "next/image";
 import quemSomos from "@/assets/images/image5.jpeg"; // Exemplo de imagem
@@ -17,6 +17,17 @@ import MissionAndValues from "@/components/sobre/mission-and-values";
 
 export default function Sobre() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [anoAtual, setAnoAtual] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const currentDate = new Date();
+      if (currentDate.getMonth() === 0 && currentDate.getDate() === 1) {
+        setAnoAtual(currentDate.getFullYear());
+      }
+    }, 86400000); // 86400000 é o número de milissegundos em um dia
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,8 +90,8 @@ export default function Sobre() {
               do Governador, liderada pelo mestre{" "}
               <b className="text-primary-500">Ebener dos Santos Pinto</b>,
               profissional de{" "}
-              <b className="text-primary-500">educação física</b> com quase 25
-              anos de experiência no esporte.
+              <b className="text-primary-500">educação física</b> com quase{" "}
+              {anoAtual - 1993} anos de experiência no esporte.
               <br />
               <br />
               Formado na{" "}
