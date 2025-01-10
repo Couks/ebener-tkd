@@ -37,7 +37,7 @@ export default function TestimonialsSection() {
         spaceBetween={40}
         autoplay={{ delay: 6000, disableOnInteraction: false }}
         loop
-        pagination={{ clickable: true }}
+        pagination={{ clickable: true, type: "bullets" }}
         modules={[Pagination, Autoplay]}
         breakpoints={{
           640: { slidesPerView: 1 },

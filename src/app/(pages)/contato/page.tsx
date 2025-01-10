@@ -53,7 +53,7 @@ export default function Contato() {
         title="Entre em contato com a Ebener TKD"
         subtitle="Estamos aqui para ajudar o seu treino"
         backgroundImage={contatoImage.src}
-        buttonText="Entre em contato"
+        buttonText="Enviar uma mensagem"
         buttonLink="#fale-conosco"
       />
 
@@ -83,7 +83,7 @@ export default function Contato() {
               <p className="text-gray-600">
                 Preencha o formulário abaixo e nossa equipe entrará em contato
                 para tirar todas as suas dúvidas sobre aulas, horários e
-                valores. Estamos ansiosos para te ajudar a começar sua prática!
+                valores. Sua mudança começa aqui!
               </p>
             </div>
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
@@ -204,6 +204,7 @@ export default function Contato() {
             </div>
 
             <iframe
+              id="mapa"
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14711.315438834945!2d-43.1971213!3d-22.8088045!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x99790035acb387:0xf59879151c85617b!2sEbener%20TKD%20%7C%20Academia%20de%20Taekwondo!5e0!3m2!1spt-BR!2sbr!4v1721344609049!5m2!1spt-BR!2sbr"
               className="w-full h-[400px] rounded-3xl shadow-xl"
               loading="lazy"

@@ -106,8 +106,8 @@ export default function ServicesSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.9 }}
               >
-                Participe de aulas dinâmicas e motivadoras com nossos
-                instrutores qualificados.
+                Participe de aulas dinâmicas e motivadoras com instrutores
+                qualificados.
               </motion.p>
             </div>
           </div>

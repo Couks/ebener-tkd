@@ -12,6 +12,11 @@ import { motion, useAnimation } from "framer-motion";
 import { Button } from "./ui/button";
 
 const navigation = [
+  {
+    name: "Pagina inicial",
+    href: "/",
+    ariaLabel: "Ir para a página incial",
+  },
   { name: "Sobre", href: "/sobre", ariaLabel: "Ir para a página sobre" },
   { name: "Planos", href: "/planos", ariaLabel: "Ir para a página de planos" },
   {
@@ -20,6 +25,11 @@ const navigation = [
     ariaLabel: "Ir para a página de contato",
   },
   { name: "Fotos", href: "/galeria", ariaLabel: "Ir para a galeria de fotos" },
+  {
+    name: "Localização",
+    href: "/contato/#mapa",
+    ariaLabel: "Ir para a galeria de fotos",
+  },
 ];
 
 function classNames(...classes: string[]) {
