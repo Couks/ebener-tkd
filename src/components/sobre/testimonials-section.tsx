@@ -77,9 +77,10 @@ export default function TestimonialsSection() {
               transition={{ duration: 0.9 }}
               className="text-lg font-medium leading-relaxed"
             >
-              O Taewkondo foi uma grande mudança pra minha vida. Física e
-              mentalmente, tenho hoje um corpo mais saudável e encontrei um
-              espaço para desestressar e acalmar dos problemas do dia a dia.
+              A prática do Taekwondo foi uma grande mudança pra minha vida.
+              Fisica e mentalmente, tenho hoje um corpo mais saudável e
+              encontrei um espaço para desestressar e acalmar os problemas do
+              dia a dia.
             </motion.p>
           </div>
         </SwiperSlide>
@@ -115,9 +116,10 @@ export default function TestimonialsSection() {
               transition={{ duration: 0.9 }}
               className="text-lg font-medium leading-relaxed"
             >
-              O taekwondo me ensinou resiliência, disciplina e foco, ajudando a
-              superar desafios. Conquistei títulos importantes, como o de campeã
-              brasileira e a liderança no ranking nacional.
+              Com o taekwondo, aprendi a ter resiliência, disciplina e foco,
+              ajudando a superar desafios. Isso me permitiu alcançar títulos
+              importantes, como o de campeã brasileira e a liderança no ranking
+              nacional.
             </motion.p>
           </div>
         </SwiperSlide>
