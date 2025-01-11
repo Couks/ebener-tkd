@@ -41,7 +41,6 @@ export default function BenefitsSection() {
           slidesPerView={1}
           spaceBetween={30}
           loop
-          pagination={{ clickable: true, type: "progressbar" }}
           autoplay={{ delay: 6000 }}
           effect="coverflow"
           modules={[Pagination, Autoplay, EffectCoverflow]}
