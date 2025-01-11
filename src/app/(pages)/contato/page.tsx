@@ -156,7 +156,7 @@ export default function Contato() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 1 }}
-                className={`mt-6 w-full text-center bg-green-500 hover:bg-green-600 rounded-full text-black text-lg font-bold px-6 py-6 flex items-center justify-center gap-2 group ${
+                className={`mt-6 w-full text-center bg-green-500 hover:bg-green-600 rounded-full text-black text-xl md:text-2xl font-bold px-6 py-6 flex items-center justify-center gap-2 group ${
                   isSubmitting ? "loading" : ""
                 }`}
               >

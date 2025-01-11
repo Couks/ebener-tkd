@@ -24,12 +24,12 @@ const navigation = [
     href: "/contato",
     ariaLabel: "Ir para a página de contato",
   },
-  { name: "Fotos", href: "/galeria", ariaLabel: "Ir para a galeria de fotos" },
   {
     name: "Localização",
     href: "/contato/#mapa",
     ariaLabel: "Ir para a galeria de fotos",
   },
+  { name: "Fotos", href: "/galeria", ariaLabel: "Ir para a galeria de fotos" },
 ];
 
 function classNames(...classes: string[]) {
@@ -150,7 +150,15 @@ export function NavBar() {
               <X className="h-6 w-6" />
             </button>
           </div>
-          <div className="flex flex-col items-center gap-8 justify-center h-full">
+          <div className="flex flex-col items-center gap-6 justify-center">
+            <Image
+              alt="Logo"
+              src={logo}
+              loading="lazy"
+              width={100}
+              height={100}
+              className="transition-all duration-300 mb-12"
+            />
             {navigation.map((item) => (
               <a
                 key={item.name}
