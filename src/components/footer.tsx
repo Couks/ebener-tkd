@@ -1,6 +1,8 @@
 "use client";
 import { Instagram } from "lucide-react";
 import { TbBrandTiktok, TbBrandWhatsapp } from "react-icons/tb";
+import { FaDev } from "react-icons/fa";
+
 import { useEffect, useState } from "react";
 
 export function Footer() {
@@ -40,6 +42,18 @@ export function Footer() {
       </div>
       <div className="text-center text-gray-400 mt-4">
         <p>&copy; {anoAtual} Ebener TKD. Todos os direitos reservados.</p>
+        <p className="">
+          Desenvolvido por
+          <a
+            href="https://github.com/Couks"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-primary-500 transition-colors ml-1"
+          >
+            Matheus Castro
+          </a>
+          .
+        </p>
       </div>
     </footer>
   );
