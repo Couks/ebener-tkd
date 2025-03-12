@@ -124,7 +124,7 @@ export default function AboutSection() {
               className="bg-secondary-700/50 backdrop-blur-sm p-4 rounded-xl border border-secondary-600 flex items-center gap-4 mt-6"
             >
               <Users className="text-primary-500 flex-shrink-0" size={24} />
-              <p className="text-sm text-gray-300">
+              <p className="text-sm md:text-xl text-gray-300">
                 Aulas para todas as idades e níveis de experiência
               </p>
             </motion.div>
@@ -163,7 +163,7 @@ export default function AboutSection() {
 
           {/* Right column - Secondary image and CTA */}
           <motion.div
-            className="lg:col-span-4 flex flex-col justify-between mt-8 xs:mt-0"
+            className="lg:col-span-4 flex flex-col gap-4 mt-4 xs:mt-0"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -171,7 +171,7 @@ export default function AboutSection() {
             variants={slideIn}
           >
             {/* Secondary image */}
-            <div className="relative mb-6">
+            <div className="relative">
               <div className="relative w-full h-auto aspect-video overflow-hidden rounded-2xl shadow-lg">
                 <Image
                   src={historia2 || "/placeholder.svg?height=400&width=600"}
@@ -202,7 +202,7 @@ export default function AboutSection() {
             </div>
 
             {/* Text and CTA */}
-            <div className="space-y-6">
+            <div className="space-y-8">
               <p className="text-base sm:text-lg md:text-2xl text-gray-200 leading-relaxed">
                 Aqui acolhemos alunos de todos os níveis, promovendo um ambiente
                 de respeito, aprendizado e{" "}
@@ -233,11 +233,7 @@ export default function AboutSection() {
                 </motion.button>
               </Link>
             </div>
-          </motion.div>
-        </div>
-
-        {/* Timeline indicator */}
-        <motion.div
+            <motion.div
           className="mt-12 sm:mt-16 pt-8 border-t border-secondary-600 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -251,6 +247,8 @@ export default function AboutSection() {
             </p>
           </div>
         </motion.div>
+          </motion.div>
+        </div>        
       </div>
     </section>
   );
