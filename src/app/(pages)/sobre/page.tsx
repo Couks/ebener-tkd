@@ -28,9 +28,6 @@ export default function Sobre() {
     offset: ["start end", "end start"],
   })
 
-  const timelineOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1])
-  const timelineScale = useTransform(scrollYProgress, [0, 0.1], [0.8, 1])
-
   useEffect(() => {
     const interval = setInterval(() => {
       const currentDate = new Date()
@@ -51,6 +48,8 @@ export default function Sobre() {
     },
   }
 
+
+
   return (
     <div ref={pageRef} className="bg-secondary-950">
       {/* Hero Section */}
@@ -61,22 +60,6 @@ export default function Sobre() {
         buttonText="Descubra Nossa História"
         buttonLink="#historia"
       />
-
-     
-
-      {/* Timeline indicator */}
-      <motion.div
-        ref={timelineRef}
-        className="fixed left-4 md:left-8 top-1/2 transform -translate-y-1/2 z-10 hidden md:block"
-        style={{ opacity: timelineOpacity, scale: timelineScale }}
-      >
-        <div className="h-64 w-1 bg-gray-700 rounded-full relative">
-          <motion.div
-            className="absolute w-3 h-3 bg-primary-500 rounded-full -left-1"
-            style={{ top: scrollYProgress.get() * 100 + "%" }}
-          />
-        </div>
-      </motion.div>
 
       {/* History Section */}
       <section id="historia" className="container mx-auto px-4 md:px-8 py-16 md:py-24 space-y-16 md:space-y-32">
