@@ -35,8 +35,6 @@ export default function AboutSection() {
 
   return (
     <section className="mx-auto max-w-[95%] sm:max-w-[90%] md:container bg-secondary-800 rounded-3xl overflow-hidden py-12 sm:py-16 md:py-20 mt-8 sm:mt-12 relative">
-     
-
       {/* Content container */}
       <div className="relative px-5 sm:px-8 md:px-12 z-10">
         {/* Section header */}
@@ -119,6 +117,17 @@ export default function AboutSection() {
                 <p className="text-sm text-gray-300">Dan Faixa Preta</p>
               </motion.div>
             </div>
+            {/* Feature highlight */}
+
+            <motion.div
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              className="bg-secondary-700/50 backdrop-blur-sm p-4 rounded-xl border border-secondary-600 flex items-center gap-4 mt-6"
+            >
+              <Users className="text-primary-500 flex-shrink-0" size={24} />
+              <p className="text-sm text-gray-300">
+                Aulas para todas as idades e níveis de experiência
+              </p>
+            </motion.div>
           </motion.div>
 
           {/* Center column - Main image */}
@@ -204,14 +213,6 @@ export default function AboutSection() {
                 <span className="text-primary-500 font-semibold">história</span>
                 !
               </p>
-
-              {/* Feature highlight */}
-              <div className="bg-secondary-700/50 backdrop-blur-sm p-4 rounded-xl border border-secondary-600 flex items-center gap-4">
-                <Users className="text-primary-500 flex-shrink-0" size={24} />
-                <p className="text-sm text-gray-300">
-                  Aulas para todas as idades e níveis de experiência
-                </p>
-              </div>
 
               {/* CTA Button */}
               <Link href="/sobre" className="block">
