@@ -138,7 +138,7 @@ export default function BenefitsSection() {
     <section className="mx-auto max-w-[95%] sm:max-w-[90%] md:container rounded-3xl overflow-hidden py-12 sm:py-16 md:py-20 mt-8 sm:mt-12 relative">
       {/* Background elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950 -z-10"></div>
-      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5 -z-10"></div>
+      <div className="absolute inset-0 opacity-5 -z-10"></div>
 
       {/* Decorative elements */}
       <div className="absolute top-20 left-10 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl -z-10"></div>

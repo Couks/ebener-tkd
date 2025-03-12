@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { ArrowRight, ChevronDown } from "lucide-react"
-import { useEffect, useState, useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
-import Link from "next/link"
+import Image from "next/image";
+import { ArrowRight, ChevronDown } from "lucide-react";
+import { useEffect, useState, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import Link from "next/link";
 
 interface IntroSectionProps {
-  title: string
-  subtitle: string
-  backgroundImage: string
-  height?: string
-  buttonText?: string
-  buttonLink?: string
+  title: string;
+  subtitle: string;
+  backgroundImage: string;
+  height?: string;
+  buttonText?: string;
+  buttonLink?: string;
 }
 
 export default function IntroSection({
@@ -23,22 +23,22 @@ export default function IntroSection({
   buttonText = "Explore more",
   buttonLink = "",
 }: IntroSectionProps) {
-  const [isMounted, setIsMounted] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
-  const { scrollY } = useScroll()
+  const [isMounted, setIsMounted] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollY } = useScroll();
 
   // More subtle parallax effect
-  const backgroundY = useTransform(scrollY, [0, 500], [0, 150])
-  const contentY = useTransform(scrollY, [0, 500], [0, 100])
-  const opacity = useTransform(scrollY, [0, 300], [1, 0.3])
+  const backgroundY = useTransform(scrollY, [0, 500], [0, 150]);
+  const contentY = useTransform(scrollY, [0, 500], [0, 100]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0.3]);
 
   // Handle mounting for SSR compatibility
   useEffect(() => {
-    setIsMounted(true)
-  }, [])
+    setIsMounted(true);
+  }, []);
 
   // Split title into words for staggered animation
-  const titleWords = title.split(" ")
+  const titleWords = title.split(" ");
 
   // Scroll indicator animation
   const scrollIndicatorVariants = {
@@ -47,11 +47,15 @@ export default function IntroSection({
       y: [0, 10, 0],
       opacity: 1,
       transition: {
-        y: { repeat: Number.POSITIVE_INFINITY, duration: 1.5, ease: "easeInOut" },
+        y: {
+          repeat: Number.POSITIVE_INFINITY,
+          duration: 1.5,
+          ease: "easeInOut",
+        },
         opacity: { duration: 0.3 },
       },
     },
-  }
+  };
 
   return (
     <section
@@ -59,14 +63,15 @@ export default function IntroSection({
       className={`relative flex items-center justify-center text-white ${height} overflow-hidden`}
     >
       {/* Background image with overlay */}
-      <motion.div className="absolute inset-2 rounded-3xl overflow-hidden" style={{ y: isMounted ? backgroundY : 0 }}>
+      <motion.div
+        className="absolute inset-2 rounded-3xl overflow-hidden"
+        style={{ y: isMounted ? backgroundY : 0 }}
+      >
         <div className="w-full h-full">
           <Image
             src={backgroundImage || "/placeholder.svg"}
             alt="Background"
             className="object-cover rounded-b-3xl"
-            priority
-            sizes="100vw"
             fill
             style={{
               objectFit: "cover",
@@ -128,7 +133,10 @@ export default function IntroSection({
                 whileTap={{ scale: 0.98 }}
               >
                 {buttonText}
-                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+                <ArrowRight
+                  className="group-hover:translate-x-1 transition-transform"
+                  size={20}
+                />
               </motion.button>
             </Link>
           </motion.div>
@@ -146,6 +154,5 @@ export default function IntroSection({
         <ChevronDown className="w-6 h-6 text-primary-500" />
       </motion.div>
     </section>
-  )
+  );
 }
-

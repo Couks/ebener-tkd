@@ -33,21 +33,21 @@ function classNames(...classes: string[]) {
 
 export function NavBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [hasScrolled, setHasScrolled] = useState(false);
-  const controls = useAnimation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setHasScrolled(window.scrollY > 0);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    controls.start({ opacity: 1, y: hasScrolled ? 0 : 0 });
-  }, [hasScrolled, controls]);
+   const [hasScrolled, setHasScrolled] = useState(false);
+   const controls = useAnimation();
+ 
+   useEffect(() => {
+     const handleScroll = () => {
+       setHasScrolled(window.scrollY > 0);
+     };
+ 
+     window.addEventListener("scroll", handleScroll);
+     return () => window.removeEventListener("scroll", handleScroll);
+   }, []);
+ 
+   useEffect(() => {
+     controls.start({ opacity: 1, y: hasScrolled ? 0 : 0 });
+   }, [hasScrolled, controls]);
 
   return (
     <motion.nav
@@ -67,9 +67,9 @@ export function NavBar() {
                 alt="Logo"
                 src={logo}
                 loading="lazy"
-                className={`size-${
-                  hasScrolled ? "8" : "24"
-                } transition-all duration-300`}
+                className={`${hasScrolled ? "w-8 h-8" : "w-24 h-24"} transition-all duration-300`}
+
+
               />
               <span
                 className={`text-white hover:text-primary-500 transition-colors font-bold text-${
