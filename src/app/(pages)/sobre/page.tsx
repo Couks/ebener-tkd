@@ -1,259 +1,393 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
+import { ChevronDown, Award, Calendar, Trophy } from "lucide-react"
 
-import Image from "next/image";
-import quemSomos from "@/assets/images/image5.jpeg"; // Exemplo de imagem
-import historia1 from "@/assets/images/aulas-em-grupo.jpeg"; // Imagem da história
-import historia2 from "@/assets/images/WhatsApp Image 2024-07-25 at 09.11.49.jpeg"; // Imagem adicional da história
-import historia3 from "@/assets/images/WhatsApp Image 2024-07-24 at 12.19.27 (1).jpeg"; // Imagem da história
-import historia4 from "@/assets/images/image15.jpeg"; // Imagem adicional da história
+// Import images
+import quemSomos from "@/assets/images/image5.jpeg"
+import historia1 from "@/assets/images/aulas-em-grupo.jpeg"
+import historia2 from "@/assets/images/WhatsApp Image 2024-07-25 at 09.11.49.jpeg"
+import historia3 from "@/assets/images/WhatsApp Image 2024-07-24 at 12.19.27 (1).jpeg"
+import historia4 from "@/assets/images/image15.jpeg"
 
-import "swiper/swiper-bundle.css";
-import TestimonialsSection from "@/components/sobre/testimonials-section";
-import IntroSection from "@/components/sobre/intro-section";
-import MissionAndValues from "@/components/sobre/mission-and-values";
+// Import components
+import TestimonialsSection from "@/components/sobre/testimonials-section"
+import IntroSection from "@/components/sobre/intro-section"
+import MissionAndValues from "@/components/sobre/mission-and-values"
 
 export default function Sobre() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [anoAtual, setAnoAtual] = useState(new Date().getFullYear());
+  const [anoAtual, setAnoAtual] = useState(new Date().getFullYear())
+  const pageRef = useRef<HTMLDivElement>(null)
+  const timelineRef = useRef<HTMLDivElement>(null)
+
+  // Scroll animations
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start end", "end start"],
+  })
+
+  const timelineOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1])
+  const timelineScale = useTransform(scrollYProgress, [0, 0.1], [0.8, 1])
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const currentDate = new Date();
+      const currentDate = new Date()
       if (currentDate.getMonth() === 0 && currentDate.getDate() === 1) {
-        setAnoAtual(currentDate.getFullYear());
+        setAnoAtual(currentDate.getFullYear())
       }
-    }, 86400000); // 86400000 é o número de milissegundos em um dia
-    return () => clearInterval(interval);
-  }, []);
+    }, 86400000)
+    return () => clearInterval(interval)
+  }, [])
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (sectionRef.current) {
-        const progress =
-          sectionRef.current.getBoundingClientRect().top / window.innerHeight;
-        const opacity = Math.max(0, Math.min(1, 1 - progress));
-        const translateY = Math.max(-50, Math.min(0, -progress * 100));
-
-        // Aplica as animações de acordo com o progresso do scroll
-        sectionRef.current.style.opacity = `${opacity}`;
-        sectionRef.current.style.transform = `translateY(${translateY}px)`;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // Animation variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 },
+    },
+  }
 
   return (
-    <div ref={sectionRef}>
+    <div ref={pageRef} className="bg-secondary-950">
+      {/* Hero Section */}
       <IntroSection
         title="Conheça a maior academia de Taekwondo na Ilha do Governador"
         subtitle="Aqui, convivem atletas em todos os níveis, desde iniciantes até profissionais, todos unidos por um ambiente que respeita as diferenças e promove a superação pessoal."
         backgroundImage={quemSomos.src}
-        buttonText="Descubra Mais"
+        buttonText="Descubra Nossa História"
         buttonLink="#historia"
       />
 
-      {/* Seção de História */}
-      <section id="historia" className="container mx-auto px-8 py-12 space-y-8">
-        {/* Imagem à esquerda, texto à direita */}
-        <div className="flex flex-col md:flex-row items-center md:space-x-8 mb-8">
-          <div className="w-full md:w-3/5">
-            <Image
-              src={historia1}
-              alt="Imagem da história de Ebener"
-              loading="lazy"
-              width={800}
-              height={500}
-              className=" object-cover rounded-3xl"
-            />
-          </div>
-          <div className="w-full md:w-1/2 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
-            <motion.h2
-              className="text-3xl md:text-4xl font-bold text-primary-500 mb-4 mt-4 md:mt-0"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.9 }}
-            >
-              Quem somos?
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.9 }}
-            >
-              A <b className="text-primary-500">Ebener TKD</b> é a maior
-              academia de <b className="text-primary-500">Taekwondo</b> na Ilha
-              do Governador, liderada pelo mestre{" "}
-              <b className="text-primary-500">Ebener dos Santos Pinto</b>,
-              profissional de{" "}
-              <b className="text-primary-500">educação física</b> com quase{" "}
-              {anoAtual - 1993} anos de experiência no esporte.
-              <br />
-              <br />
-              Formado na{" "}
-              <b className="text-primary-500">
-                Universidade Federal do Rio de Janeiro (UFRJ)
-              </b>{" "}
-              e faixa preta <b className="text-primary-500">3° Dan</b>, Ebener
-              se destaca por sua trajetória no{" "}
-              <b className="text-primary-500">Taekwondo</b>, desde a{" "}
-              <b className="text-primary-500">preparação física</b> até a{" "}
-              <b className="text-primary-500">gestão de atletas</b> de alto
-              rendimento.
-            </motion.p>
-          </div>
+     
+
+      {/* Timeline indicator */}
+      <motion.div
+        ref={timelineRef}
+        className="fixed left-4 md:left-8 top-1/2 transform -translate-y-1/2 z-10 hidden md:block"
+        style={{ opacity: timelineOpacity, scale: timelineScale }}
+      >
+        <div className="h-64 w-1 bg-gray-700 rounded-full relative">
+          <motion.div
+            className="absolute w-3 h-3 bg-primary-500 rounded-full -left-1"
+            style={{ top: scrollYProgress.get() * 100 + "%" }}
+          />
+        </div>
+      </motion.div>
+
+      {/* History Section */}
+      <section id="historia" className="container mx-auto px-4 md:px-8 py-16 md:py-24 space-y-16 md:space-y-32">
+        {/* Who We Are */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+          <motion.div
+            className="md:col-span-7 relative"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              <Image
+                src={historia1 || "/placeholder.svg"}
+                alt="Imagem da história de Ebener"
+                width={800}
+                height={500}
+                className="object-cover w-full aspect-[4/3]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+
+              {/* Stats overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 grid grid-cols-2 gap-4">
+                <div className="bg-black/50 backdrop-blur-sm p-3 rounded-xl">
+                  <div className="flex items-center gap-2 text-primary-500 mb-1">
+                    <Calendar size={16} />
+                    <span className="text-sm font-medium">Desde</span>
+                  </div>
+                  <p className="text-xl font-bold text-white">1993</p>
+                </div>
+                <div className="bg-black/50 backdrop-blur-sm p-3 rounded-xl">
+                  <div className="flex items-center gap-2 text-primary-500 mb-1">
+                    <Award size={16} />
+                    <span className="text-sm font-medium">Faixa</span>
+                  </div>
+                  <p className="text-xl font-bold text-white">3° Dan</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Decorative elements */}
+            <div className="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-primary-500 rounded-br-3xl -z-10"></div>
+          </motion.div>
+
+          <motion.div
+            className="md:col-span-5"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <div className="inline-flex items-center gap-2 bg-primary-500/20 px-3 py-1.5 rounded-full mb-4">
+              <span className="w-2 h-2 bg-primary-500 rounded-full"></span>
+              <span className="text-sm font-medium text-primary-500">Quem somos</span>
+            </div>
+
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              A maior academia de <span className="text-primary-500">Taekwondo</span> da Ilha
+            </h2>
+
+            <div className="space-y-4 text-gray-300">
+              <p>
+                A <span className="text-primary-500 font-semibold">Ebener TKD</span> é liderada pelo mestre{" "}
+                <span className="text-primary-500 font-semibold">Ebener dos Santos Pinto</span>, profissional de{" "}
+                <span className="text-primary-500 font-semibold">educação física</span> com quase {anoAtual - 1993} anos
+                de experiência no esporte.
+              </p>
+              <p>
+                Formado na{" "}
+                <span className="text-primary-500 font-semibold">Universidade Federal do Rio de Janeiro (UFRJ)</span> e
+                faixa preta <span className="text-primary-500 font-semibold">3° Dan</span>, Ebener se destaca por sua
+                trajetória no <span className="text-primary-500 font-semibold">Taekwondo</span>, desde a{" "}
+                <span className="text-primary-500 font-semibold">preparação física</span> até a{" "}
+                <span className="text-primary-500 font-semibold">gestão de atletas</span> de alto rendimento.
+              </p>
+            </div>
+          </motion.div>
         </div>
 
-        {/* Texto à esquerda, imagem à direita */}
-        <div className="flex flex-col md:flex-row-reverse items-center md:space-x-8 md:space-x-reverse mb-8">
-          <div className="w-full md:w-3/5">
-            <Image
-              src={historia2}
-              alt="Imagem da carreira de Ebener"
-              loading="lazy"
-              width={800}
-              height={500}
-              className="object-cover aspect-video rounded-3xl"
-            />
-          </div>
-          <div className="w-full md:w-3/5 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
-            <motion.h2
-              className="text-3xl md:text-4xl font-bold text-primary-500 mb-4 mt-4 md:mt-0"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.9 }}
-            >
-              Nossa História
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.9 }}
-            >
-              A <b className="text-primary-500">história</b> da Ebener TKD é
-              marcada por uma longa <b className="text-primary-500">jornada</b>{" "}
-              de <b className="text-primary-500">dedicação</b> ao esporte.
-              Ebener começou sua <b className="text-primary-500">prática</b> em
-              1993, treinando com o professor Fernando no{" "}
-              <b className="text-primary-500">Cassino dos Oficiais do Galeão</b>
-              .
-              <br />
-              <br />
-              Desde então, o <b className="text-primary-500">Taekwondo</b>{" "}
-              tornou-se parte integrante de sua vida, abrindo portas para
-              diversas <b className="text-primary-500">experiências</b>, tanto
-              no Brasil quanto no exterior.
-            </motion.p>
-          </div>
+        {/* Our History */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+          <motion.div
+            className="md:col-span-5 md:order-2"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <div className="inline-flex items-center gap-2 bg-primary-500/20 px-3 py-1.5 rounded-full mb-4">
+              <span className="w-2 h-2 bg-primary-500 rounded-full"></span>
+              <span className="text-sm font-medium text-primary-500">Nossa história</span>
+            </div>
+
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Uma <span className="text-primary-500">jornada</span> de dedicação ao esporte
+            </h2>
+
+            <div className="space-y-4 text-gray-300">
+              <p>
+                A <span className="text-primary-500 font-semibold">história</span> da Ebener TKD é marcada por uma longa{" "}
+                <span className="text-primary-500 font-semibold">jornada</span> de{" "}
+                <span className="text-primary-500 font-semibold">dedicação</span> ao esporte. Ebener começou sua{" "}
+                <span className="text-primary-500 font-semibold">prática</span> em 1993, treinando com o professor
+                Fernando no <span className="text-primary-500 font-semibold">Cassino dos Oficiais do Galeão</span>.
+              </p>
+              <p>
+                Desde então, o <span className="text-primary-500 font-semibold">Taekwondo</span> tornou-se parte
+                integrante de sua vida, abrindo portas para diversas{" "}
+                <span className="text-primary-500 font-semibold">experiências</span>, tanto no Brasil quanto no
+                exterior.
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="md:col-span-7 md:order-1 relative"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              <Image
+                src={historia2 || "/placeholder.svg"}
+                alt="Imagem da carreira de Ebener"
+                width={800}
+                height={500}
+                className="object-cover w-full aspect-video"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+
+              {/* Timeline overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <div className="bg-black/50 backdrop-blur-sm p-4 rounded-xl inline-block">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-primary-500/20 flex items-center justify-center">
+                      <Calendar className="text-primary-500" size={24} />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-300">Início da jornada</p>
+                      <p className="text-xl font-bold text-white">1993</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Decorative elements */}
+            <div className="absolute -bottom-4 -left-4 w-24 h-24 border-b-2 border-l-2 border-primary-500 rounded-bl-3xl -z-10"></div>
+          </motion.div>
         </div>
 
-        {/* Imagem à esquerda, texto à direita */}
-        <div className="flex flex-col md:flex-row items-center md:space-x-8 mb-8">
-          <div className="w-full md:w-3/5">
-            <Image
-              src={historia3}
-              alt="Imagem da história de Ebener"
-              loading="lazy"
-              width={800}
-              className="object-cover aspect-video rounded-3xl"
-            />
-          </div>
-          <div className="w-full md:w-2/5 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
-            <motion.h2
-              className="text-3xl md:text-4xl font-bold text-primary-500 mb-4 mt-4 md:mt-0"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.9 }}
-            >
-              Gestão de atletas
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.9 }}
-            >
-              Como gestor e preparador físico, Ebener trabalhou com atletas de
-              renome internacional, tendo sido técnico da{" "}
-              <b className="text-primary-500">
-                Seleção Brasileira Militar de Taekwondo
-              </b>{" "}
-              e participado de três campeonatos mundiais: no{" "}
-              <b className="text-primary-500">Rio de Janeiro</b>, no{" "}
-              <b className="text-primary-500">Irã</b> e na{" "}
-              <b className="text-primary-500">China</b>. <br />
-              <br />
-              Além disso, teve a oportunidade de conviver e aprender com
-              técnicos e atletas olímpicos, o que moldou sua abordagem no ensino
-              do Taekwondo.
-            </motion.p>
-          </div>
+        {/* Athlete Management */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+          <motion.div
+            className="md:col-span-7 relative"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              <Image
+                src={historia3 || "/placeholder.svg"}
+                alt="Imagem da história de Ebener"
+                width={800}
+                height={500}
+                className="object-cover w-full aspect-video"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+
+              {/* Achievements overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <div className="grid grid-cols-3 gap-2">
+                  <div className="bg-black/50 backdrop-blur-sm p-3 rounded-xl text-center">
+                    <Trophy className="text-primary-500 mx-auto mb-1" size={20} />
+                    <p className="text-sm font-bold text-white">Brasil</p>
+                  </div>
+                  <div className="bg-black/50 backdrop-blur-sm p-3 rounded-xl text-center">
+                    <Trophy className="text-primary-500 mx-auto mb-1" size={20} />
+                    <p className="text-sm font-bold text-white">Irã</p>
+                  </div>
+                  <div className="bg-black/50 backdrop-blur-sm p-3 rounded-xl text-center">
+                    <Trophy className="text-primary-500 mx-auto mb-1" size={20} />
+                    <p className="text-sm font-bold text-white">China</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Decorative elements */}
+            <div className="absolute -top-4 -right-4 w-24 h-24 border-t-2 border-r-2 border-primary-500 rounded-tr-3xl -z-10"></div>
+          </motion.div>
+
+          <motion.div
+            className="md:col-span-5"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <div className="inline-flex items-center gap-2 bg-primary-500/20 px-3 py-1.5 rounded-full mb-4">
+              <span className="w-2 h-2 bg-primary-500 rounded-full"></span>
+              <span className="text-sm font-medium text-primary-500">Gestão de atletas</span>
+            </div>
+
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Experiência <span className="text-primary-500">internacional</span>
+            </h2>
+
+            <div className="space-y-4 text-gray-300">
+              <p>
+                Como gestor e preparador físico, Ebener trabalhou com atletas de renome internacional, tendo sido
+                técnico da{" "}
+                <span className="text-primary-500 font-semibold">Seleção Brasileira Militar de Taekwondo</span> e
+                participado de três campeonatos mundiais: no{" "}
+                <span className="text-primary-500 font-semibold">Rio de Janeiro</span>, no{" "}
+                <span className="text-primary-500 font-semibold">Irã</span> e na{" "}
+                <span className="text-primary-500 font-semibold">China</span>.
+              </p>
+              <p>
+                Além disso, teve a oportunidade de conviver e aprender com técnicos e atletas olímpicos, o que moldou
+                sua abordagem no ensino do Taekwondo.
+              </p>
+            </div>
+          </motion.div>
         </div>
 
-        {/* Texto à esquerda, imagem à direita */}
-        <div className="flex flex-col md:flex-row-reverse items-center md:space-x-8 md:space-x-reverse mb-8">
-          <div className="w-full md:w-3/5">
-            <Image
-              src={historia4}
-              alt="Imagem da carreira de Ebener"
-              loading="lazy"
-              width={800}
-              height={500}
-              className="object-cover aspect-video rounded-3xl"
-            />
-          </div>
-          <div className="w-full md:w-3/5 text-lg md:text-xl font-medium text-gray-200 leading-relaxed">
-            <motion.h2
-              className="text-3xl md:text-4xl font-bold text-primary-500 mb-4 mt-4 md:mt-0"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.9 }}
-            >
-              Perseverança
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.9 }}
-            >
-              Um momento de{" "}
-              <b className="text-primary-500">grande superação pessoal</b> foi
-              quando sua filha enfrentou meses de internação. O{" "}
-              <b className="text-primary-500">Taekwondo</b> foi sua âncora
-              emocional e psicológica, permitindo que mantivesse o equilíbrio
-              durante essa fase difícil.
-              <br />
-              <br />A experiência o fez compreender ainda mais a{" "}
-              <b className="text-primary-500">importância</b> da arte marcial,
-              tanto para a <b className="text-primary-500">formação técnica</b>{" "}
-              quanto para o{" "}
-              <b className="text-primary-500">crescimento pessoal</b>.
-            </motion.p>
-          </div>
+        {/* Perseverance */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+          <motion.div
+            className="md:col-span-5 md:order-2"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <div className="inline-flex items-center gap-2 bg-primary-500/20 px-3 py-1.5 rounded-full mb-4">
+              <span className="w-2 h-2 bg-primary-500 rounded-full"></span>
+              <span className="text-sm font-medium text-primary-500">Perseverança</span>
+            </div>
+
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Superação <span className="text-primary-500">pessoal</span>
+            </h2>
+
+            <div className="space-y-4 text-gray-300">
+              <p>
+                Um momento de <span className="text-primary-500 font-semibold">grande superação pessoal</span> foi
+                quando sua filha enfrentou meses de internação. O{" "}
+                <span className="text-primary-500 font-semibold">Taekwondo</span> foi sua âncora emocional e
+                psicológica, permitindo que mantivesse o equilíbrio durante essa fase difícil.
+              </p>
+              <p>
+                A experiência o fez compreender ainda mais a{" "}
+                <span className="text-primary-500 font-semibold">importância</span> da arte marcial, tanto para a{" "}
+                <span className="text-primary-500 font-semibold">formação técnica</span> quanto para o{" "}
+                <span className="text-primary-500 font-semibold">crescimento pessoal</span>.
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="md:col-span-7 md:order-1 relative"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              <Image
+                src={historia4 || "/placeholder.svg"}
+                alt="Imagem da carreira de Ebener"
+                width={800}
+                height={500}
+                className="object-cover w-full aspect-video"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            </div>
+
+            {/* Decorative elements */}
+            <div className="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-primary-500 rounded-tl-3xl -z-10"></div>
+          </motion.div>
         </div>
 
-        {/* Texto final */}
-        <motion.p
-          initial={{ opacity: 0, y: -100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
-          className="text-lg md:text-2xl font-semibold text-gray-200 leading-relaxed text-center"
+        {/* Summary */}
+        <motion.div
+          className="max-w-3xl mx-auto text-center"
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
         >
-          Hoje, a Ebener TKD é mais do que uma academia de alto rendimento.
-          Aqui, convivem atletas em todos os níveis, desde iniciantes até
-          profissionais, todos unidos por um ambiente que respeita as diferenças
-          e promove a superação pessoal.
-        </motion.p>
+          <div className="bg-secondary-800/50 backdrop-blur-sm rounded-3xl p-8 shadow-lg border-t-4 border-primary-500">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">Mais do que uma academia</h2>
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+              Hoje, a Ebener TKD é mais do que uma academia de alto rendimento. Aqui, convivem atletas em todos os
+              níveis, desde iniciantes até profissionais, todos unidos por um ambiente que respeita as diferenças e
+              promove a superação pessoal.
+            </p>
+          </div>
+        </motion.div>
       </section>
 
-      {/* Seção Missão e Valores */}
+      {/* Mission and Values Section */}
       <MissionAndValues />
 
-      {/* Seção de depoimentos */}
+      {/* Testimonials Section */}
       <TestimonialsSection />
     </div>
-  );
+  )
 }
+

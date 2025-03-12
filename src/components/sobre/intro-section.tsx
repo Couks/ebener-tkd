@@ -1,17 +1,18 @@
-"use client";
-import Image from "next/image";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+"use client"
+
+import Image from "next/image"
+import { ArrowRight, ChevronDown } from "lucide-react"
+import { useEffect, useState, useRef } from "react"
+import { motion, useScroll, useTransform } from "framer-motion"
+import Link from "next/link"
 
 interface IntroSectionProps {
-  title: string;
-  subtitle: string;
-  backgroundImage: string;
-  height?: string;
-  buttonText?: string;
-  buttonLink?: string;
+  title: string
+  subtitle: string
+  backgroundImage: string
+  height?: string
+  buttonText?: string
+  buttonLink?: string
 }
 
 export default function IntroSection({
@@ -22,81 +23,129 @@ export default function IntroSection({
   buttonText = "Explore more",
   buttonLink = "",
 }: IntroSectionProps) {
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const [isMounted, setIsMounted] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null)
+  const { scrollY } = useScroll()
 
+  // More subtle parallax effect
+  const backgroundY = useTransform(scrollY, [0, 500], [0, 150])
+  const contentY = useTransform(scrollY, [0, 500], [0, 100])
+  const opacity = useTransform(scrollY, [0, 300], [1, 0.3])
+
+  // Handle mounting for SSR compatibility
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY);
-    };
+    setIsMounted(true)
+  }, [])
 
-    window.addEventListener("scroll", handleScroll);
+  // Split title into words for staggered animation
+  const titleWords = title.split(" ")
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  // Scroll indicator animation
+  const scrollIndicatorVariants = {
+    initial: { y: -10, opacity: 0 },
+    animate: {
+      y: [0, 10, 0],
+      opacity: 1,
+      transition: {
+        y: { repeat: Number.POSITIVE_INFINITY, duration: 1.5, ease: "easeInOut" },
+        opacity: { duration: 0.3 },
+      },
+    },
+  }
 
   return (
     <section
-      className={`relative flex items-start justify-start text-white ${height} overflow-hidden`}
+      ref={sectionRef}
+      className={`relative flex items-center justify-center text-white ${height} overflow-hidden`}
     >
-      {/* Imagem de fundo com overlay escuro */}
-      <div
-        className="absolute inset-0 overflow-hidden pb-2 px-2"
-        style={{ transform: `translateY(${scrollPosition * 0.5}px)` }}
-      >
+      {/* Background image with overlay */}
+      <motion.div className="absolute inset-2 rounded-3xl overflow-hidden" style={{ y: isMounted ? backgroundY : 0 }}>
         <div className="w-full h-full">
           <Image
-            src={backgroundImage}
-            alt={title}
-            className="object-cover brightness-50 rounded-b-3xl"
-            loading="lazy"
+            src={backgroundImage || "/placeholder.svg"}
+            alt="Background"
+            className="object-cover rounded-b-3xl"
+            priority
             sizes="100vw"
-            style={{ width: "100%", height: "100%" }}
-            width={500}
-            height={300}
+            fill
+            style={{
+              objectFit: "cover",
+            }}
           />
+          {/* Gradient overlay for better text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70 rounded-b-3xl"></div>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Conteúdo principal */}
-      <div
-        className="relative z-10 container mx-auto max-w-7xl px-8 pt-36"
-        style={{ transform: `translateY(${scrollPosition * 0.8}px)` }}
+      {/* Main content */}
+      <motion.div
+        className="relative z-10 container mx-auto px-6 sm:px-8 flex flex-col items-start justify-center"
+        style={{
+          y: isMounted ? contentY : 0,
+          opacity: isMounted ? opacity : 1,
+        }}
       >
         <div className="max-w-4xl">
-          <motion.h1
-            className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
-            initial={{ opacity: 0, x: -100, scale: 1.2 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0 }}
-          >
-            {title}
-          </motion.h1>
+          {/* Title with word-by-word animation */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            {titleWords.map((word, index) => (
+              <motion.span
+                key={index}
+                className="inline-block mr-[0.25em]"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.7,
+                  delay: 0.1 * index,
+                  ease: "easeOut",
+                }}
+              >
+                {word}
+              </motion.span>
+            ))}
+          </h1>
+
+          {/* Subtitle */}
           <motion.p
-            className="text-lg md:text-3xl text-gray-200 mb-8 max-w-xl"
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-200 mb-8 max-w-xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
           >
             {subtitle}
           </motion.p>
-          <a href={buttonLink} rel="noopener noreferrer">
-            <motion.button
-              className="bg-primary-500 hover:bg-primary-600 rounded-full text-black text-lg font-bold px-6 py-6 flex items-center gap-2 group"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 1 }}
-            >
-              {buttonText}
-              <ArrowRight
-                className="group-hover:translate-x-1 transition-transform"
-                size={24}
-              />
-            </motion.button>
-          </a>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.6 }}
+          >
+            <Link href={buttonLink} className="inline-block">
+              <motion.button
+                className="bg-primary-500 hover:bg-primary-600 rounded-full text-black text-base sm:text-lg font-bold px-6 py-4 sm:py-5 flex items-center gap-2 group shadow-lg hover:shadow-primary-500/30 transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {buttonText}
+                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
+              </motion.button>
+            </Link>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 right-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center"
+        initial="initial"
+        animate="animate"
+        variants={scrollIndicatorVariants}
+      >
+        <span className="text-sm font-medium mb-2 text-gray-300">Scroll</span>
+        <ChevronDown className="w-6 h-6 text-primary-500" />
+      </motion.div>
     </section>
-  );
+  )
 }
+

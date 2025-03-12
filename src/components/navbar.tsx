@@ -13,7 +13,7 @@ import { Button } from "./ui/button";
 
 const navigation = [
   {
-    name: "Pagina inicial",
+    name: "Home",
     href: "/",
     ariaLabel: "Ir para a página incial",
   },
@@ -23,11 +23,6 @@ const navigation = [
     name: "Contato",
     href: "/contato",
     ariaLabel: "Ir para a página de contato",
-  },
-  {
-    name: "Localização",
-    href: "/contato/#mapa",
-    ariaLabel: "Ir para a galeria de fotos",
   },
   { name: "Fotos", href: "/galeria", ariaLabel: "Ir para a galeria de fotos" },
 ];
