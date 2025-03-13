@@ -55,7 +55,7 @@ export default function TestimonialsSection() {
       quote:
         "O Taekwondo me ensinou que posso me superar e trouxe outros estímulos para a minha prática física. Sinto que é uma atividade muito completa!",
       image: yas,
-      year: "2023",
+      year: "2024",
     },
   ]
 
@@ -76,7 +76,7 @@ export default function TestimonialsSection() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
-            O que dizem <span className="text-primary-500">nossos alunos</span>
+            Depoimentos dos <span className="text-primary-500">nossos alunos</span>
           </h2>
 
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
@@ -223,30 +223,7 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        {/* CTA Section */}
-        <motion.div
-          className="mt-16 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="bg-secondary-700/50 backdrop-blur-sm rounded-2xl p-8 max-w-3xl mx-auto">
-            <div className="flex items-center justify-center mb-4">
-              <MessageCircle className="text-primary-500 mr-2" />
-              <h3 className="text-xl font-bold text-white">Compartilhe sua história</h3>
-            </div>
-            <p className="text-gray-300 mb-6">
-              Junte-se a centenas de alunos que transformaram suas vidas através do Taekwondo na Ebener TKD.
-            </p>
-            <Link href="/contato">
-              <button className="bg-primary-500 hover:bg-primary-600 text-black font-medium py-3 px-8 rounded-xl transition-colors duration-300 flex items-center gap-2 mx-auto group">
-                Comece sua jornada hoje
-                <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </Link>
-          </div>
-        </motion.div>
+        
       </div>
     </section>
   )

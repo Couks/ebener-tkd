@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import historia1 from "@/assets/images/evento_taca.jpeg";
-import historia2 from "@/assets/images/image8.jpeg";
+import historia1 from "@/assets/images/e_china.jpeg";
+import treinocheio from "@/assets/images/t_treino_cheio.jpeg";
 import { motion } from "framer-motion";
 import { ArrowRight, Award, Calendar, Medal, Users } from "lucide-react";
 import Link from "next/link";
@@ -49,7 +49,7 @@ export default function AboutSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary-500 mb-4">
             Bem-vindo à Ebener TKD!
           </h2>
-          <div className="w-20 h-1 bg-primary-500 mx-auto rounded-full"></div>
+          <div className="w-1/2 h-1 bg-primary-500 mx-auto rounded-full"></div>
         </motion.div>
 
         {/* Main content */}
@@ -82,7 +82,7 @@ export default function AboutSection() {
                 no esporte.
               </p>
               <p>
-                Desde 1993, o mestre Ebener dedica sua vida ao{" "}
+                Desde 2010, o mestre Ebener dedica sua vida ao{" "}
                 <span className="text-primary-500 font-semibold">
                   Taekwondo
                 </span>
@@ -174,7 +174,7 @@ export default function AboutSection() {
             <div className="relative">
               <div className="relative w-full h-auto aspect-video overflow-hidden rounded-2xl shadow-lg">
                 <Image
-                  src={historia2 || "/placeholder.svg?height=400&width=600"}
+                  src={treinocheio || "/placeholder.svg?height=400&width=600"}
                   alt="Academia Ebener TKD em atividade"
                   className="object-cover w-full h-full"
                   fill
@@ -197,7 +197,7 @@ export default function AboutSection() {
                 }}
               >
                 <Award size={18} />
-                <span className="text-sm">Desde 1993</span>
+                <span className="text-sm">Desde 2010</span>
               </motion.div>
             </div>
 
@@ -243,7 +243,7 @@ export default function AboutSection() {
           <div className="inline-flex items-center gap-2 px-6 py-2 bg-secondary-700/50 backdrop-blur-sm rounded-full">
             <span className="w-3 h-3 bg-primary-500 rounded-full"></span>
             <p className="text-sm text-gray-300">
-              Uma jornada de excelência desde 1993
+              Uma jornada de excelência desde 2010
             </p>
           </div>
         </motion.div>

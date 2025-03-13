@@ -5,10 +5,11 @@ import type React from "react"
 import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { motion, useInView } from "framer-motion"
-import { ArrowRight, MapPin, Phone, Mail, Clock, Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react"
+import { ArrowRight, MapPin, Phone, Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react"
 import IntroSection from "@/components/sobre/intro-section"
-import contatoImage from "@/assets/images/20231207_200223.jpg"
+import samboderian from "@/assets/images/t_foto_descontraida.jpeg"
 import Link from "next/link"
+import Head from "@/components/head"
 
 export default function Contato() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -102,10 +103,17 @@ export default function Contato() {
 
   return (
     <div className="bg-secondary-950 min-h-screen">
+      <Head
+        title="Entre em contato"
+        ogTitle="Entre em contato"
+        description="Entre em contato conosco para saber mais sobre nossos treinos e serviços."
+        ogDescription="Entre em contato conosco para saber mais sobre nossos treinos e serviços."
+        keywords={["contato", "treinos", "serviços", "taekwondo", "aulas"]}
+      />
       <IntroSection
         title="Entre em contato com a Ebener TKD"
         subtitle="Estamos aqui para ajudar você a iniciar ou aprimorar sua jornada no Taekwondo"
-        backgroundImage={contatoImage.src}
+        backgroundImage={samboderian.src}
         buttonText="Enviar uma mensagem"
         buttonLink="#fale-conosco"
       />

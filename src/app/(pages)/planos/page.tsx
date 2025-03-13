@@ -18,8 +18,9 @@ import {
   ArrowRight,
 } from "lucide-react"
 import IntroSection from "@/components/sobre/intro-section"
-import precosImage from "@/assets/alunos/taekwondo.jpg"
+import precosImage from "@/assets/images/e_quebracoco.jpeg"
 import Link from "next/link"
+import Head from "@/components/head"
 
 // Define plan interface
 interface Plan {
@@ -169,6 +170,13 @@ export default function Planos() {
 
   return (
     <div className="bg-secondary-950 min-h-screen">
+      <Head
+        title="Planos e Preços"
+        ogTitle="Planos e Preços"
+        description="Descubra as opções de aulas e preços para se inscrever nos treinos de Taekwondo mais completos e dinâmicos"
+        ogDescription="Descubra as opções de aulas e preços para se inscrever nos treinos de Taekwondo mais completos e dinâmicos"
+        keywords={['Planos', 'Preços', 'Taekwondo', 'Treinos', 'Aulas', 'Dinâmicos', 'Completos']}
+      />
       <IntroSection
         title="Planos e Preços"
         subtitle="Descubra as opções de aulas e preços para se inscrever nos treinos de Taekwondo mais completos e dinâmicos"
@@ -276,7 +284,7 @@ export default function Planos() {
                 {/* CTA Button */}
                 <div className="p-6 md:p-8 pt-0">
                   <Link href={plan.ctaLink} target="_blank" rel="noopener noreferrer">
-                    <Button className="w-full bg-primary-500 hover:bg-primary-600 text-black font-bold py-3 transition-all duration-300 flex items-center justify-center gap-2 group">
+                    <Button className="w-full bg-primary-500 hover:bg-primary-600 text-black font-bold py-3 transition-all duration-300 flex items-center justify-center gap-2 group rounded-xl">
                       {plan.ctaText}
                       <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                     </Button>
@@ -294,9 +302,7 @@ export default function Planos() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <p className="text-gray-400">
-              Todos os planos incluem acesso às instalações da academia e acompanhamento profissional.
-            </p>
+            
             <p className="text-gray-400 mt-2">
               Dúvidas? Entre em contato pelo{" "}
               <a
@@ -370,33 +376,7 @@ export default function Planos() {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 md:px-8">
-          <motion.div
-            className="bg-secondary-800 rounded-3xl p-8 md:p-12 text-center max-w-4xl mx-auto relative overflow-hidden"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            {/* Background elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl -z-10"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl -z-10"></div>
-
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Pronto para começar sua jornada?</h2>
-            <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              Agende uma aula experimental gratuita e descubra como o Taekwondo pode transformar sua vida.
-            </p>
-            <Link href="https://wa.link/b348me" target="_blank" rel="noopener noreferrer">
-              <Button className="bg-primary-500 hover:bg-primary-600 text-black font-bold text-lg px-8 py-4 rounded-xl transition-all duration-300">
-                Agendar Aula Experimental
-              </Button>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+      
     </div>
   )
 }

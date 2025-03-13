@@ -3,11 +3,12 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, ChevronLeft, ChevronRight, ZoomIn, Loader2, ImageIcon, Search, RefreshCw } from "lucide-react"
+import { X, ChevronLeft, ChevronRight, ZoomIn, Loader2, ImageIcon, RefreshCw } from "lucide-react"
 import IntroSection from "@/components/sobre/intro-section"
-import quemsSomos from "@/assets/images/20240728_121305.jpg"
+import quemsSomos from "@/assets/images/e_ebener_E_alan.jpg"
 import { Button } from "@/components/ui/button"
 import { useMediaQuery } from "@/hooks/use-media-query"
+import Head from "@/components/head"
 
 // Import all images from the directory
 const importAll = (r: object) => (r as any).keys().map(r)
@@ -21,14 +22,39 @@ interface GalleryImage {
   width: number
   height: number
   aspectRatio: number
+  filename: string
 }
 
-// Process images to add metadata
-const processImages = (images: any[]): GalleryImage[] => {
-  // Categories for demonstration - in a real app, these would come from your data
-  const categories = ["Treinos", "Competições", "Eventos", "Graduações"]
+// Define category mapping
+const CATEGORY_PREFIXES = {
+  t_: "Treinos",
+  c_: "Competições",
+  g_: "Graduações",
+  e_: "Eventos",
+}
 
+// Process images to add metadata based on filename prefixes
+const processImages = (images: any[]): GalleryImage[] => {
   return images.map((image, index) => {
+    // Get the filename from the path
+    const pathParts = image.default.src.split("/")
+    const filename = pathParts[pathParts.length - 1]
+
+    // Determine category based on prefix
+    let category = "Outros"
+    for (const [prefix, categoryName] of Object.entries(CATEGORY_PREFIXES)) {
+      if (filename.toLowerCase().startsWith(prefix)) {
+        category = categoryName
+        break
+      }
+    }
+
+    // Generate alt text from filename (remove prefix and extension)
+    const altText = filename
+      .replace(/^[a-z]_/i, "") // Remove prefix
+      .replace(/\.(jpg|jpeg|png|gif|svg)$/i, "") // Remove extension
+      .replace(/-|_/g, " ") // Replace dashes and underscores with spaces
+
     // Generate random dimensions for demonstration
     // In a real app, you would get these from the actual images
     const width = Math.floor(Math.random() * 500) + 500 // 500-1000px
@@ -37,11 +63,12 @@ const processImages = (images: any[]): GalleryImage[] => {
 
     return {
       src: image.default,
-      alt: `Imagem de Taekwondo ${index + 1}`,
-      category: categories[Math.floor(Math.random() * categories.length)],
+      alt: altText || `Imagem de Taekwondo ${index + 1}`,
+      category,
       width,
       height,
       aspectRatio,
+      filename,
     }
   })
 }
@@ -66,19 +93,30 @@ export default function Galeria() {
     setGalleryImages(processedImages)
     setFilteredImages(processedImages)
 
-    // Extract unique categories
-    const uniqueCategories = Array.from(new Set(processedImages.map((img) => img.category)))
-    setCategories(uniqueCategories)
+    // Extract unique categories and sort them in a specific order
+    const allCategories = Array.from(new Set(processedImages.map((img) => img.category)))
+
+    // Define the preferred order
+    const preferredOrder = ["Treinos", "Competições", "Graduações", "Eventos", "Outros"]
+
+    // Sort categories according to preferred order
+    const sortedCategories = allCategories.sort((a, b) => {
+      const indexA = preferredOrder.indexOf(a)
+      const indexB = preferredOrder.indexOf(b)
+      return indexA - indexB
+    })
+
+    setCategories(sortedCategories)
 
     // Simulate loading
     const timer = setTimeout(() => {
       setIsLoading(false)
-    }, 1500)
+    }, 1000)
 
     return () => clearTimeout(timer)
   }, [])
 
-  // Handle filtering and searching
+  // Handle filtering
   useEffect(() => {
     let results = [...galleryImages]
 
@@ -161,7 +199,6 @@ export default function Galeria() {
     setActiveFilter("Todos")
   }
 
- 
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -184,9 +221,25 @@ export default function Galeria() {
 
   return (
     <div className="bg-secondary-950 min-h-screen">
+      <Head
+        title="Galeria de Fotos"
+        ogTitle="Galeria de Fotos"
+        description="Veja os momentos especiais dos nossos alunos em ação, desde iniciantes até faixas pretas, compartilhando a energia e dedicação ao Taekwondo"
+        ogDescription="Veja os momentos especiais dos nossos alunos em ação, desde iniciantes até faixas pretas, compartilhando a energia e dedicação ao Taekwondo"
+        keywords={[
+          "Taekwondo",
+          "Galeria de Fotos",
+          "Momentos Especiais",
+          "Alunos",
+          "Iniciantes",
+          "Faixas Pretas",
+          "Energia",
+          "Dedicação",
+        ]}
+      />
       {/* Hero Section */}
       <IntroSection
-        title="Nossa Galeria de Treinos"
+        title="Nossa Galeria de Fotos"
         subtitle="Veja os momentos especiais dos nossos alunos em ação, desde iniciantes até faixas pretas, compartilhando a energia e dedicação ao Taekwondo"
         backgroundImage={quemsSomos.src}
         buttonText="Ver fotos"
@@ -223,7 +276,7 @@ export default function Galeria() {
             <div className="flex flex-wrap gap-2 justify-center md:justify-start">
               <Button
                 variant={activeFilter === "Todos" ? "default" : "outline"}
-                className={`rounded-full ${activeFilter === "Todos" ? "bg-primary-500 text-black hover:bg-primary-600" : "hover:text-white"}`}
+                className={`rounded-full ${activeFilter === "Todos" ? "bg-primary-500 text-black hover:bg-primary-600" : "hover:text-primary-500"}`}
                 onClick={() => setActiveFilter("Todos")}
               >
                 Todos
@@ -233,15 +286,19 @@ export default function Galeria() {
                 <Button
                   key={category}
                   variant={activeFilter === category ? "default" : "outline"}
-                  className={`rounded-full ${activeFilter === category ? "bg-primary-500 text-black hover:bg-primary-600" : " hover:text-white"}`}
+                  className={`rounded-full ${activeFilter === category ? "bg-primary-500 text-black hover:bg-primary-600" : "hover:text-primary-500"}`}
                   onClick={() => setActiveFilter(category)}
                 >
                   {category}
                 </Button>
               ))}
 
-              {(activeFilter !== "Todos") && (
-                <Button variant="ghost" className="rounded-full text-gray-400 hover:text-white" onClick={resetFilters}>
+              {activeFilter !== "Todos" && (
+                <Button
+                  variant="ghost"
+                  className="rounded-full text-gray-400 hover:text-primary-500"
+                  onClick={resetFilters}
+                >
                   <RefreshCw size={16} className="mr-2" />
                   Limpar filtros
                 </Button>
@@ -281,7 +338,7 @@ export default function Galeria() {
                     className="relative group overflow-hidden rounded-xl bg-secondary-800"
                     variants={itemVariants}
                     style={{
-                      aspectRatio: image.aspectRatio > 1.5 ? "2/1" : image.aspectRatio < 0.7 ? "1/2" : "1/1",
+                      aspectRatio: "1/1",
                     }}
                     whileHover={{ y: -5 }}
                     onClick={() => openModal(image, index)}
@@ -355,12 +412,16 @@ export default function Galeria() {
                   <span className="text-xs font-medium text-primary-500 bg-primary-500/10 px-2 py-1 rounded-full">
                     {selectedImage.category}
                   </span>
-                  <h3 className="text-white text-lg mt-1">{selectedImage.alt}</h3>
+                 
                 </div>
 
                 <div className="flex gap-2">
-                 
-                  <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white" onClick={closeModal}>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-gray-400 hover:text-primary-500"
+                    onClick={closeModal}
+                  >
                     <X size={20} />
                   </Button>
                 </div>
@@ -410,12 +471,12 @@ export default function Galeria() {
                 </div>
 
                 <div className="flex gap-2">
-                  <Button variant="outline" size="sm" onClick={() => navigateImage(-1)}>
+                  <Button variant="default" size="sm" className="bg-primary-500 text-black hover:bg-primary-600" onClick={() => navigateImage(-1)}>
                     <ChevronLeft size={16} className="mr-1" />
                     Anterior
                   </Button>
 
-                  <Button variant="outline" size="sm"  onClick={() => navigateImage(1)}>
+                  <Button variant="default" className="bg-primary-500 text-black hover:bg-primary-600 transition" size="sm" onClick={() => navigateImage(1)}>
                     Próxima
                     <ChevronRight size={16} className="ml-1" />
                   </Button>

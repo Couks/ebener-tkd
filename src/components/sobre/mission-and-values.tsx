@@ -1,23 +1,30 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useRef } from "react"
-import { motion } from "framer-motion"
-import { DiffIcon as Diversity, Award, BookOpen, ChevronRight, ChevronLeft, Heart } from "lucide-react"
+import { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import {
+  DiffIcon as Diversity,
+  Award,
+  BookOpen,
+  ChevronRight,
+  ChevronLeft,
+  Heart,
+} from "lucide-react";
 
 // Define values data structure
 interface Value {
-  id: number
-  title: string
-  description: string
-  icon: React.ReactNode
-  color: string
+  id: number;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  color: string;
 }
 
 export default function MissionAndValues() {
-  const [activeValue, setActiveValue] = useState(0)
-  const valuesRef = useRef<HTMLDivElement>(null)
+  const [activeValue, setActiveValue] = useState(0);
+  const valuesRef = useRef<HTMLDivElement>(null);
 
   // Values data
   const values: Value[] = [
@@ -45,7 +52,7 @@ export default function MissionAndValues() {
       icon: <BookOpen />,
       color: "from-emerald-500 to-teal-500",
     },
-  ]
+  ];
 
   // Animation variants
   const containerVariants = {
@@ -56,7 +63,7 @@ export default function MissionAndValues() {
         staggerChildren: 0.2,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -65,16 +72,16 @@ export default function MissionAndValues() {
       opacity: 1,
       transition: { type: "spring", stiffness: 300, damping: 24 },
     },
-  }
+  };
 
   // Navigation handlers
   const nextValue = () => {
-    setActiveValue((prev) => (prev === values.length - 1 ? 0 : prev + 1))
-  }
+    setActiveValue((prev) => (prev === values.length - 1 ? 0 : prev + 1));
+  };
 
   const prevValue = () => {
-    setActiveValue((prev) => (prev === 0 ? values.length - 1 : prev - 1))
-  }
+    setActiveValue((prev) => (prev === 0 ? values.length - 1 : prev - 1));
+  };
 
   return (
     <section className="py-16 md:py-24 relative overflow-hidden">
@@ -99,7 +106,9 @@ export default function MissionAndValues() {
           >
             <div className="inline-flex items-center justify-center gap-2 bg-primary-500/20 px-4 py-2 rounded-full mb-4">
               <Heart className="text-primary-500 h-4 w-4" />
-              <span className="text-sm font-medium text-primary-500">Nossa Essência</span>
+              <span className="text-sm font-medium text-primary-500">
+                Nossa Essência
+              </span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-white">
@@ -108,9 +117,10 @@ export default function MissionAndValues() {
 
             <div className="max-w-3xl mx-auto bg-secondary-700/50 backdrop-blur-sm rounded-2xl p-8 shadow-lg border-l-4 border-primary-500">
               <p className="text-lg md:text-xl text-gray-200 leading-relaxed">
-                Nossa <span className="text-primary-500 font-bold">missão</span> é formar atletas e indivíduos em todas
-                as idades e níveis no Taekwondo, transmitindo técnicas avançadas e valores essenciais, como respeito,
-                disciplina e resiliência.
+                Nossa <span className="text-primary-500 font-bold">missão</span>{" "}
+                é formar atletas e indivíduos em todas as idades e níveis no
+                Taekwondo, transmitindo técnicas avançadas e valores essenciais,
+                como respeito, disciplina e resiliência.
               </p>
             </div>
           </motion.div>
@@ -127,9 +137,7 @@ export default function MissionAndValues() {
               {values.map((value, index) => (
                 <motion.div
                   key={value.id}
-                  className={`bg-secondary-700/50 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 ${
-                    index === activeValue ? "ring-2 ring-primary-500" : ""
-                  }`}
+                  className="bg-secondary-700/50 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 "
                   variants={itemVariants}
                   whileHover={{ y: -5 }}
                 >
@@ -139,7 +147,9 @@ export default function MissionAndValues() {
                     {value.icon}
                   </div>
 
-                  <h3 className="text-2xl font-bold mb-4 text-primary-500">{value.title}</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-primary-500">
+                    {value.title}
+                  </h3>
 
                   <p className="text-gray-300">{value.description}</p>
                 </motion.div>
@@ -164,9 +174,13 @@ export default function MissionAndValues() {
                   {values[activeValue].icon}
                 </div>
 
-                <h3 className="text-xl font-bold mb-3 text-primary-500">{values[activeValue].title}</h3>
+                <h3 className="text-xl font-bold mb-3 text-primary-500">
+                  {values[activeValue].title}
+                </h3>
 
-                <p className="text-gray-300 text-sm">{values[activeValue].description}</p>
+                <p className="text-gray-300 text-sm">
+                  {values[activeValue].description}
+                </p>
               </motion.div>
 
               {/* Navigation controls */}
@@ -185,7 +199,9 @@ export default function MissionAndValues() {
                       key={index}
                       onClick={() => setActiveValue(index)}
                       className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                        activeValue === index ? "bg-primary-500 w-8" : "bg-gray-600"
+                        activeValue === index
+                          ? "bg-primary-500 w-8"
+                          : "bg-gray-600"
                       }`}
                       aria-label={`Go to value ${index + 1}`}
                     />
@@ -205,6 +221,5 @@ export default function MissionAndValues() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

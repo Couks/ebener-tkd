@@ -18,9 +18,9 @@ import "swiper/css/pagination"
 import "swiper/css/effect-fade"
 
 // Import images
-import treinoPersonalizado from "@/assets/images/20231207_200223.jpg"
-import aulasEmGrupo from "@/assets/images/image4.jpeg"
-import eventos from "@/assets/images/20240728_123243.jpg"
+import treinoPersonalizado from "@/assets/images/t_sombrinha.jpeg"
+import exameAmarelas from "@/assets/images/g_exame_amarelas.jpeg"
+import eventos from "@/assets/images/c_grand_Slam_duda_2025.jpg"
 
 // Define service interface
 interface Service {
@@ -75,7 +75,7 @@ export default function ServicesSection() {
       title: "Aulas em Grupo",
       description:
         "Participe de aulas dinâmicas e motivadoras com instrutores qualificados em um ambiente de aprendizado coletivo.",
-      image: aulasEmGrupo,
+      image: exameAmarelas,
       icon: <Users  />,
       features: [
         "Ambiente motivador e colaborativo",
@@ -97,7 +97,7 @@ export default function ServicesSection() {
         "Eventos nacionais e estaduais",
         "Suporte durante competições",
       ],
-      cta: "Galeria de eventos",
+      cta: "Galeria",
       ctaLink: "/galeria",
     },
   ]

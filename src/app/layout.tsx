@@ -15,16 +15,16 @@ const chakraPetch = Chakra_Petch({
 export const metadata: Metadata = {
   title: "Taekwondo na Ilha do Governador | Ebener TKD",
   description:
-    "Treine Taekwondo na maior academia da Ilha do Governador. Aulas para todas as idades, com metodologia exclusiva e professores certificados!",
+    "Aulas para todas as idades com professores certificados!",
   openGraph: {
     type: "website",
-    url: "https://ebenertkd.vercel.app/",
+    url: "https://ebenertkd.com.br/",
     title: "Taekwondo na Ilha do Governador | Ebener TKD",
     description:
-      "Treine Taekwondo na maior academia da Ilha do Governador. Aulas para todas as idades, com metodologia exclusiva e professores certificados!",
+      "Aulas para todas as idades com professores certificados!",
     images: [
       {
-        url: "https://ebenertkd.vercel.app/favicon.ico",
+        url: "https://ebenertkd.com.br/favicon.ico",
         width: 500,
         height: 500,
         alt: "Logo da Ebener TKD",
@@ -61,7 +61,7 @@ export default function RootLayout({
         <meta name="robots" content="index, follow" />
         <meta
           name="description"
-          content="Treine Taekwondo na maior academia da Ilha do Governador. Aulas para todas as idades, com metodologia exclusiva e professores certificados!"
+          content="Aulas para todas as idades com professores certificados!"
         />
       </head>
       <body className={chakraPetch.className}>

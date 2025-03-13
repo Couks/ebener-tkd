@@ -5,7 +5,7 @@ import BenefitsSection from "@/components/sobre/benefits-section";
 import IntroSection from "@/components/sobre/intro-section";
 import ServicesSection from "@/components/sobre/services-section";
 import TestimonialsSection from "@/components/sobre/testimonials-section";
-import bannerHomepage from "@/assets/images/banner-homepage-ebenertkd.jpeg";
+import bannerHomepage from "@/assets/images/t_banner_home.jpeg";
 import AboutSection from "@/components/sobre/about-section";
 
 export default function Home() {
