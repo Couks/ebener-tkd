@@ -11,6 +11,7 @@ import Image from "next/image"
 import chaves from "@/assets/alunos/matheus-chaves.jpg"
 import duda from "@/assets/alunos/duda-souza.jpg"
 import yas from "@/assets/alunos/yas-tonelli.jpg"
+import flavio from "@/assets/alunos/flavio-baptista.jpeg"
 
 // Define testimonial interface
 interface Testimonial {

@@ -175,7 +175,7 @@ export default function ServicesSection() {
                 </div>
 
                 <div className="p-5">
-                  <p className="text-gray-300 mb-4">{service.description}</p>
+                  <p className="text-gray-300 mb-4 text-lg">{service.description}</p>
 
                   <ul className="space-y-2 mb-5">
                     {service.features.map((feature, idx) => (

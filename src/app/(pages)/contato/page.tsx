@@ -146,15 +146,15 @@ export default function Contato() {
             {/* Contact Form */}
             <motion.div
               ref={formRef}
-              className="lg:col-span-7 bg-white rounded-2xl shadow-xl overflow-hidden"
+              className="lg:col-span-7 bg-secondary-800 rounded-2xl shadow-xl overflow-hidden"
               initial={{ opacity: 0, y: 50 }}
               animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.6 }}
             >
               <div className="p-8 md:p-10">
                 <div className="mb-8">
-                  <h3 className="text-2xl font-bold text-secondary-800 mb-4">Comece sua jornada no Taekwondo</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-2xl font-bold text-background mb-4">Comece sua jornada no Taekwondo</h3>
+                  <p className="text-gray-400">
                     Preencha o formulário abaixo e nossa equipe entrará em contato para tirar todas as suas dúvidas
                     sobre aulas, horários e valores. Sua mudança começa aqui!
                   </p>
@@ -177,7 +177,7 @@ export default function Contato() {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-4">
                       <div className="flex flex-col gap-2">
-                        <label htmlFor="nome" className="text-gray-700 font-medium">
+                        <label htmlFor="nome" className="text-gray-400 font-medium">
                           Nome <span className="text-red-500">*</span>
                         </label>
                         <input
@@ -193,7 +193,7 @@ export default function Contato() {
                       </div>
 
                       <div className="flex flex-col gap-2">
-                        <label htmlFor="telefone" className="text-gray-700 font-medium">
+                        <label htmlFor="telefone" className="text-gray-400 font-medium">
                           Telefone (WhatsApp) <span className="text-red-500">*</span>
                         </label>
                         <input
@@ -214,7 +214,7 @@ export default function Contato() {
                       </div>
 
                       <div className="flex flex-col gap-2">
-                        <label htmlFor="mensagem" className="text-gray-700 font-medium">
+                        <label htmlFor="mensagem" className="text-gray-400 font-medium">
                           Mensagem <span className="text-red-500">*</span>
                         </label>
                         <textarea
