@@ -1,10 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowLeft, Home } from "lucide-react";
-import gif from "@/assets/gif/404.gif";
 
 export default function NotFound() {
   // Animation variants
@@ -14,14 +12,14 @@ export default function NotFound() {
   };
 
   return (
-    <main className="min-h-screen bg-secondary-800 flex flex-col items-center justify-center px-4 py-16">
-      <div className="container max-w-4xl mx-auto">
+    <main className="min-h-screen bg-[url(https://images.unsplash.com/photo-1539721972319-f0e80a00d424?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Ymx1ZSUyMHNwYWNlfGVufDB8fDB8fHww)] flex flex-col items-center justify-center px-4 py-16">
+      <div className="container max-w-2xl mx-auto backdrop-blur-md p-8 md:rounded-full aspect-square flex flex-col items-center justify-center">
         <motion.div
           className="text-center mb-8"
           initial="hidden"
           animate="visible"
           variants={fadeIn}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.2 }}
         >
           <h1 className="text-5xl md:text-7xl font-bold text-primary-500 mb-2">
             404
@@ -39,9 +37,9 @@ export default function NotFound() {
           transition={{ duration: 0.7, delay: 0.3 }}
         >
          
-          <p className="text-lg text-gray-300 mb-8">
+          <p className="text-xl text-gray-200 font-semibold mb-8">
             A página que você está procurando pode ter sido movida, excluída ou
-            nunca existiu. Que tal voltar para o caminho do Taekwondo?
+            nunca existiu. <br /><br />Que tal voltar para o caminho do Taekwondo?
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
