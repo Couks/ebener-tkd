@@ -19,7 +19,7 @@ export default function NotFound() {
           initial="hidden"
           animate="visible"
           variants={fadeIn}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.5 }}
         >
           <h1 className="text-5xl md:text-7xl font-bold text-primary-500 mb-2">
             404
@@ -34,7 +34,7 @@ export default function NotFound() {
           className="text-center max-w-2xl mx-auto mb-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
         >
          
           <p className="text-xl text-gray-200 font-semibold mb-8">

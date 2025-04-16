@@ -53,7 +53,7 @@ export function NavBar() {
     <motion.nav
       initial={{ opacity: 1, y: 0 }}
       animate={controls}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.5 }}
       className={`fixed w-screen z-40 transition-all duration-300 ${
         hasScrolled ? "bg-black/50 backdrop-blur-md" : "bg-transparent"
       }`}

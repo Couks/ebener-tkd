@@ -110,7 +110,7 @@ const WhatsappButton: React.FC = () => {
                 opacity: isHovered ? 1 : 0,
                 x: isHovered ? 0 : 20,
               }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.5 }}
             >
               <p className="text-gray-800 font-medium">Fale conosco no WhatsApp!</p>
               <div className="absolute right-0 top-1/2 -mt-2 -mr-1 w-0 h-0 border-8 border-transparent border-l-white" />

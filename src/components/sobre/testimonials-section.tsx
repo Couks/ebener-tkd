@@ -74,7 +74,7 @@ export default function TestimonialsSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
             Depoimentos dos <span className="text-primary-500">nossos alunos</span>
@@ -100,7 +100,7 @@ export default function TestimonialsSection() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.5 }}
                 className="bg-secondary-700 rounded-3xl overflow-hidden shadow-2xl"
               >
                 <div className="md:grid md:grid-cols-2">

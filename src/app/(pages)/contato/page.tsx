@@ -126,7 +126,7 @@ export default function Contato() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
           >
             <div className="inline-flex items-center justify-center gap-2 bg-primary-500/20 px-4 py-2 rounded-full mb-4">
               <span className="w-2 h-2 rounded-full bg-primary-500"></span>
@@ -149,7 +149,7 @@ export default function Contato() {
               className="lg:col-span-7 bg-secondary-800 rounded-2xl shadow-xl overflow-hidden"
               initial={{ opacity: 0, y: 50 }}
               animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5 }}
             >
               <div className="p-8 md:p-10">
                 <div className="mb-8">
@@ -262,7 +262,7 @@ export default function Contato() {
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
               >
                 <h3 className="text-2xl font-bold mb-6 text-white">Informações de Contato</h3>
 
@@ -313,7 +313,7 @@ export default function Contato() {
                 className="relative rounded-2xl overflow-hidden shadow-xl"
                 initial={{ opacity: 0, y: 50 }}
                 animate={isMapInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
               >
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14711.315438834945!2d-43.1971213!3d-22.8088045!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x99790035acb387:0xf59879151c85617b!2sEbener%20TKD%20%7C%20Academia%20de%20Taekwondo!5e0!3m2!1spt-BR!2sbr!4v1721344609049!5m2!1spt-BR!2sbr"

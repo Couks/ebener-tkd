@@ -256,7 +256,7 @@ export default function Planos() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
           >
             <div className="inline-flex items-center justify-center gap-2 bg-primary-500/20 px-4 py-2 rounded-full mb-4">
               <span className="w-2 h-2 rounded-full bg-primary-500"></span>
@@ -339,7 +339,7 @@ export default function Planos() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
           >
             <div className="inline-flex items-center justify-center gap-2 bg-primary-500/20 px-4 py-2 rounded-full mb-4">
               <span className="w-2 h-2 rounded-full bg-primary-500"></span>
@@ -472,7 +472,7 @@ export default function Planos() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
           >
             <p className="text-gray-400 mt-2">
               Dúvidas? Entre em contato pelo{" "}
@@ -498,7 +498,7 @@ export default function Planos() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white">
               Perguntas Frequentes
@@ -546,7 +546,7 @@ export default function Planos() {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.5 }}
                     className="bg-secondary-800/30 p-5 rounded-b-xl text-gray-300"
                   >
                     {faq.answer}

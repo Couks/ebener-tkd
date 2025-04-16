@@ -60,7 +60,7 @@ export default function AboutSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             variants={slideIn}
           >
             <div className="text-base sm:text-lg md:text-2xl text-gray-200 leading-relaxed space-y-4">
@@ -98,7 +98,7 @@ export default function AboutSection() {
             <div className="grid grid-cols-2 gap-4 mt-8">
               <motion.div
                 className="bg-secondary-700/50 backdrop-blur-sm p-4 rounded-xl border border-secondary-600"
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                whileHover={{ y: -5, transition: { duration: 0.5 } }}
               >
                 <Calendar className="text-primary-500 mb-2" size={28} />
                 <h3 className="text-2xl sm:text-3xl font-bold text-white">
@@ -108,7 +108,7 @@ export default function AboutSection() {
               </motion.div>
               <motion.div
                 className="bg-secondary-700/50 backdrop-blur-sm p-4 rounded-xl border border-secondary-600"
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                whileHover={{ y: -5, transition: { duration: 0.5 } }}
               >
                 <Medal className="text-primary-500 mb-2" size={28} />
                 <h3 className="text-2xl sm:text-3xl font-bold text-white">
@@ -120,7 +120,7 @@ export default function AboutSection() {
             {/* Feature highlight */}
 
             <motion.div
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              whileHover={{ y: -5, transition: { duration: 0.5 } }}
               className="bg-secondary-700/50 backdrop-blur-sm p-4 rounded-xl border border-secondary-600 flex items-center gap-4 mt-6"
             >
               <Users className="text-primary-500 flex-shrink-0" size={24} />
@@ -136,7 +136,7 @@ export default function AboutSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             <div className="relative h-full flex items-center justify-center">
               {/* Decorative elements */}
@@ -167,7 +167,7 @@ export default function AboutSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             variants={slideIn}
           >
             {/* Secondary image */}

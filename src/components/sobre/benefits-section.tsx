@@ -151,7 +151,7 @@ export default function BenefitsSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
           <div className="inline-flex items-center justify-center gap-2 bg-primary-500/10 px-4 py-2 rounded-full mb-4">
             <div className="w-2 h-2 rounded-full bg-primary-500"></div>

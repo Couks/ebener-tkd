@@ -52,7 +52,7 @@ export default function IntroSection({
           duration: 1.5,
           ease: "easeInOut",
         },
-        opacity: { duration: 0.3 },
+        opacity: { duration: 0.5 },
       },
     },
   };
@@ -100,7 +100,7 @@ export default function IntroSection({
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: 0.7,
+                  duration: 0.5,
                   delay: 0.1 * index,
                   ease: "easeOut",
                 }}
@@ -115,7 +115,7 @@ export default function IntroSection({
             className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-200 mb-8 max-w-xl"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
           >
             {subtitle}
           </motion.p>
@@ -124,7 +124,7 @@ export default function IntroSection({
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
           >
             <Link href={buttonLink} className="inline-block">
               <motion.button
