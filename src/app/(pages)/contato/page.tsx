@@ -102,7 +102,7 @@ export default function Contato() {
   }
 
   return (
-    <div className="bg-secondary-950 min-h-screen">
+    <div className="bg-black min-h-screen">
       <Head
         title="Entre em contato"
         ogTitle="Entre em contato"

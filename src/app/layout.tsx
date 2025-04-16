@@ -65,7 +65,7 @@ export default function RootLayout({
         />
       </head>
       <body className={chakraPetch.className}>
-        <div className="justify-between h-max bg-secondary-950">
+        <div className="justify-between h-max bg-black">
           <main>
             <NavBar />
             <WhatsappButton />

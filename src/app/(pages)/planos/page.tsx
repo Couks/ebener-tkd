@@ -224,7 +224,7 @@ export default function Planos() {
   };
 
   return (
-    <div className="bg-secondary-950 min-h-screen">
+    <div className="bg-black min-h-screen">
       <Head
         title="Planos e Preços"
         ogTitle="Planos e Preços"

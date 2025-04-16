@@ -220,7 +220,7 @@ export default function Galeria() {
   }
 
   return (
-    <div className="bg-secondary-950 min-h-screen">
+    <div className="bg-black min-h-screen">
       <Head
         title="Galeria de Fotos"
         ogTitle="Galeria de Fotos"
@@ -428,7 +428,7 @@ export default function Galeria() {
               </div>
 
               {/* Modal Content */}
-              <div className="relative bg-secondary-950 flex-grow flex items-center justify-center overflow-hidden">
+              <div className="relative bg-black flex-grow flex items-center justify-center overflow-hidden">
                 <div className="relative w-full h-full flex items-center justify-center">
                   <Image
                     src={selectedImage.src || "/placeholder.svg"}

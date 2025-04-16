@@ -50,7 +50,7 @@ export default function Sobre() {
   };
 
   return (
-    <div ref={pageRef} className="bg-secondary-950">
+    <div ref={pageRef} className="bg-black">
       <Head
         title="Sobre Nós"
         ogTitle="Sobre Nós"
