@@ -98,7 +98,7 @@ export default function Sobre() {
                     <Calendar size={16} />
                     <span className="text-sm font-medium">Desde</span>
                   </div>
-                  <p className="text-xl font-bold text-white">1993</p>
+                  <p className="text-xl font-bold text-white">2010</p>
                 </div>
                 <div className="bg-black/50 backdrop-blur-sm p-3 rounded-xl">
                   <div className="flex items-center gap-2 text-primary-500 mb-1">

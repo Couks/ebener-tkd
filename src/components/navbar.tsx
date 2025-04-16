@@ -53,13 +53,13 @@ export function NavBar() {
     <motion.nav
       initial={{ opacity: 1, y: 0 }}
       animate={controls}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.2 }}
       className={`fixed w-screen z-40 transition-all duration-300 ${
         hasScrolled ? "bg-black/50 backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-around">
+      <div className="container mx-auto max-w-[90%] px-6 py-4">
+        <div className="flex items-center justify-between">
           {/* Logo */}
           <a href="/" className="flex items-center">
             <div className="flex items-center gap-2">

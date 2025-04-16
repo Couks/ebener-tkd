@@ -51,7 +51,7 @@ export function Footer() {
             </div>
             <p className="text-gray-300 mb-6 text-sm">
               Academia de Taekwondo na Ilha do Governador, liderada pelo mestre Ebener dos Santos Pinto, oferecendo
-              treinamento de qualidade desde 1993.
+              treinamento de qualidade desde 2010.
             </p>
             <div className="flex items-center space-x-4">
               <a
