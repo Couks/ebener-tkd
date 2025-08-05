@@ -234,21 +234,21 @@ export default function AboutSection() {
               </Link>
             </div>
             <motion.div
-          className="mt-12 sm:mt-16 pt-8 border-t border-secondary-600 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-        >
-          <div className="inline-flex items-center gap-2 px-6 py-2 bg-secondary-700/50 backdrop-blur-sm rounded-full">
-            <span className="w-3 h-3 bg-primary-500 rounded-full"></span>
-            <p className="text-sm text-gray-300">
-              Uma jornada de excelência desde 2010
-            </p>
-          </div>
-        </motion.div>
+              className="mt-12 sm:mt-16 pt-8 border-t border-secondary-600 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              <div className="inline-flex items-center gap-2 px-6 py-2 bg-secondary-700/50 backdrop-blur-sm rounded-full">
+                <span className="w-3 h-3 bg-primary-500 rounded-full"></span>
+                <p className="text-sm text-gray-300">
+                  Uma jornada de excelência desde 2010
+                </p>
+              </div>
+            </motion.div>
           </motion.div>
-        </div>        
+        </div>
       </div>
     </section>
   );

@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { Chakra_Petch } from "next/font/google";
 import "./globals.css";
-import { NavBar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
-import WhatsappButton from "@/components/whatsapp";
-import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { QueryProvider } from "@/lib/providers/query-provider";
+import { Toaster } from "@/components/ui/sonner";
+import SessionProvider from "@/lib/providers/session-provider";
 
 const chakraPetch = Chakra_Petch({
   subsets: ["latin"],
@@ -14,14 +13,12 @@ const chakraPetch = Chakra_Petch({
 
 export const metadata: Metadata = {
   title: "Taekwondo na Ilha do Governador | Ebener TKD",
-  description:
-    "Aulas para todas as idades com professores certificados!",
+  description: "Aulas para todas as idades com professores certificados!",
   openGraph: {
     type: "website",
     url: "https://ebenertkd.com.br/",
     title: "Taekwondo na Ilha do Governador | Ebener TKD",
-    description:
-      "Aulas para todas as idades com professores certificados!",
+    description: "Aulas para todas as idades com professores certificados!",
     images: [
       {
         url: "https://ebenertkd.com.br/favicon.ico",
@@ -51,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br">
+    <html lang="pt-br" suppressHydrationWarning>
       <head>
         <title>Taekwondo na Ilha do Governador - Ebener TKD</title>
         <meta
@@ -65,17 +62,14 @@ export default function RootLayout({
         />
       </head>
       <body className={chakraPetch.className}>
-        <div className="justify-between h-max bg-black">
-          <main>
-            <NavBar />
-            <WhatsappButton />
+        <SessionProvider>
+          <QueryProvider>
             {children}
-            <Analytics />
-            <Footer />
-          </main>
-        </div>
+            <Toaster />
+          </QueryProvider>
+        </SessionProvider>
       </body>
-      <GoogleAnalytics gaId="G-L15P6FXYCS" />
+      {/* <GoogleAnalytics gaId="G-L15P6FXYCS" /> */}
     </html>
   );
 }

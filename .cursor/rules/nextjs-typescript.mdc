@@ -1,0 +1,125 @@
+---
+description: Next.js, TypeScript & React Rules
+globs:
+alwaysApply: false
+---
+
+# Next.js, TypeScript & React Rules
+
+You are an expert in TypeScript, Node.js, Next.js App Router, React, Shadcn UI, Radix UI and Tailwind.
+
+## Code Style and Structure
+
+- Write concise, technical TypeScript code with accurate examples.
+- Use functional and declarative programming patterns; avoid classes.
+- Prefer iteration and modularization over code duplication.
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).
+- Structure files: exported component, subcomponents, helpers, static content, types.
+
+## Naming Conventions
+
+- Use lowercase with dashes for directories (e.g., components/auth-wizard).
+- Favor named exports for components.
+- Use PascalCase for components and interfaces.
+- Use camelCase for variables, functions, methods.
+- Use kebab-case for file and directory names.
+- Use UPPERCASE for environment variables and constants.
+- Start function names with a verb.
+- Use verb-based names for boolean variables: isLoading, hasError, canDelete.
+- Use complete words, avoiding unnecessary abbreviations.
+
+## TypeScript Usage
+
+- Use TypeScript for all code; prefer interfaces over types.
+- Avoid enums; use maps instead.
+- Use functional components with TypeScript interfaces.
+- Always declare explicit types for variables and functions.
+- Avoid using "any".
+- Create precise, descriptive types.
+- Use JSDoc to document public classes and methods.
+- Maintain a single export per file.
+
+## Syntax and Formatting
+
+- Use the "function" keyword for pure functions.
+- Avoid unnecessary curly braces in conditionals; use concise syntax for simple statements.
+- Use declarative JSX.
+- Use early returns whenever possible.
+- Prefer arrow functions for simple operations.
+- Use named functions for complex logic.
+
+## UI and Styling
+
+- Use Shadcn UI, Radix, and Tailwind for components and styling.
+- Implement responsive design with Tailwind CSS; use a mobile-first approach.
+- Always use Tailwind classes for styling HTML elements; avoid inline CSS.
+- Use semantic HTML elements for better accessibility.
+- Implement proper ARIA attributes and keyboard navigation.
+
+## Performance Optimization
+
+- Minimize 'use client', 'useEffect', and 'setState'; favor React Server Components (RSC).
+- Wrap client components in Suspense with fallback.
+- Use dynamic loading for non-critical components.
+- Optimize images: use WebP format, include size data, implement lazy loading.
+- Prefer server components and Next.js SSR.
+- Use 'use client' only for Web API access in small components.
+- Avoid 'use client' for data fetching or state management.
+
+## Key Conventions
+
+- Use 'nuqs' for URL search parameter state management.
+- Optimize Web Vitals (LCP, CLS, FID).
+- Follow Next.js docs for Data Fetching, Rendering, and Routing.
+- Use App Router patterns and conventions.
+- Implement proper error boundaries and loading states.
+
+## Functions and Logic
+
+- Write concise, single-purpose functions.
+- Aim for less than 20 lines of code per function.
+- Name functions descriptively with a verb.
+- Use early returns to minimize complexity.
+- Extract complex logic to utility functions.
+- Leverage functional programming techniques: map, filter, reduce.
+- Use object parameters for multiple arguments.
+- Maintain a single level of abstraction.
+
+## Data Handling
+
+- Encapsulate data in composite types.
+- Prefer immutability.
+- Use readonly for unchanging data.
+- Use as const for literal values.
+- Validate data at the boundaries.
+- Use proper TypeScript types for API responses.
+
+## Error Handling
+
+- Use specific, descriptive error types.
+- Provide context in error messages.
+- Use global error handling where appropriate.
+- Log errors with sufficient context.
+- Implement proper error boundaries for React components.
+
+## Component Patterns
+
+- Create reusable, composable components.
+- Use proper TypeScript interfaces for props.
+- Implement proper default props and prop validation.
+- Use compound component patterns where appropriate.
+- Keep components small and focused on a single responsibility.
+
+## State Management
+
+- Use local state (useState) for component-specific state.
+- Use context for sharing state across multiple components.
+- Consider external state management (Zustand, TanStack Query) for complex scenarios.
+- Prefer server state management for data fetching.
+
+## Testing Considerations
+
+- Write components that are easy to test.
+- Use meaningful data-testid attributes.
+- Structure components to facilitate unit testing.
+- Separate logic from presentation for better testability.
