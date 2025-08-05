@@ -1,28 +1,35 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
-import Image from "next/image"
-import { motion, AnimatePresence } from "framer-motion"
-import { X, ChevronLeft, ChevronRight, ZoomIn, Loader2, ImageIcon, RefreshCw } from "lucide-react"
-import IntroSection from "@/components/sobre/intro-section"
-import quemsSomos from "@/assets/images/e_ebener_E_alan.jpg"
-import { Button } from "@/components/ui/button"
-import { useMediaQuery } from "@/hooks/use-media-query"
-import Head from "@/components/head"
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  X,
+  ChevronLeft,
+  ChevronRight,
+  ZoomIn,
+  Loader2,
+  ImageIcon,
+  RefreshCw,
+} from "lucide-react";
+import IntroSection from "@/components/sobre/intro-section";
+import quemsSomos from "@/assets/images/e_ebener_E_alan.jpg";
+import { Button } from "@/components/ui/button";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import Head from "@/components/head";
 
 // Import all images from the directory
-const importAll = (r: object) => (r as any).keys().map(r)
-const images = importAll((require as any).context("@/assets/images", false, /\.(png|jpe?g|svg)$/))
+const importAll = (r: object) => (r as any).keys().map(r);
+const images = importAll(
+  (require as any).context("@/assets/images", false, /\.(png|jpe?g|svg)$/)
+);
 
 // Define image type
 interface GalleryImage {
-  src: string
-  alt: string
-  category: string
-  width: number
-  height: number
-  aspectRatio: number
-  filename: string
+  src: string;
+  alt: string;
+  category: string;
+  filename: string;
 }
 
 // Define category mapping
@@ -31,21 +38,21 @@ const CATEGORY_PREFIXES = {
   c_: "Competições",
   g_: "Graduações",
   e_: "Eventos",
-}
+};
 
 // Process images to add metadata based on filename prefixes
 const processImages = (images: any[]): GalleryImage[] => {
   return images.map((image, index) => {
     // Get the filename from the path
-    const pathParts = image.default.src.split("/")
-    const filename = pathParts[pathParts.length - 1]
+    const pathParts = image.default.src.split("/");
+    const filename = pathParts[pathParts.length - 1];
 
     // Determine category based on prefix
-    let category = "Outros"
+    let category = "Outros";
     for (const [prefix, categoryName] of Object.entries(CATEGORY_PREFIXES)) {
       if (filename.toLowerCase().startsWith(prefix)) {
-        category = categoryName
-        break
+        category = categoryName;
+        break;
       }
     }
 
@@ -53,151 +60,152 @@ const processImages = (images: any[]): GalleryImage[] => {
     const altText = filename
       .replace(/^[a-z]_/i, "") // Remove prefix
       .replace(/\.(jpg|jpeg|png|gif|svg)$/i, "") // Remove extension
-      .replace(/-|_/g, " ") // Replace dashes and underscores with spaces
-
-    // Generate random dimensions for demonstration
-    // In a real app, you would get these from the actual images
-    const width = Math.floor(Math.random() * 500) + 500 // 500-1000px
-    const height = Math.floor(Math.random() * 500) + 500 // 500-1000px
-    const aspectRatio = width / height
+      .replace(/-|_/g, " "); // Replace dashes and underscores with spaces
 
     return {
       src: image.default,
       alt: altText || `Imagem de Taekwondo ${index + 1}`,
       category,
-      width,
-      height,
-      aspectRatio,
       filename,
-    }
-  })
-}
+    };
+  });
+};
 
 export default function Galeria() {
   // Process and shuffle images
-  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([])
-  const [filteredImages, setFilteredImages] = useState<GalleryImage[]>([])
-  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null)
-  const [selectedIndex, setSelectedIndex] = useState<number>(-1)
-  const [isLoading, setIsLoading] = useState(true)
-  const [activeFilter, setActiveFilter] = useState<string>("Todos")
-  const [categories, setCategories] = useState<string[]>([])
-  const [visibleCount, setVisibleCount] = useState(12)
+  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
+  const [filteredImages, setFilteredImages] = useState<GalleryImage[]>([]);
+  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number>(-1);
+  const [isLoading, setIsLoading] = useState(true);
+  const [activeFilter, setActiveFilter] = useState<string>("Todos");
+  const [categories, setCategories] = useState<string[]>([]);
+  const [visibleCount, setVisibleCount] = useState(12);
 
-  const isMobile = useMediaQuery("(max-width: 768px)")
-  const modalRef = useRef<HTMLDivElement>(null)
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  const modalRef = useRef<HTMLDivElement>(null);
 
   // Initialize gallery
   useEffect(() => {
-    const processedImages = processImages(images)
-    setGalleryImages(processedImages)
-    setFilteredImages(processedImages)
+    const processedImages = processImages(images);
+    setGalleryImages(processedImages);
+    setFilteredImages(processedImages);
 
     // Extract unique categories and sort them in a specific order
-    const allCategories = Array.from(new Set(processedImages.map((img) => img.category)))
+    const allCategories = Array.from(
+      new Set(processedImages.map((img) => img.category))
+    );
 
     // Define the preferred order
-    const preferredOrder = ["Treinos", "Competições", "Graduações", "Eventos", "Outros"]
+    const preferredOrder = [
+      "Treinos",
+      "Competições",
+      "Graduações",
+      "Eventos",
+      "Outros",
+    ];
 
     // Sort categories according to preferred order
     const sortedCategories = allCategories.sort((a, b) => {
-      const indexA = preferredOrder.indexOf(a)
-      const indexB = preferredOrder.indexOf(b)
-      return indexA - indexB
-    })
+      const indexA = preferredOrder.indexOf(a);
+      const indexB = preferredOrder.indexOf(b);
+      return indexA - indexB;
+    });
 
-    setCategories(sortedCategories)
+    setCategories(sortedCategories);
 
     // Simulate loading
     const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 1000)
+      setIsLoading(false);
+    }, 1000);
 
-    return () => clearTimeout(timer)
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
   // Handle filtering
   useEffect(() => {
-    let results = [...galleryImages]
+    let results = [...galleryImages];
 
     // Apply category filter
     if (activeFilter !== "Todos") {
-      results = results.filter((img) => img.category === activeFilter)
+      results = results.filter((img) => img.category === activeFilter);
     }
 
-    setFilteredImages(results)
-    setVisibleCount(12) // Reset pagination when filters change
-  }, [activeFilter, galleryImages])
+    setFilteredImages(results);
+    setVisibleCount(12); // Reset pagination when filters change
+  }, [activeFilter, galleryImages]);
 
   // Handle keyboard navigation in lightbox
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (!selectedImage) return
+      if (!selectedImage) return;
 
       switch (e.key) {
         case "ArrowLeft":
-          navigateImage(-1)
-          break
+          navigateImage(-1);
+          break;
         case "ArrowRight":
-          navigateImage(1)
-          break
+          navigateImage(1);
+          break;
         case "Escape":
-          closeModal()
-          break
+          closeModal();
+          break;
       }
-    }
+    };
 
-    window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [selectedImage, selectedIndex, filteredImages])
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedImage, selectedIndex, filteredImages]);
 
   // Handle click outside modal to close
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-        closeModal()
+        closeModal();
       }
-    }
+    };
 
     if (selectedImage) {
-      document.addEventListener("mousedown", handleClickOutside)
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [selectedImage])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [selectedImage]);
 
   // Navigation functions
   const openModal = (image: GalleryImage, index: number) => {
-    setSelectedImage(image)
-    setSelectedIndex(index)
-    document.body.style.overflow = "hidden" // Prevent scrolling when modal is open
-  }
+    setSelectedImage(image);
+    setSelectedIndex(index);
+    document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
+  };
 
   const closeModal = () => {
-    setSelectedImage(null)
-    setSelectedIndex(-1)
-    document.body.style.overflow = "" // Restore scrolling
-  }
+    setSelectedImage(null);
+    setSelectedIndex(-1);
+    document.body.style.overflow = ""; // Restore scrolling
+  };
 
   const navigateImage = (direction: number) => {
-    if (selectedIndex === -1) return
+    if (selectedIndex === -1) return;
 
-    const newIndex = (selectedIndex + direction + filteredImages.length) % filteredImages.length
-    setSelectedImage(filteredImages[newIndex])
-    setSelectedIndex(newIndex)
-  }
+    const newIndex =
+      (selectedIndex + direction + filteredImages.length) %
+      filteredImages.length;
+    setSelectedImage(filteredImages[newIndex]);
+    setSelectedIndex(newIndex);
+  };
 
   // Load more images
   const loadMore = () => {
-    setVisibleCount((prev) => prev + 12)
-  }
+    setVisibleCount((prev) => prev + 12);
+  };
 
   // Reset filters
   const resetFilters = () => {
-    setActiveFilter("Todos")
-  }
+    setActiveFilter("Todos");
+  };
 
   // Animation variants
   const containerVariants = {
@@ -208,7 +216,7 @@ export default function Galeria() {
         staggerChildren: 0.05,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -217,7 +225,7 @@ export default function Galeria() {
       y: 0,
       transition: { type: "spring", stiffness: 300, damping: 24 },
     },
-  }
+  };
 
   return (
     <div className="bg-black min-h-screen">
@@ -259,7 +267,9 @@ export default function Galeria() {
           >
             <div className="inline-flex items-center justify-center gap-2 bg-primary-500/20 px-4 py-2 rounded-full mb-4">
               <span className="w-2 h-2 rounded-full bg-primary-500"></span>
-              <span className="text-sm font-medium text-primary-500">Momentos especiais</span>
+              <span className="text-sm font-medium text-primary-500">
+                Momentos especiais
+              </span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white">
@@ -267,7 +277,8 @@ export default function Galeria() {
             </h2>
 
             <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-              Explore nossa coleção de fotos que capturam a essência do Taekwondo na Ebener TKD
+              Explore nossa coleção de fotos que capturam a essência do
+              Taekwondo na Ebener TKD
             </p>
           </motion.div>
 
@@ -276,7 +287,11 @@ export default function Galeria() {
             <div className="flex flex-wrap gap-2 justify-center md:justify-start">
               <Button
                 variant={activeFilter === "Todos" ? "default" : "outline"}
-                className={`rounded-full ${activeFilter === "Todos" ? "bg-primary-500 text-black hover:bg-primary-600" : "hover:text-primary-500"}`}
+                className={`rounded-full ${
+                  activeFilter === "Todos"
+                    ? "bg-primary-500 text-black hover:bg-primary-600"
+                    : "hover:text-primary-500"
+                }`}
                 onClick={() => setActiveFilter("Todos")}
               >
                 Todos
@@ -286,7 +301,11 @@ export default function Galeria() {
                 <Button
                   key={category}
                   variant={activeFilter === category ? "default" : "outline"}
-                  className={`rounded-full ${activeFilter === category ? "bg-primary-500 text-black hover:bg-primary-600" : "hover:text-primary-500"}`}
+                  className={`rounded-full ${
+                    activeFilter === category
+                      ? "bg-primary-500 text-black hover:bg-primary-600"
+                      : "hover:text-primary-500"
+                  }`}
                   onClick={() => setActiveFilter(category)}
                 >
                   {category}
@@ -315,9 +334,12 @@ export default function Galeria() {
           ) : filteredImages.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-20 text-center">
               <ImageIcon className="w-16 h-16 text-gray-600 mb-4" />
-              <h3 className="text-xl font-bold text-white mb-2">Nenhuma imagem encontrada</h3>
+              <h3 className="text-xl font-bold text-white mb-2">
+                Nenhuma imagem encontrada
+              </h3>
               <p className="text-gray-400 max-w-md">
-                Não encontramos imagens que correspondam aos seus filtros. Tente ajustar seus critérios de busca.
+                Não encontramos imagens que correspondam aos seus filtros. Tente
+                ajustar seus critérios de busca.
               </p>
               <Button variant="outline" className="mt-6" onClick={resetFilters}>
                 Limpar filtros
@@ -376,7 +398,11 @@ export default function Galeria() {
               {/* Load More Button */}
               {visibleCount < filteredImages.length && (
                 <div className="flex justify-center mt-12">
-                  <Button onClick={loadMore} variant="secondary" className="rounded-2xl">
+                  <Button
+                    onClick={loadMore}
+                    variant="secondary"
+                    className="rounded-2xl"
+                  >
                     Carregar mais imagens
                   </Button>
                 </div>
@@ -412,7 +438,6 @@ export default function Galeria() {
                   <span className="text-xs font-medium text-primary-500 bg-primary-500/10 px-2 py-1 rounded-full">
                     {selectedImage.category}
                   </span>
-                 
                 </div>
 
                 <div className="flex gap-2">
@@ -471,12 +496,22 @@ export default function Galeria() {
                 </div>
 
                 <div className="flex gap-2">
-                  <Button variant="default" size="sm" className="bg-primary-500 text-black hover:bg-primary-600" onClick={() => navigateImage(-1)}>
+                  <Button
+                    variant="default"
+                    size="sm"
+                    className="bg-primary-500 text-black hover:bg-primary-600"
+                    onClick={() => navigateImage(-1)}
+                  >
                     <ChevronLeft size={16} className="mr-1" />
                     Anterior
                   </Button>
 
-                  <Button variant="default" className="bg-primary-500 text-black hover:bg-primary-600 transition" size="sm" onClick={() => navigateImage(1)}>
+                  <Button
+                    variant="default"
+                    className="bg-primary-500 text-black hover:bg-primary-600 transition"
+                    size="sm"
+                    onClick={() => navigateImage(1)}
+                  >
                     Próxima
                     <ChevronRight size={16} className="ml-1" />
                   </Button>
@@ -487,6 +522,5 @@ export default function Galeria() {
         )}
       </AnimatePresence>
     </div>
-  )
+  );
 }
-

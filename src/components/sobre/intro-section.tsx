@@ -19,7 +19,7 @@ export default function IntroSection({
   title,
   subtitle,
   backgroundImage,
-  height = "h-screen",
+  height = "h-[99vh]",
   buttonText = "Explore more",
   buttonLink = "",
 }: IntroSectionProps) {
@@ -67,12 +67,13 @@ export default function IntroSection({
         className="absolute inset-2 rounded-3xl overflow-hidden"
         style={{ y: isMounted ? backgroundY : 0 }}
       >
-        <div className="w-full h-full">
+        <div className="relative w-full h-full">
           <Image
             src={backgroundImage || "/placeholder.svg"}
             alt="Background"
             className="object-cover rounded-b-3xl"
             fill
+            priority
             style={{
               objectFit: "cover",
             }}
@@ -84,7 +85,7 @@ export default function IntroSection({
 
       {/* Main content */}
       <motion.div
-        className="relative z-10 container mx-auto px-6 sm:px-8 flex flex-col items-start justify-center"
+        className="relative z-10 container mx-auto px-6 sm:px-24 flex flex-col items-start justify-center"
         style={{
           y: isMounted ? contentY : 0,
           opacity: isMounted ? opacity : 1,
@@ -92,7 +93,7 @@ export default function IntroSection({
       >
         <div className="max-w-4xl">
           {/* Title with word-by-word animation */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             {titleWords.map((word, index) => (
               <motion.span
                 key={index}
@@ -112,7 +113,7 @@ export default function IntroSection({
 
           {/* Subtitle */}
           <motion.p
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-200 mb-8 max-w-xl"
+            className="text-md sm:text-lg md:text-xl lg:text-2xl text-gray-200 mb-8 max-w-xl"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}

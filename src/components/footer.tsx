@@ -1,23 +1,30 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { Instagram, MapPin, Mail, Phone, Clock, ChevronRight } from "lucide-react"
-import { TbBrandTiktok, TbBrandWhatsapp } from "react-icons/tb"
-import { FaDev } from "react-icons/fa"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import {
+  Instagram,
+  MapPin,
+  Mail,
+  Phone,
+  Clock,
+  ChevronRight,
+} from "lucide-react";
+import { TbBrandTiktok, TbBrandWhatsapp } from "react-icons/tb";
+import { FaDev } from "react-icons/fa";
 
 export function Footer() {
-  const [anoAtual, setAnoAtual] = useState(new Date().getFullYear())
+  const [anoAtual, setAnoAtual] = useState(new Date().getFullYear());
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const currentDate = new Date()
+      const currentDate = new Date();
       if (currentDate.getMonth() === 0 && currentDate.getDate() === 1) {
-        setAnoAtual(currentDate.getFullYear())
+        setAnoAtual(currentDate.getFullYear());
       }
-    }, 86400000) // 86400000 é o número de milissegundos em um dia
-    return () => clearInterval(interval)
-  }, [])
+    }, 86400000); // 86400000 é o número de milissegundos em um dia
+    return () => clearInterval(interval);
+  }, []);
 
   // Quick links for navigation
   const quickLinks = [
@@ -25,8 +32,9 @@ export function Footer() {
     { name: "Sobre", href: "/sobre" },
     { name: "Planos", href: "/planos" },
     { name: "Fotos", href: "/galeria" },
+    { name: "Área do Aluno", href: "/login" },
     { name: "Contato", href: "/contato" },
-  ]
+  ];
 
   // Services links
   const servicesLinks = [
@@ -34,7 +42,7 @@ export function Footer() {
     { name: "Aulas para Adultos", href: "/servicos#adultos" },
     { name: "Treinos Personalizados", href: "/servicos#personalizados" },
     { name: "Competições", href: "/servicos#competicoes" },
-  ]
+  ];
 
   return (
     <footer className="bg-gradient-to-b from-secondary-900 to-secondary-950 text-white pt-12 pb-6 mt-8">
@@ -50,8 +58,9 @@ export function Footer() {
               </h3>
             </div>
             <p className="text-gray-300 mb-6 text-sm">
-              Academia de Taekwondo na Ilha do Governador, liderada pelo mestre Ebener dos Santos Pinto, oferecendo
-              treinamento de qualidade desde 2010.
+              Academia de Taekwondo na Ilha do Governador, liderada pelo mestre
+              Ebener dos Santos Pinto, oferecendo treinamento de qualidade desde
+              2010.
             </p>
             <div className="flex items-center space-x-4">
               <a
@@ -116,13 +125,20 @@ export function Footer() {
             </h3>
             <ul className="space-y-3">
               <li className="flex items-start">
-                <MapPin size={18} className="mr-3 text-primary-500 mt-1 flex-shrink-0" />
+                <MapPin
+                  size={18}
+                  className="mr-3 text-primary-500 mt-1 flex-shrink-0"
+                />
                 <span className="text-gray-300">
-                  Rua Abélia 197 - Jardim Guanabara, Ilha do Governador - Rio de Janeiro
+                  Rua Abélia 197 - Jardim Guanabara, Ilha do Governador - Rio de
+                  Janeiro
                 </span>
               </li>
               <li className="flex items-center">
-                <Phone size={18} className="mr-3 text-primary-500 flex-shrink-0" />
+                <Phone
+                  size={18}
+                  className="mr-3 text-primary-500 flex-shrink-0"
+                />
                 <a
                   href="tel:+5521981654811"
                   className="text-gray-300 hover:text-primary-500 transition-colors duration-200"
@@ -130,7 +146,6 @@ export function Footer() {
                   (21) 98165-4811
                 </a>
               </li>
-             
             </ul>
           </div>
         </div>
@@ -158,6 +173,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
-

@@ -1,57 +1,57 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useRef, useEffect } from "react"
-import Image from "next/image"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Autoplay, Navigation, Pagination, EffectFade } from "swiper/modules"
-import type { Swiper as SwiperType } from "swiper"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronRight, ChevronLeft, Calendar, Users, Trophy, ArrowRight } from "lucide-react"
-import Link from "next/link"
-
-// Import CSS
-import "swiper/css"
-import "swiper/css/navigation"
-import "swiper/css/pagination"
-import "swiper/css/effect-fade"
+import { useState, useRef, useEffect, useCallback } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ChevronRight,
+  ChevronLeft,
+  Calendar,
+  Users,
+  Trophy,
+  ArrowRight,
+} from "lucide-react";
+import Link from "next/link";
 
 // Import images
-import treinoPersonalizado from "@/assets/images/t_sombrinha.jpeg"
-import exameAmarelas from "@/assets/images/g_exame_amarelas.jpeg"
-import eventos from "@/assets/images/c_grand_Slam_duda_2025.jpg"
+import treinoPersonalizado from "@/assets/images/t_sombrinha.jpeg";
+import exameAmarelas from "@/assets/images/g_exame_amarelas.jpeg";
+import eventos from "@/assets/images/c_grand_Slam_duda_2025.jpg";
 
 // Define service interface
 interface Service {
-  id: number
-  title: string
-  description: string
-  image: any
-  icon: React.ReactNode
-  features: string[]
-  cta: string
-  ctaLink: string
+  id: number;
+  title: string;
+  description: string;
+  image: any;
+  icon: React.ReactNode;
+  features: string[];
+  cta: string;
+  ctaLink: string;
 }
 
 export default function ServicesSection() {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [isMobile, setIsMobile] = useState(false)
-  const swiperRef = useRef<SwiperType | null>(null)
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
 
   // Check if mobile on mount and window resize
   useEffect(() => {
     const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
+      setIsMobile(window.innerWidth < 768);
+    };
 
-    checkIfMobile()
-    window.addEventListener("resize", checkIfMobile)
+    checkIfMobile();
+    window.addEventListener("resize", checkIfMobile);
 
     return () => {
-      window.removeEventListener("resize", checkIfMobile)
-    }
-  }, [])
+      window.removeEventListener("resize", checkIfMobile);
+    };
+  }, []);
 
   // Services data
   const services: Service[] = [
@@ -61,7 +61,7 @@ export default function ServicesSection() {
       description:
         "Treinos adaptados ao seu nível e objetivo, com acompanhamento especializado para maximizar seu desenvolvimento.",
       image: treinoPersonalizado,
-      icon: <Calendar  />,
+      icon: <Calendar />,
       features: [
         "Avaliação individual de habilidades",
         "Acompanhamento constante",
@@ -76,7 +76,7 @@ export default function ServicesSection() {
       description:
         "Participe de aulas dinâmicas e motivadoras com instrutores qualificados em um ambiente de aprendizado coletivo.",
       image: exameAmarelas,
-      icon: <Users  />,
+      icon: <Users />,
       features: [
         "Ambiente motivador e colaborativo",
         "Desenvolvimento de espírito de equipe",
@@ -91,7 +91,7 @@ export default function ServicesSection() {
       description:
         "Envolva-se em competições para aprimorar suas habilidades e conhecer outros atletas do mundo do Taekwondo.",
       image: eventos,
-      icon: <Trophy  />,
+      icon: <Trophy />,
       features: [
         "Preparação para competições",
         "Eventos nacionais e estaduais",
@@ -100,16 +100,61 @@ export default function ServicesSection() {
       cta: "Galeria",
       ctaLink: "/galeria",
     },
-  ]
+  ];
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (!isAutoPlaying || isMobile) return;
+
+    autoPlayRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % services.length);
+    }, 5000);
+
+    return () => {
+      if (autoPlayRef.current) {
+        clearInterval(autoPlayRef.current);
+      }
+    };
+  }, [isAutoPlaying, isMobile, services.length]);
 
   // Navigation handlers
-  const goNext = () => {
-    swiperRef.current?.slideNext()
-  }
+  const goNext = useCallback(() => {
+    setIsAutoPlaying(false);
+    setActiveIndex((prev) => (prev + 1) % services.length);
 
-  const goPrev = () => {
-    swiperRef.current?.slidePrev()
-  }
+    // Resume autoplay after 10 seconds
+    setTimeout(() => setIsAutoPlaying(true), 10000);
+  }, [services.length]);
+
+  const goPrev = useCallback(() => {
+    setIsAutoPlaying(false);
+    setActiveIndex((prev) => (prev - 1 + services.length) % services.length);
+
+    // Resume autoplay after 10 seconds
+    setTimeout(() => setIsAutoPlaying(true), 10000);
+  }, [services.length]);
+
+  const goToSlide = useCallback((index: number) => {
+    setIsAutoPlaying(false);
+    setActiveIndex(index);
+
+    // Resume autoplay after 10 seconds
+    setTimeout(() => setIsAutoPlaying(true), 10000);
+  }, []);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft") {
+        goPrev();
+      } else if (event.key === "ArrowRight") {
+        goNext();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [goPrev, goNext]);
 
   return (
     <section className="mx-auto max-w-[95%] sm:max-w-[95%] md:container py-16 md:py-24 mt-8 sm:mt-12 relative">
@@ -130,7 +175,9 @@ export default function ServicesSection() {
         >
           <div className="inline-flex items-center justify-center gap-2 bg-primary-500/20 px-4 py-2 rounded-full mb-4">
             <div className="w-2 h-2 rounded-full bg-primary-500"></div>
-            <span className="text-sm font-medium text-primary-500">Treinamento especializado</span>
+            <span className="text-sm font-medium text-primary-500">
+              Treinamento especializado
+            </span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary-500 to-primary-600 bg-clip-text text-transparent">
@@ -138,7 +185,8 @@ export default function ServicesSection() {
           </h2>
 
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-            Conheça os diferentes tipos de treinamento e atividades que oferecemos para sua evolução no Taekwondo
+            Conheça os diferentes tipos de treinamento e atividades que
+            oferecemos para sua evolução no Taekwondo
           </p>
         </motion.div>
 
@@ -169,17 +217,24 @@ export default function ServicesSection() {
                       <div className="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-black">
                         {service.icon}
                       </div>
-                      <h3 className="text-xl font-bold text-white">{service.title}</h3>
+                      <h3 className="text-xl font-bold text-white">
+                        {service.title}
+                      </h3>
                     </div>
                   </div>
                 </div>
 
                 <div className="p-5">
-                  <p className="text-gray-300 mb-4 text-lg">{service.description}</p>
+                  <p className="text-gray-300 mb-4 text-lg">
+                    {service.description}
+                  </p>
 
                   <ul className="space-y-2 mb-5">
                     {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-gray-300">
+                      <li
+                        key={idx}
+                        className="flex items-start gap-2 text-gray-300"
+                      >
                         <ChevronRight className="size-5 text-primary-500 flex-shrink-0 mt-0.5" />
                         <span>{feature}</span>
                       </li>
@@ -198,118 +253,177 @@ export default function ServicesSection() {
           </div>
         )}
 
-        {/* Desktop view - Interactive slider */}
+        {/* Desktop view - Custom carousel with Framer Motion */}
         {!isMobile && (
-          <div className="relative">
-            <Swiper
-              effect="fade"
-              slidesPerView={1}
-              spaceBetween={30}
-              autoplay={{ delay: 5000, disableOnInteraction: false }}
-              modules={[Autoplay, Navigation, Pagination, EffectFade]}
-              onSwiper={(swiper) => (swiperRef.current = swiper)}
-              onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-              className="h-[500px]"
-              pagination={{
-                clickable: true,
-                el: ".swiper-pagination",
-                type: "bullets",
-              }}
-            >
-              {services.map((service) => (
-                <SwiperSlide key={service.id} className="h-[600px]">
+          <div className="relative" ref={carouselRef}>
+            {/* Carousel container */}
+            <div className="relative h-[500px] overflow-hidden rounded-2xl">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  initial={{ x: "100%", opacity: 0 }}
+                  animate={{ x: "0%", opacity: 1 }}
+                  exit={{ x: "-100%", opacity: 0 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 30,
+                    opacity: { duration: 0.3 },
+                  }}
+                  className="absolute inset-0 w-full h-full"
+                >
                   <div className="grid grid-cols-12 h-full gap-6 bg-secondary-800 rounded-2xl">
                     {/* Image column */}
                     <div className="col-span-6 relative rounded-2xl overflow-hidden shadow-2xl">
                       <Image
-                        src={service.image.src || "/placeholder.svg"}
-                        alt={service.title}
+                        src={
+                          services[activeIndex].image.src || "/placeholder.svg"
+                        }
+                        alt={services[activeIndex].title}
                         fill
-                        className="object-cover aspect-square h-"
+                        className="object-cover"
                         sizes="(max-width: 1200px) 50vw"
                         priority
                       />
                       <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent"></div>
 
                       {/* Floating badge */}
-                      <div className="absolute top-6 left-6 bg-primary-500/90 backdrop-blur-sm text-black font-bold py-2 px-4 rounded-full flex items-center gap-2">
-                        <div className="w-5 h-5">{service.icon}</div>
-                        <span>{service.title}</span>
-                      </div>
+                      <motion.div
+                        className="absolute top-6 left-6 bg-primary-500/90 backdrop-blur-sm text-black font-bold py-2 px-4 rounded-full flex items-center gap-2"
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{
+                          delay: 0.3,
+                          type: "spring",
+                          stiffness: 300,
+                        }}
+                      >
+                        <div className="w-5 h-5">
+                          {services[activeIndex].icon}
+                        </div>
+                        <span>{services[activeIndex].title}</span>
+                      </motion.div>
                     </div>
 
                     {/* Content column */}
-                    <div className="col-span-5 flex flex-col justify-center">
-                      <AnimatePresence mode="wait">
-                        <motion.div
-                          key={service.id}
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -20 }}
-                          transition={{ duration: 0.5 }}
-                          className="space-y-6"
-                        >
-                          <h3 className="text-3xl font-bold text-white">{service.title}</h3>
-                          <p className="text-gray-300">{service.description}</p>
+                    <div className="col-span-6 flex flex-col justify-center pr-8">
+                      <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2, duration: 0.5 }}
+                        className="space-y-6"
+                      >
+                        <h3 className="text-3xl font-bold text-white">
+                          {services[activeIndex].title}
+                        </h3>
+                        <p className="text-gray-300 text-lg">
+                          {services[activeIndex].description}
+                        </p>
 
-                          <div className="space-y-3 py-4 border-y border-gray-700">
-                            {service.features.map((feature, idx) => (
-                              <div key={idx} className="flex items-start gap-3">
+                        <div className="space-y-3 py-4 border-y border-gray-700">
+                          {services[activeIndex].features.map(
+                            (feature, idx) => (
+                              <motion.div
+                                key={idx}
+                                className="flex items-start gap-3"
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.4 + idx * 0.1 }}
+                              >
                                 <ChevronRight className="size-5 text-primary-500 flex-shrink-0 mt-0.5" />
                                 <span className="text-gray-300">{feature}</span>
-                              </div>
-                            ))}
-                          </div>
+                              </motion.div>
+                            )
+                          )}
+                        </div>
 
-                          <Link href={service.ctaLink}>
-                            <button className="bg-primary-500 hover:bg-primary-600 text-black font-medium py-3 px-6 mt-8 rounded-xl transition-colors duration-300 flex items-center gap-2 group">
-                              {service.cta}
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.6 }}
+                        >
+                          <Link href={services[activeIndex].ctaLink}>
+                            <button className="bg-primary-500 hover:bg-primary-600 text-black font-medium py-3 px-6 rounded-xl transition-colors duration-300 flex items-center gap-2 group">
+                              {services[activeIndex].cta}
                               <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
                             </button>
                           </Link>
                         </motion.div>
-                      </AnimatePresence>
+                      </motion.div>
                     </div>
                   </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
             {/* Custom navigation */}
             <div className="flex items-center justify-between absolute top-1/2 left-0 right-0 -translate-y-1/2 z-10 px-4">
-              <button
+              <motion.button
                 onClick={goPrev}
                 className="w-12 h-12 rounded-full bg-black/30 backdrop-blur-sm text-white flex items-center justify-center hover:bg-primary-500 hover:text-black transition-colors"
-                aria-label="Previous slide"
+                aria-label="Slide anterior"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <ChevronLeft className="size-6" />
-              </button>
-              <button
+              </motion.button>
+              <motion.button
                 onClick={goNext}
                 className="w-12 h-12 rounded-full bg-black/30 backdrop-blur-sm text-white flex items-center justify-center hover:bg-primary-500 hover:text-black transition-colors"
-                aria-label="Next slide"
+                aria-label="Próximo slide"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <ChevronRight className="size-6" />
-              </button>
+              </motion.button>
             </div>
 
-            {/* Custom pagination */}
+            {/* Custom pagination with progress indicators */}
             <div className="flex justify-center mt-8 gap-2">
               {services.map((_, index) => (
-                <button
+                <motion.button
                   key={index}
-                  onClick={() => swiperRef.current?.slideTo(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    activeIndex === index ? "bg-primary-500 w-10" : "bg-gray-600"
+                  onClick={() => goToSlide(index)}
+                  className={`relative h-3 rounded-full transition-all duration-300 ${
+                    activeIndex === index
+                      ? "bg-primary-500 w-10"
+                      : "bg-gray-600 w-3"
                   }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
+                  aria-label={`Ir para slide ${index + 1}`}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {/* Auto-play progress indicator */}
+                  {activeIndex === index && isAutoPlaying && (
+                    <motion.div
+                      className="absolute inset-0 bg-primary-400 rounded-full origin-left"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 5, ease: "linear" }}
+                    />
+                  )}
+                </motion.button>
               ))}
+            </div>
+
+            {/* Auto-play controls */}
+            <div className="flex justify-center mt-4 gap-2">
+              <motion.button
+                onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
+                  isAutoPlaying
+                    ? "bg-primary-500 text-black"
+                    : "bg-gray-600 text-white"
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {isAutoPlaying ? "Pausar" : "Reproduzir"}
+              </motion.button>
             </div>
           </div>
         )}
       </div>
     </section>
-  )
+  );
 }
-

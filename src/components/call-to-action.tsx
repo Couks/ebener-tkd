@@ -1,13 +1,19 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
-import { ArrowRight, CheckCircle2, MessageCircle, Calendar, Sparkles } from "lucide-react"
-import Link from "next/link"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  CheckCircle2,
+  MessageCircle,
+  Calendar,
+  Sparkles,
+} from "lucide-react";
+import Link from "next/link";
 
 export default function CallToActionSection() {
-  const [isHovering, setIsHovering] = useState(false)
+  const [isHovering, setIsHovering] = useState(false);
 
   return (
     <section className="py-16 md:py-20 relative overflow-hidden">
@@ -18,31 +24,6 @@ export default function CallToActionSection() {
         {/* Decorative elements */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl"></div>
-
-        {/* Animated particles */}
-        <div className="absolute inset-0 overflow-hidden opacity-20">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 rounded-full bg-primary-500"
-              initial={{
-                x: Math.random() * 100 - 50 + "%",
-                y: Math.random() * 100 + "%",
-                opacity: 0.3,
-              }}
-              animate={{
-                x: [Math.random() * 100 - 50 + "%", Math.random() * 100 - 50 + "%", Math.random() * 100 - 50 + "%"],
-                y: [Math.random() * 100 + "%", Math.random() * 100 + "%", Math.random() * 100 + "%"],
-                opacity: [0.3, 0.8, 0.3],
-              }}
-              transition={{
-                duration: 10 + Math.random() * 20,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "linear",
-              }}
-            />
-          ))}
-        </div>
       </div>
 
       <div className="relative z-10 container mx-auto px-4 md:px-8">
@@ -58,7 +39,9 @@ export default function CallToActionSection() {
               className="inline-flex items-center gap-2 bg-primary-500/20 px-4 py-2 rounded-full mb-2"
             >
               <Sparkles className="text-primary-500 h-4 w-4" />
-              <span className="text-sm font-medium text-primary-500">Comece agora</span>
+              <span className="text-sm font-medium text-primary-500">
+                Comece agora
+              </span>
             </motion.div>
 
             {/* Heading */}
@@ -83,8 +66,8 @@ export default function CallToActionSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              Entre em contato conosco hoje e agende uma aula experimental gratuita! Descubra como o Taekwondo pode
-              transformar sua vida.
+              Entre em contato conosco hoje e agende uma aula experimental
+              gratuita! Descubra como o Taekwondo pode transformar sua vida.
             </motion.p>
 
             {/* Benefits */}
@@ -133,7 +116,10 @@ export default function CallToActionSection() {
                     Agende pelo WhatsApp
                     <motion.div
                       animate={isHovering ? { x: [0, 5, 0] } : { x: 0 }}
-                      transition={{ repeat: isHovering ? Number.POSITIVE_INFINITY : 0, duration: 1 }}
+                      transition={{
+                        repeat: isHovering ? Number.POSITIVE_INFINITY : 0,
+                        duration: 1,
+                      }}
                     >
                       <ArrowRight className="h-5 w-5" />
                     </motion.div>
@@ -155,5 +141,5 @@ export default function CallToActionSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

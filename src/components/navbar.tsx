@@ -16,15 +16,23 @@ const navigation = [
     name: "Home",
     href: "/",
     ariaLabel: "Ir para a página incial",
+    highlight: false,
   },
-  { name: "Sobre", href: "/sobre", ariaLabel: "Ir para a página sobre" },
-  { name: "Planos", href: "/planos", ariaLabel: "Ir para a página de planos" },
+  { name: "Sobre", href: "/sobre", ariaLabel: "Ir para a página sobre", highlight: false },
+  { name: "Planos", href: "/planos", ariaLabel: "Ir para a página de planos", highlight: false },
   {
     name: "Contato",
     href: "/contato",
     ariaLabel: "Ir para a página de contato",
+    highlight: false
   },
-  { name: "Fotos", href: "/galeria", ariaLabel: "Ir para a galeria de fotos" },
+  { name: "Fotos", href: "/galeria", ariaLabel: "Ir para a galeria de fotos", hightlight: false },
+  // {
+  //   name: "Área do Aluno",
+  //   href: "/login",
+  //   ariaLabel: "Ir para a área do aluno",
+  //   highlight: true,
+  // },
 ];
 
 function classNames(...classes: string[]) {
@@ -33,32 +41,31 @@ function classNames(...classes: string[]) {
 
 export function NavBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-   const [hasScrolled, setHasScrolled] = useState(false);
-   const controls = useAnimation();
- 
-   useEffect(() => {
-     const handleScroll = () => {
-       setHasScrolled(window.scrollY > 0);
-     };
- 
-     window.addEventListener("scroll", handleScroll);
-     return () => window.removeEventListener("scroll", handleScroll);
-   }, []);
- 
-   useEffect(() => {
-     controls.start({ opacity: 1, y: hasScrolled ? 0 : 0 });
-   }, [hasScrolled, controls]);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const controls = useAnimation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    controls.start({ opacity: 1, y: hasScrolled ? 0 : 0 });
+  }, [hasScrolled, controls]);
 
   return (
     <motion.nav
       initial={{ opacity: 1, y: 0 }}
       animate={controls}
       transition={{ duration: 0.5 }}
-      className={`fixed w-screen z-40 transition-all duration-300 ${
-        hasScrolled ? "bg-black/50 backdrop-blur-md" : "bg-transparent"
-      }`}
+      className={`fixed w-screen z-40 transition-all duration-300 ${hasScrolled ? "bg-black/50 backdrop-blur-md" : "bg-transparent"
+        }`}
     >
-      <div className="container mx-auto max-w-[90%] px-6 py-4">
+      <div className="container mx-auto md:max-w-[90%] px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <a href="/" className="flex items-center">
@@ -67,14 +74,12 @@ export function NavBar() {
                 alt="Logo"
                 src={logo}
                 loading="lazy"
-                className={`${hasScrolled ? "w-8 h-8" : "w-24 h-24"} transition-all duration-300`}
-
-
+                className={`${hasScrolled ? "w-8 h-8" : "w-16 h-16"
+                  } transition-all duration-300`}
               />
               <span
-                className={`text-white hover:text-primary-500 transition-colors font-bold text-${
-                  hasScrolled ? "xl" : "2xl md:4xl"
-                } transition-all duration-200`}
+                className={`text-white hover:text-primary-500 transition-colors font-bold text-${hasScrolled ? "xl" : "2xl md:4xl"
+                  } transition-all duration-200`}
               >
                 Ebener TKD
               </span>
@@ -89,8 +94,10 @@ export function NavBar() {
                 href={item.href}
                 aria-label={item.ariaLabel}
                 className={classNames(
-                  "text-white hover:text-primary-500 transition-colors",
-                  "text-md font-medium "
+                  item.highlight
+                    ? "text-primary-500 font-semibold border border-primary-500 px-4 py-1 rounded-md hover:bg-primary-500 hover:text-black transition-colors"
+                    : "text-white hover:text-primary-500 transition-colors",
+                  "text-md font-medium"
                 )}
               >
                 {item.name}
@@ -159,7 +166,11 @@ export function NavBar() {
                 key={item.name}
                 href={item.href}
                 aria-label={item.ariaLabel}
-                className="text-white text-2xl font-medium"
+                className={
+                  item.highlight
+                    ? "text-primary-500 text-2xl font-semibold"
+                    : "text-white text-2xl font-medium"
+                }
                 onClick={() => setSidebarOpen(false)}
               >
                 {item.name}

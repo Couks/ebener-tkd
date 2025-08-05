@@ -9,7 +9,6 @@ Site institucional desenvolvido para a Ebener TKD, a maior academia de Taekwondo
 - **Next.js 14** - Framework React com Server-Side Rendering
 - **TypeScript** - Superset JavaScript com tipagem estática
 - **Tailwind CSS** - Framework CSS utilitário
-- **Swiper** - Biblioteca para criação de carrosséis
 - **Radix UI** - Biblioteca de componentes acessíveis
 - **Lucide Icons** - Biblioteca de ícones
 
