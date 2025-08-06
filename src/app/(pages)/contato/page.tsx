@@ -15,7 +15,7 @@ import {
   Loader2,
 } from "lucide-react";
 import IntroSection from "@/components/sobre/intro-section";
-import samboderian from "@/assets/images/t_foto_descontraida.jpeg";
+import samboderian from "@/assets/images/t_grupo.jpeg";
 import Link from "next/link";
 import Head from "@/components/head";
 

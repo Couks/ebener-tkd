@@ -172,7 +172,7 @@ export default function BenefitsSection() {
                 <div className="p-6 flex flex-col h-full">
                   <div className="mb-5 flex items-center gap-4">
                     <div
-                      className={`w-12 h-12 rounded-xl bg-gradient-to-br ${benefit.color} text-white flex items-center justify-center`}
+                      className={`w-12 h-12 rounded-xl bg-gradient-to-br p-2 ${benefit.color} text-white flex items-center justify-center`}
                     >
                       {benefit.icon}
                     </div>
@@ -185,12 +185,7 @@ export default function BenefitsSection() {
                     {benefit.description}
                   </p>
 
-                  <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center text-primary-500">
-                    <CheckCircle2 className="mr-2 size-4" />
-                    <span className="text-sm font-medium">
-                      Benefício comprovado
-                    </span>
-                  </div>
+                  
                 </div>
 
                 {/* Hover effect */}

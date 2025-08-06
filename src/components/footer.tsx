@@ -26,29 +26,11 @@ export function Footer() {
     return () => clearInterval(interval);
   }, []);
 
-  // Quick links for navigation
-  const quickLinks = [
-    { name: "Início", href: "/" },
-    { name: "Sobre", href: "/sobre" },
-    { name: "Planos", href: "/planos" },
-    { name: "Fotos", href: "/galeria" },
-    { name: "Área do Aluno", href: "/login" },
-    { name: "Contato", href: "/contato" },
-  ];
-
-  // Services links
-  const servicesLinks = [
-    { name: "Aulas para Crianças", href: "/servicos#criancas" },
-    { name: "Aulas para Adultos", href: "/servicos#adultos" },
-    { name: "Treinos Personalizados", href: "/servicos#personalizados" },
-    { name: "Competições", href: "/servicos#competicoes" },
-  ];
-
   return (
     <footer className="bg-gradient-to-b from-secondary-900 to-secondary-950 text-white pt-12 pb-6 mt-8">
       <div className="container mx-auto px-4 md:px-6">
         {/* Main footer content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"> {/* Alterado para md:grid-cols-2 */}
           {/* Column 1: About */}
           <div>
             <div className="mb-4">
@@ -93,31 +75,10 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Quick Links */}
-          <div>
-            <h3 className="text-xl font-bold mb-4 text-white relative inline-block">
-              Links Rápidos
-              <span className="absolute -bottom-1 left-0 w-12 h-1 bg-primary-500"></span>
-            </h3>
-            <ul className="space-y-2">
-              {quickLinks.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-300 hover:text-primary-500 transition-colors duration-200 flex items-center group"
-                  >
-                    <ChevronRight
-                      size={14}
-                      className="mr-2 text-primary-500 opacity-0 group-hover:opacity-100 transition-opacity"
-                    />
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Column 2: Quick Links (Removed) */}
+          {/* Column 3: Services Links (Removed) */}
 
-          {/* Column 4: Contact Info */}
+          {/* Column for Contact Info (now the second column) */}
           <div>
             <h3 className="text-xl font-bold mb-4 text-white relative inline-block">
               Contato

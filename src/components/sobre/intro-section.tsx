@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
@@ -19,7 +19,7 @@ export default function IntroSection({
   title,
   subtitle,
   backgroundImage,
-  height = "h-[99vh]",
+  height = "h-[90vh]",
   buttonText = "Explore more",
   buttonLink = "",
 }: IntroSectionProps) {
@@ -40,23 +40,6 @@ export default function IntroSection({
   // Split title into words for staggered animation
   const titleWords = title.split(" ");
 
-  // Scroll indicator animation
-  const scrollIndicatorVariants = {
-    initial: { y: -10, opacity: 0 },
-    animate: {
-      y: [0, 10, 0],
-      opacity: 1,
-      transition: {
-        y: {
-          repeat: Number.POSITIVE_INFINITY,
-          duration: 1.5,
-          ease: "easeInOut",
-        },
-        opacity: { duration: 0.5 },
-      },
-    },
-  };
-
   return (
     <section
       ref={sectionRef}
@@ -71,7 +54,7 @@ export default function IntroSection({
           <Image
             src={backgroundImage || "/placeholder.svg"}
             alt="Background"
-            className="object-cover rounded-b-3xl"
+            className="object-cover rounded-b-3xl object-top"
             fill
             priority
             style={{
@@ -93,7 +76,7 @@ export default function IntroSection({
       >
         <div className="max-w-4xl">
           {/* Title with word-by-word animation */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
             {titleWords.map((word, index) => (
               <motion.span
                 key={index}
@@ -142,17 +125,6 @@ export default function IntroSection({
             </Link>
           </motion.div>
         </div>
-      </motion.div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 right-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center"
-        initial="initial"
-        animate="animate"
-        variants={scrollIndicatorVariants}
-      >
-        <span className="text-sm font-medium mb-2 text-gray-300">Scroll</span>
-        <ChevronDown className="w-6 h-6 text-primary-500" />
       </motion.div>
     </section>
   );

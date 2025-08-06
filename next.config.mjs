@@ -1,13 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    devIndicators: {
+        buildActivity: false,
+    },
     images: {
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'oystr.com.br',
+                port: '',
+                pathname: '/**',
+            },
+        ],
     },
-    devIndicators: false,
-    images: {
-        remotePatterns: [new URL('https://oystr.com.br/**')]
-    }
 };
 
 export default nextConfig;

@@ -173,28 +173,34 @@ export default function Planos() {
   // Adicionar os dados de horários
   const classSchedules: ClassSchedule[] = [
     {
+      days: "Segundas",
+      time: "16:30 às 17:30",
+      group: "T21",
+      icon: <Clock />,
+    },
+    {
       days: "Segundas e Quartas",
       time: "18:00 às 19:00",
       group: "Infantil",
-      icon: <Baby />, // Icon for Infantil
+      icon: <Baby />,
     },
     {
       days: "Segundas e Quartas",
       time: "19:00 às 20:20",
       group: "Sub 21 e Adulto",
-      icon: <Users />, // Icon for Sub 21
+      icon: <Users />,
     },
     {
-      days: "Segundas e Quartas",
-      time: "20:30 às 21:50",
-      group: "Adulto",
-      icon: <User />, // Icon for Adulto
+      days: "Terças e Quintas",
+      time: "18:00 às 19:00",
+      group: "Iniciantes",
+      icon: <Clock />,
     },
     {
       days: "Terças e Quintas",
       time: "19:00 às 20:20",
       group: "Sub 21 e Adulto",
-      icon: <Users />, 
+      icon: <Users />,
     },
   ];
 
@@ -249,7 +255,7 @@ export default function Planos() {
       />   
   
       {/* Class Schedule Section */}
-      <section className="py-16 bg-secondary-900/50">
+      <section className="py-16">
         <div className="container mx-auto px-4 md:px-8">
           <motion.div
             className="text-center mb-12"

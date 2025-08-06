@@ -23,12 +23,6 @@ export default function Sobre() {
   const pageRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
 
-  // Scroll animations
-  const { scrollYProgress } = useScroll({
-    target: timelineRef,
-    offset: ["start end", "end start"],
-  });
-
   useEffect(() => {
     const interval = setInterval(() => {
       const currentDate = new Date();

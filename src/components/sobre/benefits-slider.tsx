@@ -71,12 +71,7 @@ export default function BenefitsSlider({ benefits }: BenefitsSliderProps) {
                 <p className="text-gray-600 dark:text-gray-300 flex-grow">
                   {benefit.description}
                 </p>
-                <div className="mt-4 flex items-center text-primary-500">
-                  <CheckCircle2 className="mr-2 size-5" />
-                  <span className="text-sm font-medium">
-                    Benefício comprovado
-                  </span>
-                </div>
+                
               </div>
             </div>
           ))}

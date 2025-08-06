@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Chakra_Petch } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { QueryProvider } from "@/lib/providers/query-provider";
+// import { QueryProvider } from "@/lib/providers/query-provider";
 import { Toaster } from "@/components/ui/sonner";
-import SessionProvider from "@/lib/providers/session-provider";
+// import SessionProvider from "@/lib/providers/session-provider";
 
 const chakraPetch = Chakra_Petch({
   subsets: ["latin"],
@@ -62,12 +62,12 @@ export default function RootLayout({
         />
       </head>
       <body className={chakraPetch.className}>
-        <SessionProvider>
-          <QueryProvider>
+        {/* <SessionProvider> */}
+          {/* <QueryProvider> */}
             {children}
             <Toaster />
-          </QueryProvider>
-        </SessionProvider>
+          {/* </QueryProvider> */}
+        {/* </SessionProvider> */}
       </body>
       {/* <GoogleAnalytics gaId="G-L15P6FXYCS" /> */}
     </html>

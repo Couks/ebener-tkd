@@ -26,7 +26,7 @@ const navigation = [
     ariaLabel: "Ir para a página de contato",
     highlight: false
   },
-  { name: "Fotos", href: "/galeria", ariaLabel: "Ir para a galeria de fotos", hightlight: false },
+  { name: "Eventos", href: "/galeria", ariaLabel: "Ir para a galeria de fotos", hightlight: false },
   // {
   //   name: "Área do Aluno",
   //   href: "/login",
