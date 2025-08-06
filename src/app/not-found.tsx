@@ -57,7 +57,7 @@ export default function NotFound() {
                 Voltar para o início
               </motion.button>
             </Link>
-            <Link href="javascript:history.back()">
+            <Link href="#" onClick={() => window.history.back()}>
               <motion.button
                 className="w-full sm:w-auto bg-secondary-700 hover:bg-secondary-600 rounded-xl text-white text-lg font-bold px-8 py-4 flex items-center justify-center gap-2 group transition-colors border border-secondary-600"
                 whileHover={{
