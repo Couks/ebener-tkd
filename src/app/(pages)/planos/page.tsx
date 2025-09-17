@@ -22,6 +22,7 @@ import IntroSection from "@/components/sobre/intro-section";
 import precosImage from "@/assets/images/e_quebracoco.jpeg";
 import Link from "next/link";
 import Head from "@/components/head";
+import Script from "next/script";
 
 // Define plan interface
 interface Plan {
@@ -164,6 +165,13 @@ export default function Planos() {
       answer:
         "As graduações ocorrem periodicamente, geralmente a cada 6 meses, dependendo da frequência e evolução do aluno. Cada faixa representa um nível de conhecimento e habilidade.",
     },
+    {
+      question:
+        "O Taekwondo é uma boa opção para quem procura uma academia de luta para defesa pessoal?",
+      answer:
+        "Sim! O Taekwondo é uma arte marcial extremamente eficaz para autodefesa. Nossas aulas focam em técnicas de chutes, socos e bloqueios que aumentam sua capacidade de reação, agilidade e confiança em situações reais.",
+    },
+
   ];
 
   // Adicionar um novo array de dados para os horários das aulas logo após a definição da constante faqs
@@ -217,6 +225,19 @@ export default function Planos() {
     {} as Record<string, Omit<ClassSchedule, "days">[]>,
   );
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   // Toggle FAQ
   const toggleFaq = (index: number) => {
     setActiveFaq(activeFaq === index ? null : index);
@@ -265,6 +286,12 @@ export default function Planos() {
         backgroundImage={precosImage.src}
         buttonText="Ver Planos"
         buttonLink="#planos"
+      />
+
+      <Script
+        id="faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       {/* Class Schedule Section */}

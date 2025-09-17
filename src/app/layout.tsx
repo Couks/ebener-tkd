@@ -18,13 +18,16 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Taekwondo na Ilha do Governador | Ebener TKD",
-  description: "Aulas para todas as idades com professores certificados!",
+  title: "Academia de Luta na Ilha do Governador | Aulas de Taekwondo - Ebener TKD",
+  description:
+    "Procurando uma academia de luta no RJ? A Ebener TKD oferece aulas de Taekwondo para todas as idades. Aumente sua disciplina, confiança e preparo físico. Agende uma aula experimental!",
   openGraph: {
     type: "website",
     url: "https://ebenertkd.com.br/",
-    title: "Taekwondo na Ilha do Governador | Ebener TKD",
-    description: "Aulas para todas as idades com professores certificados!",
+    title:
+      "Academia de Luta na Ilha do Governador | Aulas de Taekwondo - Ebener TKD",
+    description:
+      "Procurando uma academia de luta no RJ? A Ebener TKD oferece aulas de Taekwondo para todas as idades. Aumente sua disciplina, confiança e preparo físico. Agende uma aula experimental!",
     images: [
       {
         url: "https://ebenertkd.com.br/favicon.ico",
@@ -35,6 +38,9 @@ export const metadata: Metadata = {
     ],
   },
   keywords: [
+    "Academia de Luta",
+    "Arte Marcial",
+    "Defesa Pessoal",
     "Taekwondo",
     "Academia",
     "Ilha do Governador",

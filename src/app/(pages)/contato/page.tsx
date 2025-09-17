@@ -18,6 +18,7 @@ import IntroSection from "@/components/sobre/intro-section";
 import samboderian from "@/assets/images/t_grupo.jpeg";
 import Link from "next/link";
 import Head from "@/components/head";
+import Script from "next/script";
 
 export default function Contato() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -26,6 +27,30 @@ export default function Contato() {
   const [nome, setNome] = useState("");
   const [telefone, setTelefone] = useState("");
   const [mensagem, setMensagem] = useState("");
+
+  const localBusinessJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SportsActivityLocation",
+    name: "Ebener TKD | Academia de Taekwondo",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Rua Abélia 197",
+      addressLocality: "Jardim Guanabara",
+      addressRegion: "RJ",
+      postalCode: "21940-010",
+      addressCountry: "BR",
+    },
+    telephone: "+55-21-98165-4811",
+    url: "https://ebenertkd.com.br/contato",
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: -22.8088116,
+      longitude: -43.1971305,
+    },
+    openingHours: "Mo,We 16:30-20:20, Tu,Th 18:00-20:20",
+    image: "https://ebenertkd.com.br/favicon.ico",
+    priceRange: "$$",
+  };
 
   const formRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<HTMLDivElement>(null);
@@ -132,6 +157,12 @@ export default function Contato() {
         backgroundImage={samboderian.src}
         buttonText="Enviar uma mensagem"
         buttonLink="#fale-conosco"
+      />
+
+      <Script
+        id="local-business-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
       />
 
       <section

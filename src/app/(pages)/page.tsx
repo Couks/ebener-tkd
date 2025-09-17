@@ -12,8 +12,8 @@ export default function Home() {
   return (
     <>
       <IntroSection
-        title="Academia de Taekwondo na Ilha do Governador"
-        subtitle="A maior e mais tradicional academia de artes marciais da região. Metodologia exclusiva e professores certificados."
+        title="Sua Academia de Luta na Ilha do Governador"
+        subtitle="Transforme seu corpo e mente com o Taekwondo. Oferecemos um caminho de disciplina, autoconfiança e condicionamento físico para todas as idades. Mais que uma arte marcial, um estilo de vida."
         backgroundImage={bannerHomepage.src}
         buttonText="Agende uma Aula Grátis"
         buttonLink="/planos"

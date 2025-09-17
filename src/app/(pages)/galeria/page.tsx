@@ -13,6 +13,7 @@ import IntroSection from "@/components/sobre/intro-section";
 import quemSomos from "@/assets/images/t_2025-02-12.jpeg";
 import Head from "@/components/head";
 import { LightboxModal } from "@/components/ui/lightbox"; // Import the new Lightbox
+import Script from "next/script";
 
 const introBgImage = quemSomos;
 
@@ -41,6 +42,23 @@ export default function Galeria() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxStartIndex, setLightboxStartIndex] = useState(0);
   const [lightboxImages, setLightboxImages] = useState<string[]>([]);
+
+  const eventJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: events.map((event, index) => ({
+      "@type": "Event",
+      name: event.title,
+      startDate: event.date,
+      description: event.description,
+      image: event.imageUrls,
+      location: {
+        "@type": "Place",
+        name: "Ebener TKD",
+        address: "Rua Abélia 197, Jardim Guanabara, Rio de Janeiro - RJ",
+      },
+    })),
+  };
 
   // Fetch events from API
   useEffect(() => {
@@ -121,6 +139,12 @@ export default function Galeria() {
         backgroundImage={introBgImage.src}
         buttonText="Ver Eventos"
         buttonLink="#eventos"
+      />
+
+      <Script
+        id="event-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }}
       />
 
       {/* Events Section */}

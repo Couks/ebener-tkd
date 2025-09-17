@@ -42,19 +42,28 @@ function classNames(...classes: string[]) {
 export function NavBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const controls = useAnimation();
 
   useEffect(() => {
+    setIsMounted(true);
+
     const handleScroll = () => {
       setHasScrolled(window.scrollY > 0);
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Call once to set initial state
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const navClasses = isMounted && hasScrolled ? "bg-black/50 backdrop-blur-md" : "bg-transparent";
+  const logoSize = isMounted && hasScrolled ? "w-8 h-8" : "w-16 h-16";
+  const titleSize = isMounted && hasScrolled ? "xl" : "2xl md:4xl";
+
   useEffect(() => {
-    controls.start({ opacity: 1, y: hasScrolled ? 0 : 0 });
+    controls.start({ opacity: 1, y: 0 });
   }, [hasScrolled, controls]);
 
   return (
@@ -62,8 +71,7 @@ export function NavBar() {
       initial={{ opacity: 1, y: 0 }}
       animate={controls}
       transition={{ duration: 0.5 }}
-      className={`fixed w-screen z-40 transition-all duration-100 ${hasScrolled ? "bg-black/50 backdrop-blur-md" : "bg-transparent"
-        }`}
+      className={`fixed w-screen z-40 transition-all duration-300 ${navClasses}`}
     >
       <div className="container mx-auto py-4">
         <div className="flex items-center justify-between">
@@ -74,12 +82,10 @@ export function NavBar() {
                 alt="Logo"
                 src={logo}
                 loading="lazy"
-                className={`${hasScrolled ? "w-8 h-8" : "w-16 h-16"
-                  } transition-all duration-100`}
+                className={`${logoSize} transition-all duration-300`}
               />
               <span
-                className={`text-white hover:text-primary-500 transition-colors font-bold text-${hasScrolled ? "xl" : "2xl md:4xl"
-                  } transition-all duration-100`}
+                className={`text-white hover:text-primary-500 transition-colors font-bold text-${titleSize} transition-all duration-300`}
               >
                 Ebener TKD
               </span>
