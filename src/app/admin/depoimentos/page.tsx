@@ -72,7 +72,6 @@ export default function DepoimentosPage() {
 
         // Optimistic UI update
         setTestimonials(prev => prev.filter(t => t.id !== testimonialToDelete.id));
-        setTestimonialToDelete(null);
 
         try {
             const response = await fetch(`/api/admin/testimonials/${testimonialToDelete.id}`, {

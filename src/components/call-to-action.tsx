@@ -111,7 +111,7 @@ export default function CallToActionSection() {
                   target="_blank"
                   className="block"
                 >
-                  <Button className="bg-primary-500 hover:bg-primary-600 text-black font-bold text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-primary-500/30 transition-all duration-300 flex items-center gap-3 min-w-64">
+                  <Button className="bg-primary-500 hover:bg-primary-600 text-black font-bold text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-primary-500/30 transition-all duration-200 flex items-center gap-3 min-w-64">
                     <MessageCircle className="h-5 w-5" />
                     Agende pelo WhatsApp
                     <motion.div
@@ -130,7 +130,7 @@ export default function CallToActionSection() {
               <Link href="/planos" className="block">
                 <Button
                   variant="outline"
-                  className="bg-transparent border-2 border-gray-500 hover:border-primary-500 text-white hover:text-primary-500 font-medium text-lg px-8 py-6 rounded-xl transition-all duration-300 flex items-center gap-3 min-w-64"
+                  className="bg-transparent border-2 border-gray-500 hover:border-primary-500 text-white hover:text-primary-500 font-medium text-lg px-8 py-6 rounded-xl transition-all duration-200 flex items-center gap-3 min-w-64"
                 >
                   <Calendar className="h-5 w-5" />
                   Ver horários de aulas

@@ -51,7 +51,7 @@ export default function BenefitsSlider({ benefits }: BenefitsSliderProps) {
       <div className="relative w-full max-w-md mx-auto h-[400px] overflow-hidden rounded-2xl">
         {/* Slides */}
         <div
-          className="flex transition-transform duration-500 ease-in-out h-full"
+          className="flex transition-transform duration-200 ease-in-out h-full"
           style={{ transform: `translateX(-${activeIndex * 100}%)` }}
         >
           {benefits.map((benefit) => (
@@ -71,7 +71,7 @@ export default function BenefitsSlider({ benefits }: BenefitsSliderProps) {
                 <p className="text-gray-600 dark:text-gray-300 flex-grow">
                   {benefit.description}
                 </p>
-                
+
               </div>
             </div>
           ))}
@@ -125,7 +125,7 @@ export default function BenefitsSlider({ benefits }: BenefitsSliderProps) {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+            className={`w-2.5 h-2.5 rounded-full transition-all duration-200 ${
               activeIndex === index
                 ? "bg-primary-500 w-8"
                 : "bg-gray-300 dark:bg-gray-700"

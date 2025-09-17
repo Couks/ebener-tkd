@@ -59,7 +59,6 @@ export default function AdminGaleriaPage() {
 
     // Optimistic UI update
     setEvents(prevEvents => prevEvents.filter(event => event.id !== eventToDelete));
-    setEventToDelete(null);
 
     try {
       const response = await fetch(`/api/admin/galeria/${eventToDelete}`, {
@@ -131,7 +130,7 @@ export default function AdminGaleriaPage() {
                   src={event.imageUrls?.[0] || '/placeholder.svg'}
                   alt={event.title}
                   fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="object-cover transition-transform duration-200 group-hover:scale-105"
                 />
                 <div className="absolute top-2 right-2 z-20">
                   <DropdownMenu>

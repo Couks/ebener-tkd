@@ -63,29 +63,11 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     for (const image of newImages) {
       const buffer = await image.arrayBuffer();
 
-      const MAX_SIZE_BYTES = 500 * 1024; // 500KB
-      let quality = 80;
-      let webpBuffer;
-
-      // Initial compression attempt
-      webpBuffer = await sharp(buffer)
-        .resize({ width: 1920, withoutEnlargement: true }) // Resize large images
-        .webp({ quality })
+      // Resize to a max width of 1920px and convert to WebP with a fixed quality of 80
+      const webpBuffer = await sharp(buffer)
+        .resize({ width: 1920, withoutEnlargement: true })
+        .webp({ quality: 80 })
         .toBuffer();
-
-      // If the image is too large, iteratively reduce the quality
-      while (webpBuffer.byteLength > MAX_SIZE_BYTES && quality > 10) {
-        quality -= 10; // Reduce quality by 10
-        webpBuffer = await sharp(buffer)
-          .resize({ width: 1920, withoutEnlargement: true })
-          .webp({ quality })
-          .toBuffer();
-      }
-
-      // Optional: Check if the image is still too large and handle it
-      if (webpBuffer.byteLength > MAX_SIZE_BYTES) {
-        console.warn(`Image "${image.name}" could not be compressed under 500KB. Final size: ${Math.round(webpBuffer.byteLength / 1024)}KB`);
-      }
 
       const imageName = `${Date.now()}-${image.name.split('.')[0]}.webp`;
 

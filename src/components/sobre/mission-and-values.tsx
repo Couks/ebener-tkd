@@ -137,7 +137,7 @@ export default function MissionAndValues() {
               {values.map((value, index) => (
                 <motion.div
                   key={value.id}
-                  className="bg-secondary-700/50 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 "
+                  className="bg-secondary-700/50 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-200 "
                   variants={itemVariants}
                   whileHover={{ y: -5 }}
                 >
@@ -198,7 +198,7 @@ export default function MissionAndValues() {
                     <button
                       key={index}
                       onClick={() => setActiveValue(index)}
-                      className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                      className={`w-2.5 h-2.5 rounded-full transition-all duration-200 ${
                         activeValue === index
                           ? "bg-primary-500 w-8"
                           : "bg-gray-600"

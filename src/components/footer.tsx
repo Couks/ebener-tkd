@@ -49,7 +49,7 @@ export function Footer() {
                 href="https://www.instagram.com/ebenertkd/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-secondary-800 hover:bg-primary-500 p-2 rounded-full transition-colors duration-300"
+                className="bg-secondary-800 hover:bg-primary-500 p-2 rounded-full transition-colors duration-200"
                 aria-label="Instagram"
               >
                 <Instagram size={18} />
@@ -58,7 +58,7 @@ export function Footer() {
                 href="https://www.tiktok.com/@ebener.tkd"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-secondary-800 hover:bg-primary-500 p-2 rounded-full transition-colors duration-300"
+                className="bg-secondary-800 hover:bg-primary-500 p-2 rounded-full transition-colors duration-200"
                 aria-label="TikTok"
               >
                 <TbBrandTiktok size={18} />
@@ -67,7 +67,7 @@ export function Footer() {
                 href="https://api.whatsapp.com/send/?phone=5521981654811"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-secondary-800 hover:bg-primary-500 p-2 rounded-full transition-colors duration-300"
+                className="bg-secondary-800 hover:bg-primary-500 p-2 rounded-full transition-colors duration-200"
                 aria-label="WhatsApp"
               >
                 <TbBrandWhatsapp size={18} />

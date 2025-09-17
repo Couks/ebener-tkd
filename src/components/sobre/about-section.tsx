@@ -103,7 +103,7 @@ export default function AboutSection() {
             <div className="flex flex-col sm:flex-row gap-4 mt-6 w-full max-w-lg">
               {/* Experience Card */}
               <motion.div
-                className="flex-1 bg-secondary-700/60 backdrop-blur-sm p-5 rounded-2xl border border-secondary-600 flex flex-row items-center gap-4 min-w-[0] shadow-md hover:shadow-lg transition-shadow duration-300 text-left"
+                className="flex-1 bg-secondary-700/60 backdrop-blur-sm p-5 rounded-2xl border border-secondary-600 flex flex-row items-center gap-4 min-w-[0] shadow-md hover:shadow-lg transition-shadow duration-200 text-left"
                 whileHover={{ y: -6, scale: 1.03, transition: { duration: 0.4 } }}
               >
                 <div className="flex items-center justify-center bg-primary-500/10 rounded-xl p-3">
@@ -116,7 +116,7 @@ export default function AboutSection() {
               </motion.div>
               {/* Dan Card */}
               <motion.div
-                className="flex-1 bg-secondary-700/60 backdrop-blur-sm p-5 rounded-2xl border border-secondary-600 flex flex-row items-center gap-4 min-w-[0] shadow-md hover:shadow-lg transition-shadow duration-300 text-left"
+                className="flex-1 bg-secondary-700/60 backdrop-blur-sm p-5 rounded-2xl border border-secondary-600 flex flex-row items-center gap-4 min-w-[0] shadow-md hover:shadow-lg transition-shadow duration-200 text-left"
                 whileHover={{ y: -6, scale: 1.03, transition: { duration: 0.4 } }}
               >
                 <div className="flex items-center justify-center bg-primary-500/10 rounded-xl p-3">
@@ -132,7 +132,7 @@ export default function AboutSection() {
             {/* Feature highlight - now styled as a horizontal card, always left-aligned */}
             <motion.div
               whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.4 } }}
-              className="bg-secondary-700/60 backdrop-blur-sm p-5 rounded-2xl border border-secondary-600 flex flex-row items-center gap-4 mt-4 w-full max-w-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-left"
+              className="bg-secondary-700/60 backdrop-blur-sm p-5 rounded-2xl border border-secondary-600 flex flex-row items-center gap-4 mt-4 w-full max-w-lg shadow-md hover:shadow-lg transition-shadow duration-200 text-left"
             >
               <div className="flex items-center justify-center bg-primary-500/10 rounded-xl p-3">
                 <Users className="text-primary-500" size={28} />
@@ -188,7 +188,7 @@ export default function AboutSection() {
                 <div className="absolute bottom-4 left-4 right-4">
                   <Link href="/sobre" className="block">
                     <motion.button
-                      className="w-full bg-primary-500 hover:bg-primary-600 rounded-xl text-black text-lg font-bold px-6 py-4 flex items-center justify-center gap-2 group transition-all duration-300 shadow-lg hover:shadow-xl"
+                      className="w-full bg-primary-500 hover:bg-primary-600 rounded-xl text-black text-lg font-bold px-6 py-4 flex items-center justify-center gap-2 group transition-all duration-200 shadow-lg hover:shadow-xl"
                       whileHover={{
                         scale: 1.03,
                         boxShadow:
@@ -198,7 +198,7 @@ export default function AboutSection() {
                     >
                       Saiba Mais sobre a Ebener TKD
                       <ArrowRight
-                        className="group-hover:translate-x-1 transition-transform duration-300"
+                        className="group-hover:translate-x-1 transition-transform duration-200"
                         size={20}
                       />
                     </motion.button>

@@ -228,7 +228,7 @@ export default function Galeria() {
               {events.map((event, eventIndex) => (
                 <motion.div
                   key={event.id}
-                  className={`mb-16 last:mb-0 bg-secondary-800/80 backdrop-blur-sm rounded-3xl shadow-xl overflow-hidden p-6 md:p-8 transform transition-all duration-500 hover:shadow-2xl hover:scale-[1.01]`}
+                  className={`mb-16 last:mb-0 bg-secondary-800/80 backdrop-blur-sm rounded-3xl shadow-xl overflow-hidden p-6 md:p-8 transform transition-all duration-200 hover:shadow-2xl hover:scale-[1.01]`}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
@@ -236,7 +236,7 @@ export default function Galeria() {
                 >
                   {/* Bloco de Informações do Evento (Texto) */}
                   <div className="flex flex-col items-center md:items-start text-center md:text-left mb-6">
-                    <h3 className="text-4xl lg:text-5xl font-extrabold text-white mb-2 text-balance leading-tight transition-colors duration-300">
+                    <h3 className="text-4xl lg:text-5xl font-extrabold text-white mb-2 text-balance leading-tight transition-colors duration-200">
                       {event.title}
                     </h3>
                     {event.date && (
@@ -267,8 +267,8 @@ export default function Galeria() {
                         whileHover={{ scale: 1.05, boxShadow: "0 10px 20px rgba(0,0,0,0.4)" }}
                         onClick={() => openModal(imageSrc, event.imageUrls, imageIndex)}
                       >
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
-                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10"></div>
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20">
                           <Button
                             variant="secondary"
                             size="icon"
@@ -282,7 +282,7 @@ export default function Galeria() {
                           alt={`${event.title} - ${imageIndex + 1}`}
                           fill
                           sizes="(max-width: 768px) 50vw, 25vw" /* 25vw para 4 colunas no desktop */
-                          className="object-cover transition-transform duration-500 group-hover:scale-110"
+                          className="object-cover transition-transform duration-200 group-hover:scale-110"
                         />
                       </motion.div>
                     ))}
@@ -305,9 +305,9 @@ export default function Galeria() {
                           alt={`Ver mais imagens do evento ${event.title}`}
                           fill
                           sizes="(max-width: 768px) 50vw, 25vw" /* Ajuste de sizes */
-                          className="object-cover filter brightness-50 transition-transform duration-300 group-hover:scale-110"
+                          className="object-cover filter brightness-50 transition-transform duration-200 group-hover:scale-110"
                         />
-                        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20 flex items-center justify-center">
                           <Button
                             variant="secondary"
                             size="icon"

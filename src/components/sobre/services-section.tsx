@@ -242,7 +242,7 @@ export default function ServicesSection() {
                   </ul>
 
                   <Link href={service.ctaLink}>
-                    <button className="w-full bg-primary-500 hover:bg-primary-600 text-black font-medium py-3 px-6 rounded-xl transition-colors duration-300 flex items-center justify-center gap-2">
+                    <button className="w-full bg-primary-500 hover:bg-primary-600 text-black font-medium py-3 px-6 rounded-xl transition-colors duration-200 flex items-center justify-center gap-2">
                       {service.cta}
                       <ArrowRight className="size-4" />
                     </button>
@@ -343,7 +343,7 @@ export default function ServicesSection() {
                           transition={{ delay: 0.6 }}
                         >
                           <Link href={services[activeIndex].ctaLink}>
-                            <button className="bg-primary-500 hover:bg-primary-600 text-black font-medium py-3 px-6 rounded-xl transition-colors duration-300 flex items-center gap-2 group">
+                            <button className="bg-primary-500 hover:bg-primary-600 text-black font-medium py-3 px-6 rounded-xl transition-colors duration-200 flex items-center gap-2 group">
                               {services[activeIndex].cta}
                               <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
                             </button>
@@ -384,7 +384,7 @@ export default function ServicesSection() {
                 <motion.button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`relative h-3 rounded-full transition-all duration-300 ${
+                  className={`relative h-3 rounded-full transition-all duration-200 ${
                     activeIndex === index
                       ? "bg-primary-500 w-10"
                       : "bg-gray-600 w-3"

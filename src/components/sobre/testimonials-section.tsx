@@ -187,7 +187,7 @@ export default function TestimonialsSection() {
               <button
                 key={index}
                 onClick={() => setActiveTestimonial(index)}
-                className={`relative w-12 h-3 rounded-full transition-all duration-300 ${
+                className={`relative w-12 h-3 rounded-full transition-all duration-200 ${
                   activeTestimonial === index ? "bg-primary-500" : "bg-secondary-600 hover:bg-secondary-500"
                 }`}
                 aria-label={`View testimonial ${index + 1}`}
@@ -209,7 +209,7 @@ export default function TestimonialsSection() {
               <motion.button
                 key={testimonial.id}
                 onClick={() => setActiveTestimonial(index)}
-                className={`relative rounded-full overflow-hidden transition-all duration-300 ${
+                className={`relative rounded-full overflow-hidden transition-all duration-200 ${
                   activeTestimonial === index
                     ? "ring-4 ring-primary-500 ring-offset-2 ring-offset-secondary-800"
                     : "opacity-70 hover:opacity-100"

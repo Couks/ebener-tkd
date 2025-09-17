@@ -272,7 +272,7 @@ export default function Contato() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`w-full text-center bg-green-500 hover:bg-green-600 rounded-xl text-black text-lg font-bold px-6 py-4 flex items-center justify-center gap-2 group transition-all duration-300 ${
+                      className={`w-full text-center bg-green-500 hover:bg-green-600 rounded-xl text-black text-lg font-bold px-6 py-4 flex items-center justify-center gap-2 group transition-all duration-200 ${
                         isSubmitting ? "opacity-80 cursor-not-allowed" : ""
                       }`}
                     >

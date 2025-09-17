@@ -112,7 +112,7 @@ export default function IntroSection({
           >
             <Link href={buttonLink} className="inline-block">
               <motion.button
-                className="bg-primary-500 hover:bg-primary-600 rounded-full text-black text-base sm:text-lg font-bold px-6 py-4 sm:py-5 flex items-center gap-2 group shadow-lg hover:shadow-primary-500/30 transition-all duration-300"
+                className="bg-primary-500 hover:bg-primary-600 rounded-full text-black text-base sm:text-lg font-bold px-6 py-4 sm:py-5 flex items-center gap-2 group shadow-lg hover:shadow-primary-500/30 transition-all duration-200"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
               >

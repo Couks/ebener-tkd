@@ -62,7 +62,7 @@ export function NavBar() {
       initial={{ opacity: 1, y: 0 }}
       animate={controls}
       transition={{ duration: 0.5 }}
-      className={`fixed w-screen z-40 transition-all duration-300 ${hasScrolled ? "bg-black/50 backdrop-blur-md" : "bg-transparent"
+      className={`fixed w-screen z-40 transition-all duration-200 ${hasScrolled ? "bg-black/50 backdrop-blur-md" : "bg-transparent"
         }`}
     >
       <div className="container mx-auto md:max-w-[90%] px-6 py-4">
@@ -75,7 +75,7 @@ export function NavBar() {
                 src={logo}
                 loading="lazy"
                 className={`${hasScrolled ? "w-8 h-8" : "w-16 h-16"
-                  } transition-all duration-300`}
+                  } transition-all duration-200`}
               />
               <span
                 className={`text-white hover:text-primary-500 transition-colors font-bold text-${hasScrolled ? "xl" : "2xl md:4xl"
@@ -159,7 +159,7 @@ export function NavBar() {
               loading="lazy"
               width={100}
               height={100}
-              className="transition-all duration-300 mb-12"
+              className="transition-all duration-200 mb-12"
             />
             {navigation.map((item) => (
               <a

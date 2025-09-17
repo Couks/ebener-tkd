@@ -163,11 +163,11 @@ export default function BenefitsSection() {
             {benefits.map((benefit) => (
               <motion.div
                 key={benefit.id}
-                className="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+                className="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-200 hover:-translate-y-2"
                 variants={itemVariants}
               >
                 <div
-                  className={`h-2 bg-gradient-to-r ${benefit.color} group-hover:h-3 transition-all duration-300`}
+                  className={`h-2 bg-gradient-to-r ${benefit.color} group-hover:h-3 transition-all duration-200`}
                 ></div>
                 <div className="p-6 flex flex-col h-full">
                   <div className="mb-5 flex items-center gap-4">
@@ -185,11 +185,11 @@ export default function BenefitsSection() {
                     {benefit.description}
                   </p>
 
-                  
+
                 </div>
 
                 {/* Hover effect */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
               </motion.div>
             ))}
           </motion.div>

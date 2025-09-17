@@ -252,8 +252,8 @@ export default function Planos() {
         backgroundImage={precosImage.src}
         buttonText="Ver Planos"
         buttonLink="#planos"
-      />   
-  
+      />
+
       {/* Class Schedule Section */}
       <section className="py-16">
         <div className="container mx-auto px-4 md:px-8">
@@ -377,7 +377,7 @@ export default function Planos() {
             {plans.map((plan) => (
               <motion.div
                 key={plan.id}
-                className={`relative bg-secondary-800/80 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden transition-all duration-300 flex flex-col h-full ${
+                className={`relative bg-secondary-800/80 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden transition-all duration-200 flex flex-col h-full ${
                   plan.recommended
                     ? "ring-2 ring-primary-500 transform lg:-translate-y-4"
                     : ""
@@ -459,7 +459,7 @@ export default function Planos() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button className="w-full bg-primary-500 hover:bg-primary-600 text-black font-bold py-3 transition-all duration-300 flex items-center justify-center gap-2 group rounded-xl">
+                    <Button className="w-full bg-primary-500 hover:bg-primary-600 text-black font-bold py-3 transition-all duration-200 flex items-center justify-center gap-2 group rounded-xl">
                       {plan.ctaText}
                       <ArrowRight
                         size={16}
@@ -495,7 +495,7 @@ export default function Planos() {
           </motion.div>
         </div>
       </section>
-      
+
       {/* FAQ Section */}
       <section className="py-16 bg-secondary-900">
         <div className="container mx-auto px-4 md:px-8">
@@ -530,7 +530,7 @@ export default function Planos() {
                     activeFaq === index
                       ? "bg-secondary-800 text-white"
                       : "bg-secondary-800/50 text-gray-300 hover:bg-secondary-800/80"
-                  } transition-all duration-300`}
+                  } transition-all duration-200`}
                   onClick={() => toggleFaq(index)}
                 >
                   <div className="flex items-center gap-3">
