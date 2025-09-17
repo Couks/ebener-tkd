@@ -3,7 +3,13 @@
 import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Quote, ArrowRight, MessageCircle } from "lucide-react"
+import {
+  Quote,
+  ArrowRight,
+  MessageCircle,
+  Play,
+  Pause,
+} from "lucide-react";
 import Link from "next/link"
 import Image from "next/image"
 import { Skeleton } from "@/components/ui/skeleton" // Import Skeleton
@@ -20,9 +26,11 @@ interface Testimonial {
 }
 
 export default function TestimonialsSection() {
-  const [activeTestimonial, setActiveTestimonial] = useState(0)
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([])
-  const [loading, setLoading] = useState(true)
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const autoPlayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -44,6 +52,36 @@ export default function TestimonialsSection() {
     };
     fetchTestimonials();
   }, []);
+
+  // Autoplay functionality
+  useEffect(() => {
+    if (autoPlayTimeoutRef.current) {
+      clearTimeout(autoPlayTimeoutRef.current);
+    }
+    if (isAutoPlaying && testimonials.length > 1) {
+      autoPlayTimeoutRef.current = setTimeout(() => {
+        setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+      }, 5000);
+    }
+    return () => {
+      if (autoPlayTimeoutRef.current) {
+        clearTimeout(autoPlayTimeoutRef.current);
+      }
+    };
+  }, [activeTestimonial, isAutoPlaying, testimonials.length]);
+
+  const handleNavigationClick = (index: number) => {
+    if (autoPlayTimeoutRef.current) {
+      clearTimeout(autoPlayTimeoutRef.current);
+    }
+    setActiveTestimonial(index);
+    setIsAutoPlaying(false);
+
+    // Resume autoplay after 10 seconds of inactivity
+    setTimeout(() => {
+      setIsAutoPlaying(true);
+    }, 10000);
+  };
 
   // Return loading state or empty state if no testimonials
   if (loading) {
@@ -186,17 +224,21 @@ export default function TestimonialsSection() {
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setActiveTestimonial(index)}
-                className={`relative w-12 h-3 rounded-full transition-all duration-200 ${
-                  activeTestimonial === index ? "bg-primary-500" : "bg-secondary-600 hover:bg-secondary-500"
+                onClick={() => handleNavigationClick(index)}
+                className={`relative h-3 w-12 rounded-full transition-all duration-300 ${
+                  activeTestimonial === index
+                    ? "bg-primary-500"
+                    : "bg-secondary-600 hover:bg-secondary-500"
                 }`}
                 aria-label={`View testimonial ${index + 1}`}
               >
-                {activeTestimonial === index && (
+                {activeTestimonial === index && isAutoPlaying && (
                   <motion.div
-                    layoutId="activeIndicator"
-                    className="absolute inset-0 bg-primary-500 rounded-full"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    key={activeTestimonial} // Force re-render on index change
+                    className="absolute bottom-0 left-0 h-full rounded-full bg-primary-400/80"
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 5, ease: "linear" }}
                   />
                 )}
               </button>
@@ -208,8 +250,8 @@ export default function TestimonialsSection() {
             {testimonials.map((testimonial, index) => (
               <motion.button
                 key={testimonial.id}
-                onClick={() => setActiveTestimonial(index)}
-                className={`relative rounded-full overflow-hidden transition-all duration-200 ${
+                onClick={() => handleNavigationClick(index)}
+                className={`relative rounded-full overflow-hidden transition-all duration-300 ${
                   activeTestimonial === index
                     ? "ring-4 ring-primary-500 ring-offset-2 ring-offset-secondary-800"
                     : "opacity-70 hover:opacity-100"
@@ -231,11 +273,24 @@ export default function TestimonialsSection() {
               </motion.button>
             ))}
           </div>
+
+          {/* Autoplay Controls */}
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+              className="flex items-center gap-2 rounded-full bg-secondary-700/80 px-4 py-2 text-sm text-gray-300 transition-colors hover:bg-secondary-700 hover:text-white"
+            >
+              {isAutoPlaying ? (
+                <Pause className="h-4 w-4" />
+              ) : (
+                <Play className="h-4 w-4" />
+              )}
+              {isAutoPlaying ? "Pausar" : "Retomar"}
+            </button>
+          </div>
         </div>
-
-
       </div>
     </section>
-  )
+  );
 }
 

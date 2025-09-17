@@ -10,13 +10,11 @@ export default function PagesLayout({
 }) {
   return (
     <div className="justify-between h-max bg-black">
-      <main>
-        <NavBar />
-        <WhatsappButton />
-        {children}
-        <Analytics />
-        <Footer />
-      </main>
+      <NavBar />
+      <WhatsappButton />
+      <main>{children}</main>
+      <Analytics />
+      <Footer />
     </div>
   );
 }

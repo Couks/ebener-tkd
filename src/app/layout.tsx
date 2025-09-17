@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Chakra_Petch } from "next/font/google";
+import { Chakra_Petch, Inter } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 // import { QueryProvider } from "@/lib/providers/query-provider";
@@ -9,6 +9,12 @@ import { Toaster } from "@/components/ui/sonner";
 const chakraPetch = Chakra_Petch({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-chakra-petch",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -48,26 +54,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br">
-      <head>
-        <title>Taekwondo na Ilha do Governador - Ebener TKD</title>
-        <meta
-          name="google-site-verification"
-          content="w2-CizVqPMDEzsXVpuDM0f7CJ8zMnEG5sFi5MjvOrEk"
-        />
-        <meta name="robots" content="index, follow" />
-        <meta
-          name="description"
-          content="Aulas para todas as idades com professores certificados!"
-        />
-      </head>
-      <body className={chakraPetch.className}>
-        {/* <SessionProvider> */}
-          {/* <QueryProvider> */}
-            {children}
-            <Toaster />
-          {/* </QueryProvider> */}
-        {/* </SessionProvider> */}
+    <html lang="pt-br" className={`${inter.variable} ${chakraPetch.variable}`}>
+      <body>
+        {children}
+        <Toaster />
       </body>
       {/* <GoogleAnalytics gaId="G-L15P6FXYCS" /> */}
     </html>

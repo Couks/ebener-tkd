@@ -84,18 +84,19 @@ export default function MissionAndValues() {
   };
 
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden">
-      {/* Background with gradient */}
-      <div className="absolute inset-0 mx-auto max-w-[95%] sm:max-w-[95%] md:container rounded-3xl overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary-900 to-secondary-800"></div>
+    <section className="relative overflow-hidden bg-secondary-900 py-16 md:py-24">
+      {/* Decorative elements */}
+      <div
+        className="absolute -top-16 -right-16 h-48 w-48 rounded-full bg-primary-500/10 blur-3xl md:h-72 md:w-72"
+        aria-hidden="true"
+      ></div>
+      <div
+        className="absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-primary-500/10 blur-3xl md:h-72 md:w-72"
+        aria-hidden="true"
+      ></div>
 
-        {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl"></div>
-      </div>
-
-      <div className="relative z-10 container mx-auto px-4 md:px-8">
-        <div className="max-w-6xl mx-auto">
+      <div className="container relative z-10 mx-auto px-4 md:px-8">
+        <div className="mx-auto max-w-6xl">
           {/* Mission Section */}
           <motion.div
             className="text-center mb-16 md:mb-24"
@@ -137,7 +138,7 @@ export default function MissionAndValues() {
               {values.map((value, index) => (
                 <motion.div
                   key={value.id}
-                  className="bg-secondary-700/50 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-200 "
+                  className="bg-secondary-700/50 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-100 "
                   variants={itemVariants}
                   whileHover={{ y: -5 }}
                 >
@@ -198,7 +199,7 @@ export default function MissionAndValues() {
                     <button
                       key={index}
                       onClick={() => setActiveValue(index)}
-                      className={`w-2.5 h-2.5 rounded-full transition-all duration-200 ${
+                      className={`w-2.5 h-2.5 rounded-full transition-all duration-100 ${
                         activeValue === index
                           ? "bg-primary-500 w-8"
                           : "bg-gray-600"

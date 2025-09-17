@@ -453,8 +453,6 @@ export default function Sobre() {
       {/* Mission and Values Section */}
       <MissionAndValues />
 
-      {/* Testimonials Section */}
-      <TestimonialsSection />
     </div>
   );
 }

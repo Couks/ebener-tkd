@@ -130,7 +130,7 @@ export default function AdminGaleriaPage() {
                   src={event.imageUrls?.[0] || '/placeholder.svg'}
                   alt={event.title}
                   fill
-                  className="object-cover transition-transform duration-200 group-hover:scale-105"
+                  className="object-cover transition-transform duration-100 group-hover:scale-105"
                 />
                 <div className="absolute top-2 right-2 z-20">
                   <DropdownMenu>

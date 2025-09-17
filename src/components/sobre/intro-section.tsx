@@ -19,8 +19,8 @@ export default function IntroSection({
   title,
   subtitle,
   backgroundImage,
-  height = "h-[90vh]",
-  buttonText = "Explore more",
+  height = "h-[100vh]",
+  buttonText = "Explore mais",
   buttonLink = "",
 }: IntroSectionProps) {
   const [isMounted, setIsMounted] = useState(false);
@@ -47,7 +47,7 @@ export default function IntroSection({
     >
       {/* Background image with overlay */}
       <motion.div
-        className="absolute inset-2 rounded-3xl overflow-hidden"
+        className="absolute inset-0 overflow-hidden"
         style={{ y: isMounted ? backgroundY : 0 }}
       >
         <div className="relative w-full h-full">
@@ -68,7 +68,7 @@ export default function IntroSection({
 
       {/* Main content */}
       <motion.div
-        className="relative z-10 container mx-auto px-6 sm:px-24 flex flex-col items-start justify-center"
+        className="relative z-10 container mx-auto px-8 flex flex-col items-start justify-center"
         style={{
           y: isMounted ? contentY : 0,
           opacity: isMounted ? opacity : 1,
@@ -112,7 +112,7 @@ export default function IntroSection({
           >
             <Link href={buttonLink} className="inline-block">
               <motion.button
-                className="bg-primary-500 hover:bg-primary-600 rounded-full text-black text-base sm:text-lg font-bold px-6 py-4 sm:py-5 flex items-center gap-2 group shadow-lg hover:shadow-primary-500/30 transition-all duration-200"
+                className="bg-primary-500 hover:bg-primary-600 rounded-full text-black text-base sm:text-lg font-bold px-6 py-4 sm:py-5 flex items-center gap-2 group shadow-lg hover:shadow-primary-500/30 transition-all duration-100"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
               >

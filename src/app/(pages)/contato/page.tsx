@@ -134,67 +134,75 @@ export default function Contato() {
         buttonLink="#fale-conosco"
       />
 
-      <section id="fale-conosco" className="py-16 md:py-24 relative">
-        <div className="container mx-auto px-4 md:px-8">
+      <section
+        id="fale-conosco"
+        className="relative overflow-hidden bg-secondary-900 py-20 md:py-28"
+      >
+        {/* Decorative elements */}
+        <div
+          className="absolute -top-16 -right-16 h-48 w-48 rounded-full bg-primary-500/10 blur-3xl md:h-72 md:w-72"
+          aria-hidden="true"
+        ></div>
+        <div
+          className="absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-primary-500/10 blur-3xl md:h-72 md:w-72"
+          aria-hidden="true"
+        ></div>
+
+        <div className="container relative z-10 mx-auto px-4">
           {/* Section header */}
           <motion.div
-            className="text-center mb-16"
+            className="mb-12 text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="inline-flex items-center justify-center gap-2 bg-primary-500/20 px-4 py-2 rounded-full mb-4">
-              <span className="w-2 h-2 rounded-full bg-primary-500"></span>
-              <span className="text-sm font-medium text-primary-500">
+            <div className="mb-4 inline-flex items-center justify-center gap-2 rounded-full bg-primary-500/10 px-4 py-2">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-primary-500"></span>
+              <span className="text-sm font-medium text-primary-400">
                 Fale conosco
               </span>
             </div>
-
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white">
+            <h2 className="mb-4 text-3xl font-bold text-white sm:text-4xl md:text-5xl">
               Estamos <span className="text-primary-500">aqui</span> para você
             </h2>
-
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            <p className="mx-auto max-w-2xl text-lg text-gray-400">
               Entre em contato para tirar dúvidas, agendar uma aula experimental
-              ou conhecer mais sobre nossos serviços
+              ou conhecer mais sobre nossos serviços.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 max-w-7xl mx-auto">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-12">
             {/* Contact Form */}
             <motion.div
               ref={formRef}
-              className="lg:col-span-7 bg-secondary-800 rounded-2xl shadow-xl overflow-hidden"
-              initial={{ opacity: 0, y: 50 }}
+              className="lg:col-span-7"
+              initial={{ opacity: 0, x: -50 }}
               animate={
-                isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+                isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }
               }
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.6 }}
             >
-              <div className="p-8 md:p-10">
-                <div className="mb-8">
-                  <h3 className="text-2xl font-bold text-background mb-4">
-                    Comece sua jornada no Taekwondo
-                  </h3>
-                  <p className="text-gray-400">
-                    Preencha o formulário abaixo e nossa equipe entrará em
-                    contato para tirar todas as suas dúvidas sobre aulas,
-                    horários e valores. Sua mudança começa aqui!
-                  </p>
-                </div>
+              <div className="rounded-2xl bg-secondary-800 p-8 shadow-2xl">
+                <h3 className="mb-2 text-2xl font-bold text-white">
+                  Envie uma mensagem
+                </h3>
+                <p className="mb-6 text-gray-400">
+                  Preencha o formulário e nossa equipe retornará o mais breve
+                  possível.
+                </p>
 
                 {formError && (
-                  <div className="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg flex items-start gap-2">
-                    <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                  <div className="mb-6 flex items-start gap-2 rounded-lg border border-red-500/20 bg-red-500/10 p-4 text-red-400">
+                    <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0" />
                     <p>{formError}</p>
                   </div>
                 )}
 
                 {isSubmitted ? (
-                  <div className="bg-green-50 border border-green-200 text-green-700 px-6 py-8 rounded-lg text-center">
-                    <CheckCircle className="w-12 h-12 mx-auto mb-4 text-green-500" />
-                    <h4 className="text-xl font-bold mb-2">
+                  <div className="rounded-lg border border-green-500/20 bg-green-500/10 p-8 text-center text-green-400">
+                    <CheckCircle className="mx-auto mb-4 h-12 w-12" />
+                    <h4 className="mb-2 text-xl font-bold">
                       Mensagem enviada!
                     </h4>
                     <p>
@@ -203,186 +211,162 @@ export default function Contato() {
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="space-y-4">
-                      <div className="flex flex-col gap-2">
-                        <label
-                          htmlFor="nome"
-                          className="text-gray-400 font-medium"
-                        >
-                          Nome <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          id="nome"
-                          type="text"
-                          name="nome"
-                          placeholder="Ex: João Silva"
-                          className="w-full p-4 rounded-xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
-                          onChange={(e) => setNome(e.target.value)}
-                          value={nome}
-                          required
-                        />
-                      </div>
-
-                      <div className="flex flex-col gap-2">
-                        <label
-                          htmlFor="telefone"
-                          className="text-gray-400 font-medium"
-                        >
-                          Telefone (WhatsApp){" "}
-                          <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                          id="telefone"
-                          type="tel"
-                          name="telefone"
-                          placeholder="Ex: (21) 98165-4811"
-                          pattern="$$\d{2}$$\s\d{4,5}-\d{4}"
-                          title="Digite o telefone no formato (XX) XXXXX-XXXX ou (XX) XXXX-XXXX."
-                          className="w-full p-4 rounded-xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
-                          onChange={(e) => {
-                            setTelefone(e.target.value);
-                            formatPhoneNumber(e.target);
-                          }}
-                          value={telefone}
-                          required
-                        />
-                      </div>
-
-                      <div className="flex flex-col gap-2">
-                        <label
-                          htmlFor="mensagem"
-                          className="text-gray-400 font-medium"
-                        >
-                          Mensagem <span className="text-red-500">*</span>
-                        </label>
-                        <textarea
-                          id="mensagem"
-                          name="mensagem"
-                          placeholder="Ex: Olá! Gostaria de saber mais informações sobre as aulas de Taekwondo..."
-                          className="w-full p-4 rounded-xl border border-gray-200 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-200 transition duration-200"
-                          rows={4}
-                          onChange={(e) => setMensagem(e.target.value)}
-                          value={mensagem}
-                          required
-                        ></textarea>
-                      </div>
+                  <form onSubmit={handleSubmit} className="space-y-5">
+                    <div>
+                      <label
+                        htmlFor="nome"
+                        className="mb-2 block font-medium text-gray-300"
+                      >
+                        Nome <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        id="nome"
+                        type="text"
+                        name="nome"
+                        placeholder="Seu nome completo"
+                        className="w-full rounded-lg border border-secondary-700 bg-secondary-700/50 p-3 text-white transition-colors focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                        onChange={(e) => setNome(e.target.value)}
+                        value={nome}
+                        required
+                      />
                     </div>
 
-                    <button
+                    <div>
+                      <label
+                        htmlFor="telefone"
+                        className="mb-2 block font-medium text-gray-300"
+                      >
+                        Telefone (WhatsApp){" "}
+                        <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        id="telefone"
+                        type="tel"
+                        name="telefone"
+                        placeholder="(21) 99999-9999"
+                        className="w-full rounded-lg border border-secondary-700 bg-secondary-700/50 p-3 text-white transition-colors focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                        onChange={(e) => {
+                          setTelefone(e.target.value);
+                          formatPhoneNumber(e.target);
+                        }}
+                        value={telefone}
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="mensagem"
+                        className="mb-2 block font-medium text-gray-300"
+                      >
+                        Mensagem <span className="text-red-500">*</span>
+                      </label>
+                      <textarea
+                        id="mensagem"
+                        name="mensagem"
+                        placeholder="Deixe sua dúvida ou solicitação aqui..."
+                        className="w-full rounded-lg border border-secondary-700 bg-secondary-700/50 p-3 text-white transition-colors focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                        rows={5}
+                        onChange={(e) => setMensagem(e.target.value)}
+                        value={mensagem}
+                        required
+                      ></textarea>
+                    </div>
+
+                    <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`w-full text-center bg-green-500 hover:bg-green-600 rounded-xl text-black text-lg font-bold px-6 py-4 flex items-center justify-center gap-2 group transition-all duration-200 ${
-                        isSubmitting ? "opacity-80 cursor-not-allowed" : ""
-                      }`}
+                      className="group flex w-full items-center justify-center gap-2 rounded-xl bg-primary-500 px-6 py-5 text-lg font-bold text-black transition-all duration-100 hover:bg-primary-600 disabled:opacity-70"
                     >
                       {isSubmitting ? (
                         <>
-                          <Loader2 className="w-5 h-5 animate-spin" />
+                          <Loader2 className="h-5 w-5 animate-spin" />
                           Enviando...
                         </>
                       ) : (
                         <>
-                          Enviar Mensagem
-                          <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                          Enviar Mensagem via WhatsApp
+                          <Send className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                         </>
                       )}
-                    </button>
+                    </Button>
                   </form>
                 )}
               </div>
             </motion.div>
 
             {/* Contact Info & Map */}
-            <div className="lg:col-span-5 space-y-8">
-              {/* Contact Info Card */}
-              <motion.div
-                className="bg-secondary-800 rounded-2xl shadow-xl p-8"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <h3 className="text-2xl font-bold mb-6 text-white">
-                  Informações de Contato
-                </h3>
+            <motion.div
+              className="lg:col-span-5"
+              initial={{ opacity: 0, x: 50 }}
+              animate={
+                isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }
+              }
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="space-y-6">
+                {/* Contact Info Card */}
+                <div className="rounded-2xl bg-secondary-800 p-8 shadow-2xl">
+                  <h3 className="mb-6 text-2xl font-bold text-white">
+                    Nossa Localização
+                  </h3>
+                  <div className="space-y-5">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary-500/20">
+                        <MapPin className="text-primary-500" size={24} />
+                      </div>
+                      <div>
+                        <p className="mb-1 font-semibold text-white">Endereço</p>
+                        <p className="text-gray-300">
+                          Rua Abélia 197, Jardim Guanabara, RJ
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary-500/20">
+                        <Phone className="text-primary-500" size={24} />
+                      </div>
+                      <div>
+                        <p className="mb-1 font-semibold text-white">
+                          Telefone
+                        </p>
+                        <a
+                          href="https://wa.me/5521981654811"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-300 transition-colors hover:text-primary-500"
+                        >
+                          (21) 98165-4811
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                <motion.div
-                  className="space-y-5"
-                  variants={containerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
+                {/* Map */}
+                <div className="overflow-hidden rounded-2xl shadow-2xl">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14711.315438834945!2d-43.1971213!3d-22.8088045!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x99790035acb387:0xf59879151c85617b!2sEbener%20TKD%20%7C%20Academia%20de%20Taekwondo!5e0!3m2!1spt-BR!2sbr!4v1721344609049!5m2!1spt-BR!2sbr"
+                    className="h-[250px] w-full border-0"
+                    loading="lazy"
+                    title="Localização da Academia Ebener TKD"
+                  ></iframe>
+                </div>
+                <Button
+                  asChild
+                  className="group flex w-full items-center justify-center gap-2 rounded-xl bg-primary-500 px-6 py-5 text-lg font-bold text-black transition-all duration-100 hover:bg-primary-600"
                 >
-                  <motion.div
-                    className="flex items-start gap-4"
-                    variants={itemVariants}
+                  <Link
+                    href="https://www.google.com/maps/dir//Ebener+TKD+%7C+Academia+de+Taekwondo+-+R.+Ab%C3%A9lia,+197+-+Jardim+Guanabara,+Rio+de+Janeiro+-+RJ,+21940-010"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <div className="w-10 h-10 rounded-full bg-primary-500/20 flex items-center justify-center flex-shrink-0">
-                      <MapPin className="text-primary-500" size={20} />
-                    </div>
-                    <div>
-                      <p className="font-medium text-white mb-1">Endereço</p>
-                      <p className="text-gray-300">
-                        Rua Abélia 197, Jardim Guanabara
-                      </p>
-                      <p className="text-gray-300">Rio de Janeiro - RJ</p>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    className="flex items-start gap-4"
-                    variants={itemVariants}
-                  >
-                    <div className="w-10 h-10 rounded-full bg-primary-500/20 flex items-center justify-center flex-shrink-0">
-                      <Phone className="text-primary-500" size={20} />
-                    </div>
-                    <div>
-                      <p className="font-medium text-white mb-1">Telefone</p>
-                      <a
-                        href="https://wa.me/5521981654811"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-300 hover:text-primary-500 transition-colors"
-                      >
-                        (21) 98165-4811
-                      </a>
-                    </div>
-                  </motion.div>
-                </motion.div>
-              </motion.div>
-
-              {/* Map */}
-              <motion.div
-                ref={mapRef}
-                className="relative rounded-2xl overflow-hidden shadow-xl"
-                initial={{ opacity: 0, y: 50 }}
-                animate={
-                  isMapInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
-                }
-                transition={{ duration: 0.5, delay: 0.4 }}
-              >
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14711.315438834945!2d-43.1971213!3d-22.8088045!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x99790035acb387:0xf59879151c85617b!2sEbener%20TKD%20%7C%20Academia%20de%20Taekwondo!5e0!3m2!1spt-BR!2sbr!4v1721344609049!5m2!1spt-BR!2sbr"
-                  className="w-full h-[300px]"
-                  loading="lazy"
-                  title="Localização da Academia Ebener TKD"
-                  aria-label="Mapa mostrando a localização da Academia Ebener TKD"
-                ></iframe>
-
-                <Link
-                  href="https://www.google.com/maps/dir//Ebener+TKD+%7C+Academia+de+Taekwondo+-+R.+Ab%C3%A9lia,+197+-+Jardim+Guanabara,+Rio+de+Janeiro+-+RJ,+21940-010,+Brasil/@-22.8088045,-43.1996962,17z/data=!4m9!4m8!1m0!1m5!1m1!1s0x99790035acb387:0xf59879151c85617b!2m2!1d-43.1971305!2d-22.8088116!3e0?entry=ttu&g_ep=EgoyMDI1MDEwMi4wIKXMDSoASAFQAw%3D%3D"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block mt-4"
-                >
-                  <Button className="w-full bg-primary-500 hover:bg-primary-600 text-black font-bold py-4 flex items-center justify-center gap-2 group">
-                    Traçar rota
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
-              </motion.div>
-            </div>
+                    Traçar rota no Google Maps
+                    <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </Button>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

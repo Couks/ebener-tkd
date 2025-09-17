@@ -204,6 +204,19 @@ export default function Planos() {
     },
   ];
 
+  // Group schedules by days
+  const groupedSchedules = classSchedules.reduce(
+    (acc, schedule) => {
+      const { days, ...rest } = schedule;
+      if (!acc[days]) {
+        acc[days] = [];
+      }
+      acc[days].push(rest);
+      return acc;
+    },
+    {} as Record<string, Omit<ClassSchedule, "days">[]>,
+  );
+
   // Toggle FAQ
   const toggleFaq = (index: number) => {
     setActiveFaq(activeFaq === index ? null : index);
@@ -255,89 +268,108 @@ export default function Planos() {
       />
 
       {/* Class Schedule Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4 md:px-8">
+      <section className="relative overflow-hidden bg-secondary-900 py-20 md:py-28">
+        {/* Decorative elements */}
+        <div
+          className="absolute -top-16 -right-16 h-48 w-48 rounded-full bg-primary-500/10 blur-3xl md:h-72 md:w-72"
+          aria-hidden="true"
+        ></div>
+        <div
+          className="absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-primary-500/10 blur-3xl md:h-72 md:w-72"
+          aria-hidden="true"
+        ></div>
+
+        <div className="container relative z-10 mx-auto px-4">
           <motion.div
-            className="text-center mb-12"
+            className="mb-12 text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="inline-flex items-center justify-center gap-2 bg-primary-500/20 px-4 py-2 rounded-full mb-4">
-              <span className="w-2 h-2 rounded-full bg-primary-500"></span>
-              <span className="text-sm font-medium text-primary-500">
+            <div className="mb-4 inline-flex items-center justify-center gap-2 rounded-full bg-primary-500/10 px-4 py-2">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-primary-500"></span>
+              <span className="text-sm font-medium text-primary-400">
                 Horários das Aulas
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white">
-              Cronograma dos<span className="text-primary-500"> Treinos</span>
+            <h2 className="mb-4 text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+              Cronograma dos{" "}
+              <span className="text-primary-500">Treinos</span>
             </h2>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-              Confira os horários disponíveis para cada faixa etária
+            <p className="mx-auto max-w-2xl text-lg text-gray-400">
+              Confira os horários disponíveis para cada faixa etária e nível de
+              habilidade.
             </p>
           </motion.div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="mx-auto max-w-6xl">
             <motion.div
-              className="grid md:grid-cols-2 gap-6"
+              className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
             >
-              {classSchedules.map((schedule, index) => (
+              {Object.entries(groupedSchedules).map(([days, schedules]) => (
                 <motion.div
-                  key={index}
-                  className="bg-secondary-800/80 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden p-6"
+                  key={days}
+                  className="flex flex-col rounded-2xl bg-secondary-800 p-6 shadow-lg"
                   variants={itemVariants}
-                  whileHover={{ y: -5 }}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-primary-500/20 flex items-center justify-center text-primary-500 flex-shrink-0">
-                      {schedule.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-2">
-                        {schedule.group}
-                      </h3>
-                      <div className="flex items-center gap-2 text-gray-300 mb-1">
-                        <span className="font-medium">{schedule.days}</span>
+                  <h3 className="mb-6 text-center text-2xl font-bold text-primary-500">
+                    {days}
+                  </h3>
+                  <div className="flex flex-col gap-4">
+                    {schedules.map((schedule, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center gap-4 rounded-xl bg-secondary-700/50 p-4"
+                      >
+                        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary-500/20 text-primary-500">
+                          {schedule.icon}
+                        </div>
+                        <div>
+                          <p className="font-bold text-white">
+                            {schedule.group}
+                          </p>
+                          <p className="font-medium text-gray-300">
+                            {schedule.time}
+                          </p>
+                        </div>
                       </div>
-                      <div className="text-primary-500 font-bold">
-                        {schedule.time}
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </motion.div>
               ))}
             </motion.div>
-
-            <motion.div
-              className="mt-8 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <p className="text-gray-400">
-                Para mais informações sobre os horários, entre em contato pelo{" "}
-                <a
-                  href="https://wa.link/b348me"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary-500 hover:underline"
-                >
-                  WhatsApp
-                </a>
-              </p>
-            </motion.div>
           </div>
+
+          <motion.div
+            className="mt-12 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <p className="text-gray-400">
+              Para mais informações, entre em contato pelo{" "}
+              <a
+                href="https://wa.link/b348me"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary-500 hover:underline"
+              >
+                WhatsApp
+              </a>
+              .
+            </p>
+          </motion.div>
         </div>
       </section>
 
-       {/* Plans Section */}
-       <section id="planos" className="py-16 md:py-24 relative">
+      {/* Plans Section */}
+      <section id="planos" className="py-16 md:py-24 relative">
         <div className="container mx-auto px-4 md:px-8">
           {/* Section header */}
           <motion.div
@@ -377,7 +409,7 @@ export default function Planos() {
             {plans.map((plan) => (
               <motion.div
                 key={plan.id}
-                className={`relative bg-secondary-800/80 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden transition-all duration-200 flex flex-col h-full ${
+                className={`relative bg-secondary-800/80 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden transition-all duration-100 flex flex-col h-full ${
                   plan.recommended
                     ? "ring-2 ring-primary-500 transform lg:-translate-y-4"
                     : ""
@@ -459,7 +491,7 @@ export default function Planos() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button className="w-full bg-primary-500 hover:bg-primary-600 text-black font-bold py-3 transition-all duration-200 flex items-center justify-center gap-2 group rounded-xl">
+                    <Button className="w-full bg-primary-500 hover:bg-primary-600 text-black font-bold py-3 transition-all duration-100 flex items-center justify-center gap-2 group rounded-xl">
                       {plan.ctaText}
                       <ArrowRight
                         size={16}
@@ -497,10 +529,20 @@ export default function Planos() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-secondary-900">
-        <div className="container mx-auto px-4 md:px-8">
+      <section className="relative overflow-hidden bg-secondary-900 py-20 md:py-28">
+        {/* Decorative elements */}
+        <div
+          className="absolute -top-16 -right-16 h-48 w-48 rounded-full bg-primary-500/10 blur-3xl md:h-72 md:w-72"
+          aria-hidden="true"
+        ></div>
+        <div
+          className="absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-primary-500/10 blur-3xl md:h-72 md:w-72"
+          aria-hidden="true"
+        ></div>
+
+        <div className="container relative z-10 mx-auto px-4 md:px-8">
           <motion.div
-            className="text-center mb-12"
+            className="mb-12 text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -509,57 +551,55 @@ export default function Planos() {
             <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white">
               Perguntas Frequentes
             </h2>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+            <p className="mx-auto max-w-2xl text-lg text-gray-300">
               Encontre respostas para as dúvidas mais comuns sobre nossos planos
               e aulas
             </p>
           </motion.div>
 
-          <div className="max-w-3xl mx-auto">
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                className="mb-4"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <button
-                  className={`w-full text-left p-5 rounded-xl flex items-center justify-between ${
-                    activeFaq === index
-                      ? "bg-secondary-800 text-white"
-                      : "bg-secondary-800/50 text-gray-300 hover:bg-secondary-800/80"
-                  } transition-all duration-200`}
-                  onClick={() => toggleFaq(index)}
+          <div className="mx-auto max-w-3xl">
+            <div className="space-y-4">
+              {faqs.map((faq, index) => (
+                <motion.div
+                  key={index}
+                  className="overflow-hidden rounded-2xl border border-secondary-800 bg-secondary-800/50 text-left"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <div className="flex items-center gap-3">
-                    <HelpCircle
-                      size={20}
-                      className="text-primary-500 flex-shrink-0"
-                    />
-                    <span className="font-medium">{faq.question}</span>
-                  </div>
-                  {activeFaq === index ? (
-                    <ChevronUp size={20} />
-                  ) : (
-                    <ChevronDown size={20} />
-                  )}
-                </button>
-
-                {activeFaq === index && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="bg-secondary-800/30 p-5 rounded-b-xl text-gray-300"
+                  <button
+                    className="flex w-full items-center justify-between p-5 font-medium text-white transition-colors hover:bg-secondary-800/80"
+                    onClick={() => toggleFaq(index)}
                   >
-                    {faq.answer}
+                    <div className="flex items-center gap-3">
+                      <HelpCircle
+                        size={20}
+                        className="flex-shrink-0 text-primary-500"
+                      />
+                      <span>{faq.question}</span>
+                    </div>
+                    <motion.div
+                      animate={{ rotate: activeFaq === index ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <ChevronDown size={20} />
+                    </motion.div>
+                  </button>
+
+                  <motion.div
+                    initial={false}
+                    animate={{ height: activeFaq === index ? "auto" : 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="p-5 pt-5 text-gray-300">
+                      <p>{faq.answer}</p>
+                    </div>
                   </motion.div>
-                )}
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

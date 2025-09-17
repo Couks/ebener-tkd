@@ -27,7 +27,7 @@ export function Footer() {
   }, []);
 
   return (
-    <footer className="bg-gradient-to-b from-secondary-900 to-secondary-950 text-white pt-12 pb-6 mt-8">
+    <footer className="bg-gradient-to-b from-black to-secondary-950 text-white pt-12 pb-6">
       <div className="container mx-auto px-4 md:px-6">
         {/* Main footer content */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"> {/* Alterado para md:grid-cols-2 */}
@@ -49,7 +49,7 @@ export function Footer() {
                 href="https://www.instagram.com/ebenertkd/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-secondary-800 hover:bg-primary-500 p-2 rounded-full transition-colors duration-200"
+                className="bg-secondary-800 hover:bg-primary-500 p-2 rounded-full transition-colors duration-100"
                 aria-label="Instagram"
               >
                 <Instagram size={18} />
@@ -58,7 +58,7 @@ export function Footer() {
                 href="https://www.tiktok.com/@ebener.tkd"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-secondary-800 hover:bg-primary-500 p-2 rounded-full transition-colors duration-200"
+                className="bg-secondary-800 hover:bg-primary-500 p-2 rounded-full transition-colors duration-100"
                 aria-label="TikTok"
               >
                 <TbBrandTiktok size={18} />
@@ -67,7 +67,7 @@ export function Footer() {
                 href="https://api.whatsapp.com/send/?phone=5521981654811"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-secondary-800 hover:bg-primary-500 p-2 rounded-full transition-colors duration-200"
+                className="bg-secondary-800 hover:bg-primary-500 p-2 rounded-full transition-colors duration-100"
                 aria-label="WhatsApp"
               >
                 <TbBrandWhatsapp size={18} />
@@ -102,7 +102,7 @@ export function Footer() {
                 />
                 <a
                   href="tel:+5521981654811"
-                  className="text-gray-300 hover:text-primary-500 transition-colors duration-200"
+                  className="text-gray-300 hover:text-primary-500 transition-colors duration-100"
                 >
                   (21) 98165-4811
                 </a>
