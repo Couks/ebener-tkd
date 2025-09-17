@@ -1,17 +1,17 @@
 "use client";
 
 import type React from "react";
-
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SignatureCanvas from "@/components/recibos/signature-canvas";
 import ReciboPreview from "@/components/recibos/recibo-preview";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Download, Save, Trash2 } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function ReciboForm() {
   const isMobile = useIsMobile();
@@ -30,30 +30,36 @@ export default function ReciboForm() {
 
   // Formatar valor monetário
   const formatarValor = (valor: string) => {
-    // Remove tudo que não é número
     let apenasNumeros = valor.replace(/\D/g, "");
-
-    // Converte para número e divide por 100 para obter o valor em reais
+    if (apenasNumeros === "") return "";
     const valorNumerico = parseFloat(apenasNumeros) / 100;
-
-    // Formata o valor como moeda brasileira
     return valorNumerico.toLocaleString("pt-BR", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
   };
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
     if (name === "valor") {
       setFormData((prev) => ({ ...prev, [name]: formatarValor(value) }));
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
   };
+
+  const handleSelectChange = (name: string, value: string) => {
+      if (name === 'mesAtualNumero') {
+          if (!value) {
+            setFormData(prev => ({...prev, mesAtual: "", mesAtualNumero: ""}));
+            return;
+          }
+          const mesNome = new Date(2023, Number.parseInt(value) - 1, 1).toLocaleString("pt-BR", { month: "long" });
+          setFormData(prev => ({...prev, mesAtual: mesNome, mesAtualNumero: value}));
+      } else {
+          setFormData(prev => ({...prev, [name]: value}));
+      }
+  }
 
   const handleClearSignature = () => {
     if (signatureRef.current) {
@@ -73,29 +79,17 @@ export default function ReciboForm() {
     const reciboElement = document.getElementById("recibo-para-download");
     if (!reciboElement) return;
 
-    // Verificar se todos os campos obrigatórios estão preenchidos
-    if (
-      !formData.nomeResponsavel ||
-      !formData.nomeAluno ||
-      !formData.valor ||
-      !formData.mes
-    ) {
-      return;
-    }
-
-    // Verificar se a assinatura foi adicionada
-    if (!formData.assinatura) {
+    if (!formData.nomeResponsavel || !formData.nomeAluno || !formData.valor || !formData.mes || !formData.assinatura) {
+      alert("Por favor, preencha todos os campos e salve a assinatura antes de baixar.");
       return;
     }
 
     import("html-to-image").then((htmlToImage) => {
       htmlToImage
-        .toJpeg(reciboElement, { quality: 0.95 })
+        .toJpeg(reciboElement, { quality: 0.95, backgroundColor: '#ffffff' })
         .then((dataUrl: string) => {
           const link = document.createElement("a");
-          link.download = `recibo-${formData.nomeAluno
-            .replace(/\s+/g, "-")
-            .toLowerCase()}-${formData.mes.toLowerCase()}-${formData.ano}.jpeg`;
+          link.download = `recibo-${formData.nomeAluno.replace(/\s+/g, "-").toLowerCase()}-${formData.mes.toLowerCase()}-${formData.ano}.jpeg`;
           link.href = dataUrl;
           link.click();
         })
@@ -105,7 +99,6 @@ export default function ReciboForm() {
     });
   };
 
-  // Atualizar a data automaticamente
   useEffect(() => {
     const hoje = new Date();
     setFormData((prev) => ({
@@ -118,263 +111,183 @@ export default function ReciboForm() {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto mt-32">
-      {isMobile ? (
-        <Tabs defaultValue="form" className="w-full">
-          <TabsList className="grid grid-cols-2 mb-6">
-            <TabsTrigger value="form">Formulário</TabsTrigger>
-            <TabsTrigger value="preview">Pré-visualização</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="form">
-            <FormularioRecibo
-              formData={formData}
-              handleInputChange={handleInputChange}
-              signatureRef={signatureRef}
-              handleClearSignature={handleClearSignature}
-              handleSaveSignature={handleSaveSignature}
-              handleDownload={handleDownload}
-            />
-          </TabsContent>
-
-          <TabsContent value="preview">
-            <div className="space-y-4">
-              <ReciboPreview formData={formData} />
-              <Button onClick={handleDownload} className="w-full" size="lg">
-                <Download className="mr-2 h-4 w-4" /> Baixar Recibo
-              </Button>
+    <div className="w-full">
+        <div className="flex items-center justify-between mb-8">
+            <div>
+                <h1 className="text-3xl font-bold">Gerador de Recibos</h1>
+                <p className="text-gray-400">Preencha os dados para criar e baixar um novo recibo.</p>
             </div>
-          </TabsContent>
-        </Tabs>
-      ) : (
-        <div className="grid md:grid-cols-2 gap-8">
-          <FormularioRecibo
-            formData={formData}
-            handleInputChange={handleInputChange}
-            signatureRef={signatureRef}
-            handleClearSignature={handleClearSignature}
-            handleSaveSignature={handleSaveSignature}
-            handleDownload={handleDownload}
-          />
-
-          <div className="space-y-4">
-            <ReciboPreview formData={formData} />
-          </div>
         </div>
-      )}
+
+        {isMobile ? (
+            <Tabs defaultValue="form" className="w-full">
+            <TabsList className="grid grid-cols-2 mb-6">
+                <TabsTrigger value="form">Formulário</TabsTrigger>
+                <TabsTrigger value="preview">Pré-visualização</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="form">
+                <FormularioRecibo
+                formData={formData}
+                handleInputChange={handleInputChange}
+                handleSelectChange={handleSelectChange}
+                signatureRef={signatureRef}
+                handleClearSignature={handleClearSignature}
+                handleSaveSignature={handleSaveSignature}
+                handleDownload={handleDownload}
+                />
+            </TabsContent>
+
+            <TabsContent value="preview">
+                <div className="space-y-4">
+                <ReciboPreview formData={formData} />
+                <Button onClick={handleDownload} className="w-full" size="lg">
+                    <Download className="mr-2 h-4 w-4" /> Baixar Recibo
+                </Button>
+                </div>
+            </TabsContent>
+            </Tabs>
+        ) : (
+            <div className="grid md:grid-cols-2 gap-8 items-start">
+            <FormularioRecibo
+                formData={formData}
+                handleInputChange={handleInputChange}
+                handleSelectChange={handleSelectChange}
+                signatureRef={signatureRef}
+                handleClearSignature={handleClearSignature}
+                handleSaveSignature={handleSaveSignature}
+                handleDownload={handleDownload}
+            />
+
+            <div className="space-y-4 sticky top-8">
+                <CardHeader className="p-0 mb-4">
+                    <CardTitle>Pré-visualização do Recibo</CardTitle>
+                    <CardDescription>Esta é a aparência final do recibo que será baixado.</CardDescription>
+                </CardHeader>
+                <ReciboPreview formData={formData} />
+                 <Button onClick={handleDownload} className="w-full" size="lg">
+                    <Download className="mr-2 h-4 w-4" /> Baixar Recibo
+                </Button>
+            </div>
+            </div>
+        )}
     </div>
   );
 }
 
 interface FormularioReciboProps {
   formData: any;
-  handleInputChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => void;
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSelectChange: (name: string, value: string) => void;
   signatureRef: React.RefObject<any>;
   handleClearSignature: () => void;
   handleSaveSignature: () => void;
   handleDownload: () => void;
 }
 
+const months = [
+    { value: "Janeiro", label: "Janeiro" }, { value: "Fevereiro", label: "Fevereiro" },
+    { value: "Março", label: "Março" }, { value: "Abril", label: "Abril" },
+    { value: "Maio", label: "Maio" }, { value: "Junho", label: "Junho" },
+    { value: "Julho", label: "Julho" }, { value: "Agosto", label: "Agosto" },
+    { value: "Setembro", label: "Setembro" }, { value: "Outubro", label: "Outubro" },
+    { value: "Novembro", label: "Novembro" }, { value: "Dezembro", label: "Dezembro" },
+];
+
+const currentMonths = Array.from({ length: 12 }, (_, i) => ({
+    value: (i + 1).toString(),
+    label: `${i + 1} - ${new Date(2000, i, 1).toLocaleString('pt-BR', { month: 'long' })}`
+}));
+
+
 function FormularioRecibo({
   formData,
   handleInputChange,
+  handleSelectChange,
   signatureRef,
   handleClearSignature,
   handleSaveSignature,
   handleDownload,
 }: FormularioReciboProps) {
   return (
-    <Card className="p-6 shadow-lg border-t-4 border-t-[#0a3b6c]">
-      <h2 className="text-xl font-semibold mb-6 text-[#0a3b6c]">
-        Formulário de Recibo
-      </h2>
+    <div className="space-y-6">
+        <Card className="bg-secondary-900/50 border-secondary-700">
+            <CardHeader>
+                <CardTitle>Informações do Pagamento</CardTitle>
+                <CardDescription>Preencha os dados do responsável, aluno e valor.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                 <div>
+                    <Label htmlFor="nomeResponsavel">Nome do Responsável</Label>
+                    <Input id="nomeResponsavel" name="nomeResponsavel" value={formData.nomeResponsavel} onChange={handleInputChange} placeholder="Nome completo do responsável" />
+                </div>
+                <div>
+                    <Label htmlFor="nomeAluno">Nome do Aluno</Label>
+                    <Input id="nomeAluno" name="nomeAluno" value={formData.nomeAluno} onChange={handleInputChange} placeholder="Nome completo do aluno"/>
+                </div>
+                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <Label htmlFor="valor">Valor (R$)</Label>
+                        <Input id="valor" name="valor" value={formData.valor} onChange={handleInputChange} placeholder="0,00"/>
+                    </div>
+                    <div>
+                        <Label htmlFor="mes">Mês de Referência</Label>
+                        <Select name="mes" value={formData.mes} onValueChange={(value) => handleSelectChange('mes', value)}>
+                            <SelectTrigger><SelectValue placeholder="Selecione o mês" /></SelectTrigger>
+                            <SelectContent>
+                                {months.map(m => <SelectItem key={m.value} value={m.value}>{m.label}</SelectItem>)}
+                            </SelectContent>
+                        </Select>
+                    </div>
+                </div>
+            </CardContent>
+        </Card>
 
-      <div className="space-y-5">
-        <div>
-          <Label htmlFor="nomeResponsavel" className="text-sm font-medium">
-            Nome do Responsável
-          </Label>
-          <Input
-            id="nomeResponsavel"
-            name="nomeResponsavel"
-            value={formData.nomeResponsavel}
-            onChange={handleInputChange}
-            placeholder="Nome completo do responsável"
-            className="mt-1"
-          />
-        </div>
+        <Card className="bg-secondary-900/50 border-secondary-700">
+            <CardHeader>
+                <CardTitle>Data de Emissão do Recibo</CardTitle>
+                <CardDescription>Data em que o recibo está sendo gerado.</CardDescription>
+            </CardHeader>
+            <CardContent className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                    <Label htmlFor="dia">Dia</Label>
+                    <Input id="dia" name="dia" value={formData.dia} onChange={handleInputChange} placeholder="Ex: 20" />
+                </div>
+                <div>
+                    <Label htmlFor="mesAtualNumero">Mês Atual</Label>
+                     <Select name="mesAtualNumero" value={formData.mesAtualNumero} onValueChange={(value) => handleSelectChange('mesAtualNumero', value)}>
+                        <SelectTrigger><SelectValue placeholder="Selecione o mês" /></SelectTrigger>
+                        <SelectContent>
+                            {currentMonths.map(m => <SelectItem key={m.value} value={m.value}>{m.label}</SelectItem>)}
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div>
+                    <Label htmlFor="ano">Ano</Label>
+                    <Input id="ano" name="ano" value={formData.ano} onChange={handleInputChange} placeholder="Ex: 2025" />
+                </div>
+            </CardContent>
+        </Card>
 
-        <div>
-          <Label htmlFor="nomeAluno" className="text-sm font-medium">
-            Nome do Aluno
-          </Label>
-          <Input
-            id="nomeAluno"
-            name="nomeAluno"
-            value={formData.nomeAluno}
-            onChange={handleInputChange}
-            placeholder="Nome completo do aluno"
-            className="mt-1"
-          />
-        </div>
-
-        <div>
-          <Label htmlFor="valor" className="text-sm font-medium">
-            Valor (R$)
-          </Label>
-          <Input
-            id="valor"
-            name="valor"
-            value={formData.valor}
-            onChange={handleInputChange}
-            placeholder="0,00"
-            className="mt-1"
-          />
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <Label htmlFor="mes" className="text-sm font-medium">
-              Mês de Referência
-            </Label>
-            <select
-              id="mes"
-              name="mes"
-              value={formData.mes}
-              onChange={handleInputChange}
-              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mt-1"
-            >
-              <option value="">Selecione o mês</option>
-              <option value="Janeiro">Janeiro</option>
-              <option value="Fevereiro">Fevereiro</option>
-              <option value="Março">Março</option>
-              <option value="Abril">Abril</option>
-              <option value="Maio">Maio</option>
-              <option value="Junho">Junho</option>
-              <option value="Julho">Julho</option>
-              <option value="Agosto">Agosto</option>
-              <option value="Setembro">Setembro</option>
-              <option value="Outubro">Outubro</option>
-              <option value="Novembro">Novembro</option>
-              <option value="Dezembro">Dezembro</option>
-            </select>
-          </div>
-
-          <div>
-            <Label htmlFor="ano" className="text-sm font-medium">
-              Ano
-            </Label>
-            <Input
-              id="ano"
-              name="ano"
-              value={formData.ano}
-              onChange={handleInputChange}
-              placeholder="Ex: 2025"
-              className="mt-1"
-            />
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <Label htmlFor="dia" className="text-sm font-medium">
-              Dia
-            </Label>
-            <Input
-              id="dia"
-              name="dia"
-              value={formData.dia}
-              onChange={handleInputChange}
-              placeholder="Ex: 20"
-              className="mt-1"
-            />
-          </div>
-
-          <div>
-            <Label htmlFor="mesAtualNumero" className="text-sm font-medium">
-              Mês Atual
-            </Label>
-            <select
-              id="mesAtualNumero"
-              name="mesAtualNumero"
-              value={formData.mesAtualNumero}
-              onChange={(e) => {
-                const mesNumero = e.target.value;
-                if (!mesNumero) {
-                  handleInputChange({
-                    target: { name: "mesAtual", value: "" },
-                  } as React.ChangeEvent<HTMLInputElement>);
-                  handleInputChange({
-                    target: { name: "mesAtualNumero", value: "" },
-                  } as React.ChangeEvent<HTMLInputElement>);
-                  return;
-                }
-                // Converter o número do mês para o nome do mês em português
-                const mesNome = new Date(
-                  2023,
-                  Number.parseInt(mesNumero) - 1,
-                  1
-                ).toLocaleString("pt-BR", {
-                  month: "long",
-                });
-                handleInputChange({
-                  target: { name: "mesAtual", value: mesNome },
-                } as React.ChangeEvent<HTMLInputElement>);
-                handleInputChange({
-                  target: { name: "mesAtualNumero", value: mesNumero },
-                } as React.ChangeEvent<HTMLInputElement>);
-              }}
-              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 mt-1"
-            >
-              <option value="">Selecione o mês</option>
-              <option value="1">1 - Janeiro</option>
-              <option value="2">2 - Fevereiro</option>
-              <option value="3">3 - Março</option>
-              <option value="4">4 - Abril</option>
-              <option value="5">5 - Maio</option>
-              <option value="6">6 - Junho</option>
-              <option value="7">7 - Julho</option>
-              <option value="8">8 - Agosto</option>
-              <option value="9">9 - Setembro</option>
-              <option value="10">10 - Outubro</option>
-              <option value="11">11 - Novembro</option>
-              <option value="12">12 - Dezembro</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <Label className="text-sm font-medium">Assinatura</Label>
-          <div className="border rounded-md p-2 bg-white mt-1">
-            <SignatureCanvas ref={signatureRef} />
-          </div>
-          <div className="flex gap-2 mt-2">
-            <Button
-              variant="outline"
-              onClick={handleClearSignature}
-              type="button"
-              size="sm"
-              className="flex-1"
-            >
-              <Trash2 className="mr-2 h-4 w-4" /> Limpar
-            </Button>
-            <Button
-              onClick={handleSaveSignature}
-              type="button"
-              size="sm"
-              className="flex-1"
-            >
-              <Save className="mr-2 h-4 w-4" /> Salvar Assinatura
-            </Button>
-          </div>
-        </div>
-
-        <Button onClick={handleDownload} className="w-full" size="lg">
-          <Download className="mr-2 h-4 w-4" /> Baixar Recibo
-        </Button>
-      </div>
-    </Card>
+        <Card className="bg-secondary-900/50 border-secondary-700">
+             <CardHeader>
+                <CardTitle>Assinatura</CardTitle>
+                <CardDescription>Desenhe a assinatura no campo abaixo.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <div className="border rounded-md bg-white">
+                    <SignatureCanvas ref={signatureRef} />
+                </div>
+                <div className="flex gap-2 mt-4">
+                    <Button variant="outline" onClick={handleClearSignature} type="button" size="sm" className="flex-1">
+                        <Trash2 className="mr-2 h-4 w-4" /> Limpar
+                    </Button>
+                    <Button onClick={handleSaveSignature} type="button" size="sm" className="flex-1">
+                        <Save className="mr-2 h-4 w-4" /> Salvar Assinatura
+                    </Button>
+                </div>
+            </CardContent>
+        </Card>
+    </div>
   );
 }

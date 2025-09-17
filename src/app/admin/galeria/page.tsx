@@ -1,366 +1,181 @@
 "use client";
 
-import { useState, FormEvent, useEffect, useCallback } from 'react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Loader2, X, Plus } from 'lucide-react';
-import { toast } from 'sonner';
-import Image from 'next/image';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { MoreHorizontal, PlusCircle, Loader2, ImageIcon, Trash2 } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 interface Event {
   id: string;
   title: string;
-  description: string;
   date: string;
-  imageFolder: string;
   imageUrls: string[];
-  category: string; // New category field
 }
 
 export default function AdminGaleriaPage() {
-  const [title, setTitle] = useState('');
-  const [date, setDate] = useState('');
-  const [images, setImages] = useState<FileList | null>(null);
-  const [loading, setLoading] = useState(false);
   const [events, setEvents] = useState<Event[]>([]);
-  const [editingEvent, setEditingEvent] = useState<Event | null>(null);
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [eventToDelete, setEventToDelete] = useState<string | null>(null);
-  const [keptImageUrls, setKeptImageUrls] = useState<string[]>([]);
-  const [showForm, setShowForm] = useState(false); // New state to control form visibility
-  const [category, setCategory] = useState(''); // New category state
 
   const fetchEvents = useCallback(async () => {
+    setLoading(true);
     try {
-      setLoading(true);
       const response = await fetch('/api/events');
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      if (!response.ok) throw new Error("Falha ao buscar galerias");
       const data: Event[] = await response.json();
       setEvents(data);
     } catch (error) {
-      console.error("Failed to fetch events:", error);
-      toast.error("Failed to load events.");
+      toast.error("Falha ao carregar galerias.");
+      console.error(error);
     } finally {
       setLoading(false);
     }
-  }, [setEvents, setLoading]);
+  }, []);
 
-  // Fetch events on component mount
   useEffect(() => {
     fetchEvents();
   }, [fetchEvents]);
 
-  const handleEditClick = useCallback((event: Event) => {
-    setEditingEvent(event);
-    setTitle(event.title);
-    setDate(event.date);
-    setImages(null); // Clear image input for new uploads
-    setKeptImageUrls(event.imageUrls || []); // Initialize with existing image URLs
-    setCategory(event.category || ''); // Set category for editing
-    setShowForm(true); // Show the form when editing
-  }, []);
-
-  const handleCancelEdit = useCallback(() => {
-    setEditingEvent(null);
-    setTitle('');
-    setDate('');
-    setImages(null);
-    setKeptImageUrls([]);
-    setCategory(''); // Clear category
-    setShowForm(false); // Hide the form when cancelling
-  }, []);
-
-  const handleRemoveImage = useCallback((imageUrlToRemove: string) => {
-    setKeptImageUrls(prevUrls => prevUrls.filter(url => url !== imageUrlToRemove));
-  }, []);
-
-  const handleDeleteClick = useCallback((eventId: string) => {
-    setEventToDelete(eventId);
-    setIsDeleteDialogOpen(true);
-  }, []);
-
-  const confirmDelete = useCallback(async () => {
+  const handleDelete = async () => {
     if (!eventToDelete) return;
 
-    setLoading(true);
+    const originalEvents = [...events];
+    const eventToRemove = events.find(e => e.id === eventToDelete);
+    if (!eventToRemove) return;
+
+    // Optimistic UI update
+    setEvents(prevEvents => prevEvents.filter(event => event.id !== eventToDelete));
+    setEventToDelete(null);
+
     try {
       const response = await fetch(`/api/admin/galeria/${eventToDelete}`, {
         method: 'DELETE',
-        headers: {
-          'Authorization': 'Basic ' + btoa('admin:123'),
-        },
+        headers: { 'Authorization': 'Basic ' + btoa('admin:123') },
       });
 
-      if (response.ok) {
-        toast.success('Evento excluído com sucesso!');
-        fetchEvents(); // Re-fetch events to update the list
-      } else {
-        const errorData = await response.json();
-        toast.error(`Erro: ${errorData.message}`);
+      if (!response.ok) {
+        throw new Error("Falha ao excluir galeria no servidor");
       }
+
+      toast.success(`Galeria "${eventToRemove.title}" excluída com sucesso.`);
     } catch (error) {
-      console.error('Erro ao excluir evento:', error);
-      toast.error('Ocorreu um erro inesperado durante a exclusão.');
-    } finally {
-      setLoading(false);
-      setIsDeleteDialogOpen(false);
-      setEventToDelete(null);
+      toast.error(`Falha ao excluir galeria. Restaurando...`);
+      // Revert UI on failure
+      setEvents(originalEvents);
+      console.error(error);
     }
-  }, [eventToDelete, fetchEvents, setLoading]);
+  };
 
-  const handleSubmit = useCallback(async (e: FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
+  const formatDate = (dateString: string) => {
+    return new Date(dateString + 'T00:00:00').toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    });
+  };
 
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('date', date);
-    formData.append('category', category);
-
-    if (editingEvent) {
-      formData.append('keptImageUrls', JSON.stringify(keptImageUrls));
-    }
-
-    if (images) {
-      for (let i = 0; i < images.length; i++) {
-        formData.append('images', images[i]);
-      }
-    }
-
-    const method = editingEvent ? 'PUT' : 'POST'; // Use PUT for updates
-    const url = editingEvent ? `/api/admin/galeria/${editingEvent.id}` : '/api/admin/galeria';
-
-    try {
-      const response = await fetch(url, {
-        method,
-        headers: {
-          'Authorization': 'Basic ' + btoa('admin:123'), // Basic Auth: admin:123
-        },
-        body: formData,
-      });
-
-      if (response.ok) {
-        toast.success(`Evento ${editingEvent ? 'atualizado' : 'criado'} com sucesso!`);
-        handleCancelEdit(); // Reset form and editing state
-        fetchEvents(); // Re-fetch events to update the list
-      } else {
-        const errorData = await response.json();
-        toast.error(`Erro: ${errorData.message}`);
-      }
-    } catch (error) {
-      console.error('Erro ao enviar formulário:', error);
-      toast.error('Ocorreu um erro inesperado.');
-    } finally {
-      setLoading(false);
-    }
-  }, [title, date, images, editingEvent, fetchEvents, handleCancelEdit, setLoading, keptImageUrls, category]);
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <Loader2 className="h-12 w-12 animate-spin text-primary-500" />
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <div className="flex flex-col md:flex-row min-h-screen">
-        {/* Sidebar */}
-        <aside className="w-full md:w-1/4 bg-secondary-900 border-r border-secondary-700 p-6 flex flex-col">
-          <h1 className="text-2xl font-bold mb-6 text-primary-500">Painel Administrativo</h1>
-          <Button 
-            className="w-full mb-6 bg-primary-500 hover:bg-primary-600 text-black font-bold py-3 rounded-md flex items-center justify-center gap-2"
-            onClick={() => { handleCancelEdit(); setShowForm(true); }}
-          >
-            <Plus size={20} /> Criar Novo Evento
+    <div className="flex flex-col gap-8">
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold">Galerias de Eventos</h1>
+          <p className="text-gray-400">Gerencie as fotos dos eventos do site.</p>
+        </div>
+        <Link href="/admin/galeria/novo">
+          <Button className="flex items-center gap-2 bg-primary-500 hover:bg-primary-600">
+            <PlusCircle size={20} />
+            <span className="hidden sm:inline">Nova Galeria</span>
           </Button>
+        </Link>
+      </div>
 
-          <Card className="bg-secondary-800/50 border-secondary-700 text-white flex-grow">
-            <CardHeader>
-              <CardTitle>Eventos Existentes</CardTitle>
-              <CardDescription className="text-gray-400">Selecione um evento para editar ou exclua-o.</CardDescription>
-            </CardHeader>
-            <CardContent className="p-0">
-              {loading ? (
-                <div className="flex items-center justify-center py-8">
-                  <Loader2 className="mr-2 h-6 w-6 animate-spin text-primary-500" />
-                  <span className="text-gray-400">Carregando eventos...</span>
+      {events.length === 0 ? (
+        <div className="flex flex-1 items-center justify-center rounded-lg border border-dashed border-secondary-700 shadow-sm h-80 p-20">
+          <div className="flex flex-col items-center gap-2 text-center">
+            <ImageIcon className="h-12 w-12 text-gray-500" />
+            <h3 className="text-xl font-bold tracking-tight">Nenhuma galeria encontrada</h3>
+            <p className="text-sm text-gray-500">Comece criando uma nova galeria de eventos.</p>
+          </div>
                 </div>
-              ) : events.length === 0 ? (
-                <p className="text-gray-400 p-4 text-center">Nenhum evento cadastrado ainda.</p>
-              ) : (
-                <div className="overflow-y-auto max-h-[calc(100vh-250px)]">
-                  <Table>
-                    <TableHeader>
-                      <TableRow className="border-secondary-700">
-                        <TableHead className="text-primary-500 sticky top-0 bg-secondary-800/90 z-10">Título</TableHead>
-                        <TableHead className="text-primary-500 text-right sticky top-0 bg-secondary-800/90 z-10">Ações</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                       {events.map((event) => (
-                        <TableRow key={event.id} className="border-secondary-700 hover:bg-secondary-700/70 cursor-pointer">
-                          <TableCell className="font-medium text-white" onClick={() => handleEditClick(event)}>{event.title}</TableCell>
-                          <TableCell className="text-right">
-                            <AlertDialog>
-                              <AlertDialogTrigger asChild>
-                                <Button variant="destructive" size="sm" onClick={() => setEventToDelete(event.id)}>Excluir</Button>
-                              </AlertDialogTrigger>
-                              <AlertDialogContent className="bg-secondary-900 text-white border-secondary-700">
-                                <AlertDialogHeader>
-                                  <AlertDialogTitle>Tem certeza absoluta?</AlertDialogTitle>
-                                  <AlertDialogDescription className="text-gray-300">
-                                    Esta ação não pode ser desfeita. Isso excluirá permanentemente seu
-                                    evento e removerá seus dados de nossos servidores.
-                                  </AlertDialogDescription>
-                                </AlertDialogHeader>
-                                <AlertDialogFooter>
-                                  <AlertDialogCancel className="border-secondary-200 text-gray-800 hover:bg-secondary-800 hover:text-white">Cancelar</AlertDialogCancel>
-                                  <AlertDialogAction className="bg-red-600 hover:bg-red-700 text-white" onClick={confirmDelete}>Continuar</AlertDialogAction>
-                                </AlertDialogFooter>
-                              </AlertDialogContent>
-                            </AlertDialog>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        </aside>
-
-        {/* Main Content - Form */}
-        <main className="flex-grow p-6 md:p-8">
-          <h1 className="text-4xl font-bold mb-8 text-primary-500">Gerenciar Galeria de Eventos</h1>
-          {showForm && (
-            <Card className="mb-12 bg-secondary-900/50 border-secondary-700 text-white">
-              <CardHeader>
-                <CardTitle>{editingEvent ? 'Editar Evento' : 'Criar Novo Evento'}</CardTitle>
-                <CardDescription className="text-gray-400">{editingEvent ? 'Altere os detalhes do evento e substitua as imagens, se necessário.' : 'Preencha os campos para criar um novo evento e faça upload das imagens relacionadas.'}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="flex flex-col md:flex-row gap-6">
-                    <div className="flex-1">
-                      <Label htmlFor="title" className="block text-sm font-medium text-gray-300 mb-2">Título do Evento</Label>
-                      <Input
-                        id="title"
-                        type="text"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        className="w-full p-3 bg-secondary-800 border border-secondary-700 rounded-md focus:ring-primary-500 focus:border-primary-500"
-                        required
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <Label htmlFor="date" className="block text-sm font-medium text-gray-300 mb-2">Data do Evento</Label>
-                      <Input
-                        id="date"
-                        type="date"
-                        value={date}
-                        onChange={(e) => setDate(e.target.value)}
-                        className="w-full p-3 bg-secondary-800 border border-secondary-700 rounded-md focus:ring-primary-500 focus:border-primary-500"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="category" className="block text-sm font-medium text-gray-300 mb-2">Categoria do Evento</Label>
-                    <Select value={category} onValueChange={setCategory} required>
-                      <SelectTrigger className="w-full p-3 bg-secondary-800 border border-secondary-700 rounded-md focus:ring-primary-500 focus:border-primary-500">
-                        <SelectValue placeholder="Selecione uma categoria" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-secondary-800 border-secondary-700 text-white">
-                        <SelectItem value="Treinos">Treinos</SelectItem>
-                        <SelectItem value="Competições">Competições</SelectItem>
-                        <SelectItem value="Graduações">Graduações</SelectItem>
-                        <SelectItem value="Eventos">Eventos</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div>
-                    <Label htmlFor="images" className="block text-sm font-medium text-gray-300 mb-2">Imagens do Evento (Múltiplas)</Label>
-                    <Input
-                      id="images"
-                      type="file"
-                      multiple
-                      accept="image/*"
-                      onChange={(e) => setImages(e.target.files)}
-                      className="w-full h-auto p-3 bg-secondary-800 border border-secondary-700 rounded-md focus:ring-primary-500 focus:border-primary-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary-500 file:text-black hover:file:bg-primary-600 file:cursor-pointer"
-                    />
-                    {editingEvent && (
-                      <p className="text-sm text-gray-400 mt-2">Deixe em branco para manter as imagens existentes. Novas imagens substituirão as antigas.</p>
-                    )}
-                    {editingEvent && keptImageUrls.length > 0 && (
-                      <div className="mt-4">
-                        <p className="text-sm text-gray-300 mb-2">Imagens Atuais:</p>
-                        <div className="grid grid-cols-3 gap-2">
-                          {keptImageUrls.map((url, imgIdx) => (
-                            <div key={imgIdx} className="relative w-full h-32 bg-secondary-700 rounded overflow-hidden group">
-                              <Image src={url} alt={`Current Image ${imgIdx + 1}`} layout="fill" objectFit="cover" />
-                              <button
-                                type="button"
-                                onClick={() => handleRemoveImage(url)}
-                                className="absolute top-1 right-1 bg-red-600 p-1 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity z-10"
-                                title="Remover imagem"
-                              >
-                                <X size={16} />
-                              </button>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  <div className="flex gap-2">
-                    <Button
-                      type="submit"
-                      className="flex-grow bg-primary-500 hover:bg-primary-600 text-black font-bold py-3 rounded-md transition-colors flex items-center justify-center"
-                      disabled={loading}
-                    >
-                      {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-                      {loading ? (editingEvent ? 'Salvando...' : 'Criando Evento...') : (editingEvent ? 'Salvar Alterações' : 'Criar Evento')}
-                    </Button>
-                    {editingEvent && (
-                      <Button
-                        type="button"
-                        variant="outline"
-                        className="flex-grow text-gray-400 border-gray-400 hover:bg-gray-700 hover:text-white"
-                        onClick={handleCancelEdit}
-                      >
-                        Cancelar Edição
+            <Card key={event.id} className="bg-secondary-900/50 border-secondary-700 flex flex-col overflow-hidden group">
+              <CardHeader className="p-0 relative h-48 w-full">
+                <Link href={`/admin/galeria/editar/${event.id}`} className="absolute inset-0 z-10">
+                  <span className="sr-only">Editar galeria</span>
+                </Link>
+                <Image
+                  src={event.imageUrls?.[0] || '/placeholder.svg'}
+                  alt={event.title}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute top-2 right-2 z-20">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button size="icon" variant="secondary" className="h-8 w-8 bg-foreground hover:bg-foreground/80 rounded-md">
+                        <MoreHorizontal className="h-4 w-4 text-muted" />
                       </Button>
-                    )}
-                  </div>
-                </form>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="bg-secondary-800 border-secondary-700 text-white">
+                      <DropdownMenuItem asChild>
+                        <Link href={`/admin/galeria/editar/${event.id}`}>Editar</Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={(e) => { e.stopPropagation(); setEventToDelete(event.id); }} className="text-red-500">
+                        Excluir
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+              </CardHeader>
+              <CardContent className="p-4 flex-1">
+                <CardTitle className="text-lg font-semibold line-clamp-2">{event.title}</CardTitle>
+                <p className="text-sm text-gray-400 mt-1">{formatDate(event.date)}</p>
               </CardContent>
             </Card>
-          )} 
-          {!showForm && (
-            <div className="p-4 text-gray-400">
-                Selecione um evento na barra lateral para editar ou clique em 
-                &quot;Criar Novo Evento&quot;.
+          ))}
             </div>
           )}
-        </main>
 
-        {/* AlertDialog for Delete Confirmation */}
-        <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
-          <AlertDialogContent className="bg-secondary-900 text-white border-secondary-700">
+      <AlertDialog open={!!eventToDelete} onOpenChange={(open) => !open && setEventToDelete(null)}>
+        <AlertDialogContent className="bg-secondary-900 border-secondary-700 text-white">
             <AlertDialogHeader>
-              <AlertDialogTitle>Confirmar Exclusão</AlertDialogTitle>
-              <AlertDialogDescription className="text-gray-300">
-                Tem certeza que deseja excluir este evento? Esta ação não pode ser desfeita.
+            <AlertDialogTitle>Você tem certeza?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Esta ação não pode ser desfeita. Isso excluirá permanentemente a galeria e todas as suas imagens.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel className="border-secondary-700 text-gray-300 hover:bg-secondary-800">Cancelar</AlertDialogCancel>
-              <AlertDialogAction className="bg-red-600 hover:bg-red-700 text-white" onClick={confirmDelete}>Excluir</AlertDialogAction>
+            <AlertDialogCancel className="border-none">Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDelete} className="bg-red-600 hover:bg-red-700">
+              Excluir
+            </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
-      </div>
     </div>
   );
-} 
+}

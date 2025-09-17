@@ -27,9 +27,8 @@ interface Event {
   title: string;
   description: string;
   date: string;
-  imageFolder: string; // Folder name within public/images/events/
   imageUrls: string[];
-  category: string; // New category field
+  category: string;
 }
 
 // Helper function to format date

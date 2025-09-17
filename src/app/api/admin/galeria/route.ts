@@ -1,63 +1,91 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import { unlink } from 'fs/promises';
-import path from 'path';
-import sharp from 'sharp'; // Import sharp
+import { createServer } from '@/lib/supabase/server';
+import sharp from 'sharp';
 
 export async function POST(req: NextRequest) {
-  // Basic authentication
   const authHeader = req.headers.get('authorization');
   if (!authHeader || authHeader !== 'Basic ' + btoa('admin:123')) {
     return NextResponse.json({ message: 'Não autorizado' }, { status: 401 });
   }
+
+  const supabase = createServer();
 
   try {
     const formData = await req.formData();
     const title = formData.get('title') as string;
     const category = formData.get('category') as string;
     const date = formData.get('date') as string;
+    const description = formData.get('description') as string;
     const images = formData.getAll('images') as File[];
 
     if (!title || !category || images.length === 0) {
       return NextResponse.json({ message: 'Campos obrigatórios ou imagens ausentes' }, { status: 400 });
     }
 
-    const folderName = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '-' + Date.now();
-    const eventImagesDirPath = path.join(process.cwd(), 'public', 'images', 'eventos', folderName);
-    const eventMetaDataFilePath = path.join(process.cwd(), 'public', 'events', `${folderName}.json`);
+    const { data: eventData, error: insertError } = await supabase
+      .from('events')
+      .insert([{ title, category, date, description }])
+      .select()
+      .single();
 
-    await fs.mkdir(eventImagesDirPath, { recursive: true });
+    if (insertError) {
+      console.error('Error inserting event:', insertError);
+      return NextResponse.json({ message: 'Erro ao criar evento no banco de dados' }, { status: 500 });
+    }
 
     const imageUrls: string[] = [];
     for (const image of images) {
-      const bytes = await image.arrayBuffer();
-      const buffer = new Uint8Array(bytes);
+      const buffer = await image.arrayBuffer();
 
-      // Convert image to WebP and save
-      const webpBuffer = await sharp(buffer)
-        .webp({ quality: 80 })
+      const MAX_SIZE_BYTES = 500 * 1024; // 500KB
+      let quality = 80;
+      let webpBuffer;
+
+      // Initial compression attempt
+      webpBuffer = await sharp(buffer)
+        .resize({ width: 1920, withoutEnlargement: true }) // Resize large images
+        .webp({ quality })
         .toBuffer();
 
-      const imageName = `${path.parse(image.name).name}.webp`; // Change extension to webp
-      const imagePath = path.join(eventImagesDirPath, imageName);
-      await fs.writeFile(imagePath, new Uint8Array(webpBuffer));
-      imageUrls.push(`/images/eventos/${folderName}/${imageName}`);
+      // If the image is too large, iteratively reduce the quality
+      while (webpBuffer.byteLength > MAX_SIZE_BYTES && quality > 10) {
+        quality -= 10; // Reduce quality by 10
+        webpBuffer = await sharp(buffer)
+          .resize({ width: 1920, withoutEnlargement: true })
+          .webp({ quality })
+          .toBuffer();
+      }
+
+      // Optional: Check if the image is still too large and handle it
+      if (webpBuffer.byteLength > MAX_SIZE_BYTES) {
+        console.warn(`Image "${image.name}" could not be compressed under 500KB. Final size: ${Math.round(webpBuffer.byteLength / 1024)}KB`);
+        // Here you could decide to reject the image by returning an error response
+        // For now, it will be uploaded as is.
+      }
+
+      const imageName = `${Date.now()}-${image.name.split('.')[0]}.webp`;
+      const { error: uploadError } = await supabase.storage
+        .from('events')
+        .upload(`${eventData.id}/${imageName}`, webpBuffer, {
+          contentType: 'image/webp',
+          upsert: true,
+        });
+
+      if (uploadError) {
+        console.error('Error uploading image:', uploadError);
+        // Should we delete the event if an image fails to upload?
+        // For now, we'll just log the error and continue.
+      } else {
+        const { data: { publicUrl } } = supabase.storage
+          .from('events')
+          .getPublicUrl(`${eventData.id}/${imageName}`);
+        imageUrls.push(publicUrl);
+      }
     }
 
-    const eventData = {
-      id: folderName,
-      title,
-      category,
-      date,
-      imageFolder: folderName,
-      imageUrls, // Store URLs for easy access
-    };
-
-    await fs.writeFile(eventMetaDataFilePath, JSON.stringify(eventData, null, 2));
-
-    return NextResponse.json({ message: 'Evento criado com sucesso', event: eventData }, { status: 200 });
+    return NextResponse.json({ message: 'Evento criado com sucesso', event: { ...eventData, imageUrls } }, { status: 200 });
   } catch (error) {
     console.error('Erro ao criar evento:', error);
     return NextResponse.json({ message: 'Erro interno do servidor' }, { status: 500 });
   }
-} 
+}

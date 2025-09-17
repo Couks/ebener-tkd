@@ -1,19 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    devIndicators: {
-        buildActivity: false,
-    },
-    images: {
-        imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: 'oystr.com.br',
-                port: '',
-                pathname: '/**',
-            },
-        ],
-    },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'lwvcddvxctpkyuyfwihi.supabase.co',
+        port: '',
+        pathname: '/storage/v1/object/public/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lwvcddvxctpkyuyfwihi.supabase.co',
+        port: '',
+        pathname: '/storage/v1/render/image/public/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

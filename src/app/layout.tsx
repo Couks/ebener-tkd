@@ -48,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br" suppressHydrationWarning>
+    <html lang="pt-br">
       <head>
         <title>Taekwondo na Ilha do Governador - Ebener TKD</title>
         <meta

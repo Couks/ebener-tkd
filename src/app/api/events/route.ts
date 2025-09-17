@@ -1,30 +1,52 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
+import { NextResponse } from 'next/server';
+import { createServer } from '@/lib/supabase/server';
 
-export async function GET(req: NextRequest) {
+export async function GET() {
+  const supabase = createServer();
+
   try {
-    const eventsDirPath = path.join(process.cwd(), 'public', 'events');
-    const eventFiles = await fs.readdir(eventsDirPath);
+    const { data: events, error: eventsError } = await supabase
+      .from('events')
+      .select('*')
+      .order('date', { ascending: false });
 
-    const eventsData = await Promise.all(
-      eventFiles.map(async (file) => {
-        const filePath = path.join(eventsDirPath, file);
-        const fileContent = await fs.readFile(filePath, 'utf-8');
-        return JSON.parse(fileContent);
+    if (eventsError) {
+      console.error('Error fetching events:', eventsError);
+      throw eventsError;
+    }
+
+    const eventsWithImages = await Promise.all(
+      events.map(async (event) => {
+        const { data: files, error: listError } = await supabase.storage
+          .from('events')
+          .list(`${event.id}/`);
+
+        if (listError) {
+          console.error(`Error listing images for event ${event.id}:`, listError);
+          // Continue without images for this event
+          return { ...event, imageUrls: [] };
+        }
+
+        const imageUrls = files ? files.map(file => {
+          const { data: { publicUrl } } = supabase.storage
+            .from('events')
+            .getPublicUrl(`${event.id}/${file.name}`, {
+              transform: {
+                width: 300,
+                height: 300,
+                resize: 'cover',
+              },
+            });
+          return publicUrl;
+        }) : [];
+
+        return { ...event, imageUrls };
       })
     );
 
-    // Sort events by date in descending order (most recent first)
-    eventsData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-    return NextResponse.json(eventsData, { status: 200 });
+    return NextResponse.json(eventsWithImages, { status: 200 });
   } catch (error) {
-    console.error('Erro ao buscar eventos:', error);
-    // If the directory doesn't exist yet, return an empty array
-    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
-      return NextResponse.json([], { status: 200 });
-    }
-    return NextResponse.json({ message: 'Erro interno do servidor' }, { status: 500 });
+    console.error('Error in GET /api/events:', error);
+    return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
   }
-} 
+}

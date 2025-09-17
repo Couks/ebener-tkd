@@ -1,71 +1,80 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Quote, ArrowRight, MessageCircle } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { Skeleton } from "@/components/ui/skeleton" // Import Skeleton
 
-// Import images
-import chaves from "@/assets/alunos/matheus-chaves.jpg"
-import duda from "@/assets/alunos/duda-souza.jpg"
-import yas from "@/assets/alunos/yas-tonelli.jpg"
-import flavio from "@/assets/alunos/flavio-baptista.jpeg"
-
-// Define testimonial interface
+// Define testimonial interface - updated to match API
 interface Testimonial {
-  id: number
-  name: string
-  role: string
-  quote: string
-  image: any
-  achievement?: string
-  year: string
+  id: string;
+  name: string;
+  role: string | null;
+  quote: string;
+  image_url: string | null;
+  achievement?: string | null;
+  year: string | null;
 }
 
 export default function TestimonialsSection() {
   const [activeTestimonial, setActiveTestimonial] = useState(0)
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([])
+  const [loading, setLoading] = useState(true)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Testimonials data
-  const testimonials: Testimonial[] = [
-    {
-      id: 1,
-      name: "Matheus Chaves",
-      role: "Aluno",
-      quote:
-        "A prática do Taekwondo foi uma grande mudança pra minha vida. Fisica e mentalmente, tenho hoje um corpo mais saudável e encontrei um espaço para desestressar e acalmar os problemas do dia a dia.",
-      image: chaves,
-      year: "2023",
-    },
-    {
-      id: 2,
-      name: "Duda Souza",
-      role: "Aluna e Atleta",
-      quote:
-        "Com o Taekwondo, aprendi a ter resiliência, disciplina e foco, ajudando a superar desafios. Isso me permitiu alcançar títulos importantes, como o de campeã brasileira e a liderança no ranking nacional.",
-      image: duda,
-      achievement: "Campeã Brasileira",
-      year: "2022",
-    },
-    {
-      id: 3,
-      name: "Yasmin Tonelli",
-      role: "Aluna",
-      quote:
-        "O Taekwondo me ensinou que posso me superar e trouxe outros estímulos para a minha prática física. Sinto que é uma atividade muito completa!",
-      image: yas,
-      year: "2024",
-    },
-  ]
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/testimonials');
+        if (!response.ok) {
+          throw new Error('Failed to fetch testimonials');
+        }
+        const data = await response.json();
+        setTestimonials(data);
+      } catch (error) {
+        console.error(error);
+        // Handle error state if needed
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTestimonials();
+  }, []);
+
+  // Return loading state or empty state if no testimonials
+  if (loading) {
+    return (
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto px-4 text-center">
+          <Skeleton className="h-12 w-1/2 mx-auto mb-4" />
+          <Skeleton className="h-8 w-3/4 mx-auto" />
+          <div className="mt-16 max-w-5xl mx-auto">
+            <Skeleton className="h-[400px] w-full rounded-3xl" />
+            <div className="mt-8 flex justify-center gap-4">
+              <Skeleton className="w-16 h-16 rounded-full" />
+              <Skeleton className="w-16 h-16 rounded-full" />
+              <Skeleton className="w-16 h-16 rounded-full" />
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (testimonials.length === 0) {
+    return null; // Or some placeholder
+  }
 
   return (
     <section className="py-16 md:py-24 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0  -z-10"></div>
 
-      
+
 
       <div className="container mx-auto px-4">
         {/* Header section */}
@@ -107,7 +116,7 @@ export default function TestimonialsSection() {
                   {/* Image column */}
                   <div className="relative h-64 md:h-auto">
                     <Image
-                      src={testimonials[activeTestimonial].image.src || "/placeholder.svg"}
+                      src={testimonials[activeTestimonial].image_url || "/placeholder.svg"}
                       alt={testimonials[activeTestimonial].name}
                       fill
                       className="object-cover"
@@ -209,7 +218,7 @@ export default function TestimonialsSection() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Avatar className="w-16 h-16">
-                  <AvatarImage src={testimonial.image.src} alt={testimonial.name} />
+                  <AvatarImage src={testimonial.image_url || undefined} alt={testimonial.name} />
                   <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
                 </Avatar>
                 {activeTestimonial === index && (
@@ -224,7 +233,7 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        
+
       </div>
     </section>
   )
