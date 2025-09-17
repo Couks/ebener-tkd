@@ -3,7 +3,13 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  Variants,
+  useReducedMotion,
+} from "framer-motion";
 import Link from "next/link";
 
 interface IntroSectionProps {
@@ -23,6 +29,7 @@ export default function IntroSection({
   buttonText = "Explore mais",
   buttonLink = "",
 }: IntroSectionProps) {
+  const shouldReduceMotion = useReducedMotion();
   const [isMounted, setIsMounted] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollY } = useScroll();
@@ -39,6 +46,57 @@ export default function IntroSection({
 
   // Split title into words for staggered animation
   const titleWords = title.split(" ");
+  const subtitleWords = subtitle.split(" ");
+
+  const titleContainerVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.1,
+      },
+    },
+  };
+
+  const titleWordVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: "100%",
+      rotateZ: "2deg",
+      rotateX: "-10deg",
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotateZ: 0,
+      rotateX: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.7,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const subtitleContainerVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        delayChildren: shouldReduceMotion ? 0 : titleWords.length * 0.1,
+        staggerChildren: shouldReduceMotion ? 0 : 0.04,
+      },
+    },
+  };
+
+  const subtitleWordVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.4,
+        ease: "easeOut",
+      },
+    },
+  };
 
   return (
     <section
@@ -73,42 +131,57 @@ export default function IntroSection({
           y: isMounted ? contentY : 0,
           opacity: isMounted ? opacity : 1,
         }}
+        initial="hidden"
+        animate={isMounted ? "visible" : "hidden"}
       >
         <div className="max-w-4xl">
           {/* Title with word-by-word animation */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+          <motion.h1
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight"
+            variants={titleContainerVariants}
+          >
             {titleWords.map((word, index) => (
-              <motion.span
+              <div
                 key={index}
                 className="inline-block mr-[0.25em]"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.1 * index,
-                  ease: "easeOut",
-                }}
+                style={{ overflow: "hidden" }}
               >
-                {word}
-              </motion.span>
+                <motion.span
+                  className="inline-block"
+                  variants={titleWordVariants}
+                >
+                  {word}
+                </motion.span>
+              </div>
             ))}
-          </h1>
+          </motion.h1>
 
           {/* Subtitle */}
           <motion.p
             className="text-md sm:text-lg md:text-xl lg:text-2xl text-gray-200 mb-8 max-w-xl"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            variants={subtitleContainerVariants}
           >
-            {subtitle}
+            {subtitleWords.map((word, index) => (
+              <motion.span
+                key={index}
+                className="inline-block mr-[0.2em]"
+                variants={subtitleWordVariants}
+              >
+                {word}
+              </motion.span>
+            ))}
           </motion.p>
 
           {/* CTA Button */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.5,
+              delay: shouldReduceMotion
+                ? 0
+                : titleWords.length * 0.1 + subtitleWords.length * 0.04,
+            }}
           >
             <Link href={buttonLink} className="inline-block">
               <motion.button
